@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function MyPage({ username, token, onLogout }) {
+export default function MyPage({ username, token }) {
   const [userList, setUserList] = useState([]);
   const [user, setUser] = useState([]);
+  const [email, setEmail] = useState("");
 
   async function handleGetAll() {
     const url = "http://localhost:8080/api/v1/users/findAll";
@@ -23,7 +24,6 @@ export default function MyPage({ username, token, onLogout }) {
   }
 
   async function handleGetUserByEmail() {
-    const email = "m@e.se";
     const url = `http://localhost:8080/api/v1/users/findUser/${email}`;
 
     try {
@@ -40,11 +40,20 @@ export default function MyPage({ username, token, onLogout }) {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    console.log(e.target.value);
+
+    handleGetUserByEmail(e.target.value);
+  }
+
   return (
     <div>
       Welcome {username}
-      <button onClick={() => handleGetAll()}>Get All</button>
-      <button onClick={() => handleGetUserByEmail()}>Get User By Email</button>
+      <p>
+        <button onClick={() => handleGetAll()}>Get All</button>
+      </p>
       <div>
         <ul>
           {userList.map((user) => (
@@ -55,9 +64,20 @@ export default function MyPage({ username, token, onLogout }) {
           ))}
         </ul>
       </div>
-      <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        ></input>
+        <p>
+          <button>Get User By Email</button>
+        </p>
+      </form>
+      <p>
         Email: {user.email}, Username: {user.username}, Roles: {user.roles}
-      </div>
+      </p>
     </div>
   );
 }
