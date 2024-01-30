@@ -43,9 +43,13 @@ export default function GetByEmail({ token }) {
         </p>
       </form>
       {isVisible && (
-        <p>
-          Email: {user.email}, Username: {user.username}, Roles: {user.roles}
-        </p>
+        <>
+          <p>
+            Email: {user.email}, Username: {user.username}, Roles: {user.roles}
+          </p>
+          <button>❌</button>
+          <button>✏️</button>
+        </>
       )}
     </div>
   );

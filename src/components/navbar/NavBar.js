@@ -22,6 +22,9 @@ export function NavBar({ children, onIsLoggedIn }) {
           <li>
             <Link to="/add">Add User</Link>
           </li>
+          <li>
+            <Link to="/delete">Delete User</Link>
+          </li>
           {/* <li className="dropdown">
             <Link className="dropdown-toggle" data-toggle="dropdown" to="#">
               Page 1 <span className="caret"></span>

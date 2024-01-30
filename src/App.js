@@ -10,6 +10,7 @@ import GetAll from "./components/admin/GetAll";
 import GetByEmail from "./components/admin/GetByEmail";
 import Update from "./components/admin/Update";
 import Add from "./components/admin/Add";
+import Delete from "./components/admin/Delete";
 
 export default function App() {
   const [username, setUsername] = useState("");
@@ -57,6 +58,8 @@ export default function App() {
         <Route path="/update" element={<Update token={token} />} />
 
         <Route path="/add" element={<Add token={token} />} />
+
+        <Route path="/delete" element={<Delete token={token} />} />
       </Routes>
     </>
   );
