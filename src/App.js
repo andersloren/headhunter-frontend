@@ -6,6 +6,10 @@ import Home from "./components/pages/Home";
 import MyPage from "./components/pages/MyPage";
 import SignUp from "./components/pages/SignUp";
 import { useState } from "react";
+import GetAll from "./components/admin/GetAll";
+import GetByEmail from "./components/admin/GetByEmail";
+import Update from "./components/admin/Update";
+import Add from "./components/admin/Add";
 
 export default function App() {
   const [username, setUsername] = useState("");
@@ -44,8 +48,15 @@ export default function App() {
         />
         <Route
           path="/myPage"
-          element={<MyPage username={username} token={token} />}
+          element={<MyPage greeting={username} token={token} />}
         />
+        <Route path="/getAll" element={<GetAll token={token} />} />
+
+        <Route path="/getByEmail" element={<GetByEmail token={token} />} />
+
+        <Route path="/update" element={<Update token={token} />} />
+
+        <Route path="/add" element={<Add token={token} />} />
       </Routes>
     </>
   );

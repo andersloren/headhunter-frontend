@@ -10,9 +10,18 @@ export function NavBar({ children, onIsLoggedIn }) {
           </Link>
         </div>
         <ul className="nav navbar-nav">
-          {/* <li className="active">
-            <Link to="/">Home</Link>
-          </li> */}
+          <li>
+            <Link to="/getAll">Get All</Link>
+          </li>
+          <li>
+            <Link to="/getByEmail">Get User</Link>
+          </li>
+          <li>
+            <Link to="/update">Update User</Link>
+          </li>
+          <li>
+            <Link to="/add">Add User</Link>
+          </li>
           {/* <li className="dropdown">
             <Link className="dropdown-toggle" data-toggle="dropdown" to="#">
               Page 1 <span className="caret"></span>
