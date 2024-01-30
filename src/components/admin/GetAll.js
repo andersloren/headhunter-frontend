@@ -18,7 +18,6 @@ export default function GetAll({ token }) {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data.data[0].email);
       setUserList(response.data.data);
     } catch (error) {
       console.error("Error get all", error);

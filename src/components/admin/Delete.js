@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Input from "../utils/Input";
 
 export default function Delete({ token }) {
   const [email, setEmail] = useState("");
@@ -28,12 +29,7 @@ export default function Delete({ token }) {
   return (
     <div>
       <form onSubmit={handleGetUserByEmail}>
-        <input
-          type="text"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
+        <Input placeholder="Enter email" state={email} onSetState={setEmail} />
         <p>
           <button>Delete User</button>
         </p>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Input from "../utils/Input";
 
 export default function GetByEmail({ token }) {
   const [email, setEmail] = useState("");
@@ -8,6 +9,8 @@ export default function GetByEmail({ token }) {
 
   function handleGetUserByEmail(e) {
     e.preventDefault();
+
+    console.log(email);
 
     setIsVisible(true);
     getUserByEmail(e.target.value);
@@ -32,14 +35,9 @@ export default function GetByEmail({ token }) {
   return (
     <div>
       <form onSubmit={handleGetUserByEmail}>
-        <input
-          type="text"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
+        <Input placeholder="Enter email" state={email} onSetState={setEmail} />
         <p>
-          <button>Get User By Email</button>
+          <button>Find User</button>
         </p>
       </form>
       {isVisible && (

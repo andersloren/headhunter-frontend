@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Input from "../utils/Input";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -35,33 +36,28 @@ export default function SignUp() {
     <div>
       <form onSubmit={handleSignUp}>
         <p>
-          <label htmlFor="">Email</label>
-          <input
-            type="text"
+          <Input
             placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
+            state={email}
+            onSetState={setEmail}
+          />
         </p>
         <p>
-          <label htmlFor="">Username</label>
-          <input
-            type="text"
+          <Input
             placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          ></input>
+            state={username}
+            onSetState={setUsername}
+          />
         </p>
         <p>
-          <label htmlFor="">Password</label>
-          <input
+          <Input
             type="password"
             placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
+            state={password}
+            onSetState={setPassword}
+          />
         </p>
-        <button>Sign up</button>
+        <button>Sign Up</button>
       </form>
     </div>
   );

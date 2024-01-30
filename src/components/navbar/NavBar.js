@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import CommonNav from "./CommonNav";
+import AdminNav from "./AdminNav";
 
-export function NavBar({ children, onIsLoggedIn }) {
+export function NavBar({ children, roles }) {
+  // {roles.split(" ").includes("admin")
+
   return (
     <nav className="navbar navbar-inverse">
       <div className="container-fluid">
@@ -9,66 +13,17 @@ export function NavBar({ children, onIsLoggedIn }) {
             {children}
           </Link>
         </div>
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/getAll">Get All</Link>
-          </li>
-          <li>
-            <Link to="/getByEmail">Get User</Link>
-          </li>
-          <li>
-            <Link to="/update">Update User</Link>
-          </li>
-          <li>
-            <Link to="/add">Add User</Link>
-          </li>
-          <li>
-            <Link to="/delete">Delete User</Link>
-          </li>
-          {/* <li className="dropdown">
-            <Link className="dropdown-toggle" data-toggle="dropdown" to="#">
-              Page 1 <span className="caret"></span>
-            </Link>
-            <ul className="dropdown-menu">
-              <li>
-                <Link to="#">Inaktiv länk</Link>
-              </li>
-              <li>
-                <Link to="#">Page 1-2</Link>
-              </li>
-              <li>
-                <Link to="#">Page 1-3</Link>
-              </li>
-            </ul>
-          </li> */}
-          {/* <li>
-            <Link to="#">Page 2</Link>
-          </li> */}
-        </ul>
-        <ul className="nav navbar-nav navbar-right">
-          <>
-            <li>
-              <Link to="/signUp">
-                <span className="glyphicon glyphicon-user"></span> Sign Up
-              </Link>
-            </li>
 
-            <li>
-              <Link to="/login">
-                <span className="glyphicon glyphicon-log-in"></span> Login
-              </Link>
-            </li>
-          </>
-          <li>
-            <Link to="/logout">
-              <span
-                className="glyphicon glyphicon-log-out"
-                onClick={() => onIsLoggedIn(false)}
-              ></span>{" "}
-              Logout
-            </Link>
-          </li>
-          ;
+        {/* Admin only links */}
+        {roles.split(" ").includes("admin") && (
+          <ul className="nav navbar-nav">
+            <AdminNav />
+          </ul>
+        )}
+
+        {/* User only links */}
+        <ul className="nav navbar-nav navbar-right">
+          <CommonNav />
         </ul>
       </div>
     </nav>

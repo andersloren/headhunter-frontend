@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Input from "../utils/Input";
 
 export default function Update({ token }) {
   const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ export default function Update({ token }) {
   const [roles, setRoles] = useState("");
 
   function handleUpdateUser(e) {
+    console.log(e.target.value);
     e.preventDefault();
 
     updateUser(e.target.value);
@@ -37,28 +39,25 @@ export default function Update({ token }) {
     <div>
       <form onSubmit={handleUpdateUser}>
         <p>
-          <input
-            type="text"
+          <Input
             placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
+            state={email}
+            onSetState={setEmail}
+          />
         </p>
         <p>
-          <input
-            type="text"
+          <Input
             placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          ></input>
+            state={username}
+            onSetState={setUsername}
+          />
         </p>
         <p>
-          <input
-            type="text"
+          <Input
             placeholder="Enter roles"
-            value={roles}
-            onChange={(e) => setRoles(e.target.value)}
-          ></input>
+            state={roles}
+            onSetState={setRoles}
+          />
         </p>
         <p>
           <button>Update User</button>

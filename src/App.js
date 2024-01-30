@@ -15,25 +15,23 @@ import Delete from "./components/admin/Delete";
 export default function App() {
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [roles, setRoles] = useState("");
 
   function handleUsername(username) {
     setUsername(username);
-  }
-
-  function handleIsLoggedIn(boolean) {
-    setIsLoggedIn(boolean);
   }
 
   function handleToken(token) {
     setToken(token);
   }
 
+  function handleRoles(roles) {
+    setRoles(roles);
+  }
+
   return (
     <>
-      <NavBar isLoggedIn={isLoggedIn} onIsLoggedIn={handleIsLoggedIn}>
-        Headhunter
-      </NavBar>
+      <NavBar roles={roles}>Headhunter</NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signUp" element={<SignUp />} />
@@ -42,8 +40,8 @@ export default function App() {
           element={
             <Login
               onUsername={handleUsername}
-              onIsLoggedIn={handleIsLoggedIn}
               onToken={handleToken}
+              onRoles={handleRoles}
             />
           }
         />

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Input from "../utils/Input";
 
 export default function Add({ token }) {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ export default function Add({ token }) {
   }
 
   async function addUser() {
-    const url = "http://localhost:8080/api/v1/users/register";
+    const url = "http://localhost:8080/api/v1/users/addUser";
 
     try {
       const response = await axios.post(
@@ -44,40 +45,33 @@ export default function Add({ token }) {
     <div>
       <form onSubmit={handleAdd}>
         <p>
-          <label htmlFor=""></label>
-          <input
-            type="text"
+          <Input
             placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
+            state={email}
+            onSetState={setEmail}
+          />
         </p>
         <p>
-          <label htmlFor=""></label>
-          <input
-            type="text"
+          <Input
             placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          ></input>
+            state={username}
+            onSetState={setUsername}
+          />
         </p>
         <p>
-          <label htmlFor=""></label>
-          <input
+          <Input
             type="password"
             placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
+            state={password}
+            onSetState={setPassword}
+          />
         </p>
         <p>
-          <label htmlFor=""></label>
-          <input
-            type="text"
+          <Input
             placeholder="Enter roles"
-            value={roles}
-            onChange={(e) => setRoles(e.target.value)}
-          ></input>
+            state={roles}
+            onSetState={setRoles}
+          />
         </p>
         <button>Add User</button>
       </form>

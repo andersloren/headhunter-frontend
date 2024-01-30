@@ -1,17 +1,18 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Input from "../utils/Input";
 
-export function Login({ onUsername, onToken, onIsLoggedIn }) {
+export function Login({ onUsername, onToken, onRoles }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  function handleAuthentication(token, username) {
+  function handleAuthentication(token, username, roles) {
     onToken(token);
-    onIsLoggedIn(true);
     onUsername(username);
+    onRoles(roles);
     navigate("/myPage");
   }
 
@@ -38,7 +39,8 @@ export function Login({ onUsername, onToken, onIsLoggedIn }) {
       console.log(response.data.data.token);
       handleAuthentication(
         response.data.data.token,
-        response.data.data.userInfo.username
+        response.data.data.userInfo.username,
+        response.data.data.userInfo.roles
       );
     } catch (error) {
       console.error("Error logging in", error);
@@ -49,22 +51,19 @@ export function Login({ onUsername, onToken, onIsLoggedIn }) {
     <div>
       <form onSubmit={handleLogin}>
         <p>
-          <label htmlFor="">Email</label>
-          <input
-            type="text"
+          <Input
             placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
+            state={email}
+            onSetState={setEmail}
+          />
         </p>
         <p>
-          <label htmlFor="">Password</label>
-          <input
+          <Input
             type="password"
             placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
+            state={password}
+            onSetState={setPassword}
+          />
         </p>
         <button>Login</button>
       </form>
