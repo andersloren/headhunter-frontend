@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { NavBar } from "./components/navbar/NavBar";
+import { Routes, Route } from "react-router-dom";
+import { Login } from "./components/pages/Login";
+import Home from "./components/pages/Home";
+import MyPage from "./components/pages/MyPage";
+import SignUp from "./components/pages/SignUp";
+import { useState } from "react";
 
-function App() {
+export default function App() {
+  const [username, setUsername] = useState("");
+  const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  function handleUsername(username) {
+    setUsername(username);
+  }
+
+  function handleIsLoggedIn(boolean) {
+    setIsLoggedIn(boolean);
+  }
+
+  function handleToken(token) {
+    setToken(token);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar isLoggedIn={isLoggedIn} onIsLoggedIn={handleIsLoggedIn}>
+        Headhunter
+      </NavBar>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              onUsername={handleUsername}
+              onIsLoggedIn={handleIsLoggedIn}
+              onToken={handleToken}
+            />
+          }
+        />
+        <Route
+          path="/myPage"
+          element={<MyPage username={username} token={token} />}
+        />
+      </Routes>
+    </>
   );
 }
-
-export default App;
