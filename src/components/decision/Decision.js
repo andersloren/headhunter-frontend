@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Button } from "./Button";
 import { Prompt } from "./prompt/Prompt";
 
-export function Decision({ theme, children }) {
+export default function Decision({ theme, children }) {
   const [activeButton, setActiveButton] = useState(null);
 
   const numberOfButtons = 3;
 
   function statusHandler(clickedButton) {
-    console.log(activeButton);
     clickedButton === activeButton
       ? setActiveButton(null)
       : setActiveButton(clickedButton);

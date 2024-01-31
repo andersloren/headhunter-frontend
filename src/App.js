@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavBar } from "./components/navbar/NavBar";
+import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./components/pages/Login";
+import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import MyPage from "./components/pages/MyPage";
 import SignUp from "./components/pages/SignUp";
@@ -15,7 +15,6 @@ import Delete from "./components/admin/Delete";
 export default function App() {
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
-  const [roles, setRoles] = useState("");
 
   function handleUsername(username) {
     setUsername(username);
@@ -25,25 +24,15 @@ export default function App() {
     setToken(token);
   }
 
-  function handleRoles(roles) {
-    setRoles(roles);
-  }
-
   return (
     <>
-      <NavBar roles={roles}>Headhunter</NavBar>
+      <NavBar token={token}>Headhunter</NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route
           path="/login"
-          element={
-            <Login
-              onUsername={handleUsername}
-              onToken={handleToken}
-              onRoles={handleRoles}
-            />
-          }
+          element={<Login onUsername={handleUsername} onToken={handleToken} />}
         />
         <Route
           path="/myPage"

@@ -3,17 +3,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../utils/Input";
 
-export function Login({ onUsername, onToken, onRoles }) {
+export default function Login({ onUsername, onToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  function handleAuthentication(token, username, roles) {
+  function handleAuthentication(token, username) {
+    // localStorage.setItem("token", token);
     onToken(token);
     onUsername(username);
-    onRoles(roles);
-    navigate("/myPage");
+    // navigate("/myPage");
   }
 
   async function handleLogin(event) {
@@ -36,7 +36,7 @@ export function Login({ onUsername, onToken, onRoles }) {
           },
         }
       );
-      console.log(response.data.data.token);
+      console.log("Raw token from response, Login: ", response.data.data.token);
       handleAuthentication(
         response.data.data.token,
         response.data.data.userInfo.username,

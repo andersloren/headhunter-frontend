@@ -1,15 +1,40 @@
-import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import { extractRolesFromToken } from "../utils/extractRolesFromToken";
+import { useEffect } from "react";
 
 export default function MyPage({ token }) {
-  function handleButton() {
-    const user = jwtDecode(token);
-    console.log(user);
-  }
+  console.log("MyPage:", token);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) navigate("/");
+  }, []);
+
+  // function handleExpiredFromToken({ token }) {
+  //   const user = jwtDecode(token);
+  //   // user exp is missing miliseconds, so user.exp * 1000 fakes the miliseconds
+  //   const exp = user.exp * 1000;
+  //   console.log(exp < Date.now());
+  // }
 
   return (
     <div>
       My Page
-      <button onClick={handleButton}>Decode Token</button>
+      {/* `My Page ${localStorage.getItem("token")}` */}
+      <p>
+        <button onClick={() => extractRolesFromToken(token)}>
+          Extract Roles From Token
+        </button>
+      </p>
+      {/* <p>
+        <button onClick={() => extractExpiredFromToken(token)}>
+          Extract Expired From Token
+        </button>
+      </p> */}
+      {/* <Decision />
+      <Decision />
+      <Decision /> */}
     </div>
   );
 }
