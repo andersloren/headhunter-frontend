@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import Input from "../utils/Input";
 
-export default function Delete({ token }) {
+export default function Delete() {
   const [email, setEmail] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
 
   function handleGetUserByEmail(e) {
     e.preventDefault();
@@ -17,11 +18,12 @@ export default function Delete({ token }) {
     try {
       const response = await axios.delete(url, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
           "Content-Type": "application/json",
         },
       });
       console.log(response.data.message);
+      setIsVisible(true);
     } catch (error) {
       console.error("Error delete user by email", error);
     }
@@ -31,9 +33,10 @@ export default function Delete({ token }) {
       <form onSubmit={handleGetUserByEmail}>
         <Input placeholder="Enter email" state={email} onSetState={setEmail} />
         <p>
-          <button>Delete User</button>
+          <button>Delete</button>
         </p>
       </form>
+      {isVisible && <p>{email} was successfully deleted</p>}
     </div>
   );
 }

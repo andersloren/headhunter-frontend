@@ -2,16 +2,21 @@ import axios from "axios";
 import { useState } from "react";
 import Input from "../utils/Input";
 
-export default function Update({ token }) {
+export default function Update() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [roles, setRoles] = useState("");
+  const [user, setUser] = useState([]);
+
+  const [isVisible, setIsVisible] = useState(false);
 
   function handleUpdateUser(e) {
     console.log(e.target.value);
     e.preventDefault();
 
     updateUser(e.target.value);
+
+    setIsVisible(true);
   }
 
   async function updateUser() {
@@ -24,12 +29,13 @@ export default function Update({ token }) {
 
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
             "Content-Type": "application/json",
           },
         }
       );
       console.log(response.data.data);
+      setUser(response.data.data);
     } catch (error) {
       console.error("Error updating user by email", error);
     }
@@ -63,6 +69,15 @@ export default function Update({ token }) {
           <button>Update User</button>
         </p>
       </form>
+      {isVisible && (
+        <>
+          <p>
+            Email: {user.email}, Username: {user.username}, Roles: {user.roles}
+          </p>
+          <button>❌</button>
+          <button>✏️</button>
+        </>
+      )}
     </div>
   );
 }

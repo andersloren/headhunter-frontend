@@ -1,23 +1,26 @@
 import { Link } from "react-router-dom";
-import { extractUsernameFromToken } from "../utils/extractUsernameFromToken";
-import { extractExpiredFromToken } from "../utils/extractExpiredFromToken";
+import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToken";
+import { useState } from "react";
 
-export default function LoggedInNav(token) {
+export default function LoggedInNav({ onHandleToken }) {
+  const [username, setUsername] = useState(extractUsernameFromToken());
+
+  function removeTokenFromLocalStorage() {
+    localStorage.removeItem("headhunter-token");
+    setUsername("");
+    onHandleToken(false);
+  }
+
   return (
     <>
-      {/* Remove or keep, or change? */}
-      {/* <li>
-        <Link to="/myPage">My Page</Link>
-      </li> */}
       <li>
         <Link to="/myPage">
           <span className="glyphicon glyphicon-user"></span>
-          {extractUsernameFromToken(token)}
-          {extractExpiredFromToken(token)}
+          {username}
         </Link>
       </li>
       <li>
-        <Link to="/logout">
+        <Link to="/" onClick={removeTokenFromLocalStorage}>
           <span className="glyphicon glyphicon-log-out"></span> Logout
         </Link>
       </li>

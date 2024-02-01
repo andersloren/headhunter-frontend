@@ -3,17 +3,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../utils/Input";
 
-export default function Login({ onUsername, onToken }) {
+export default function Login({ onHandleToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  function handleAuthentication(token, username) {
-    // localStorage.setItem("token", token);
-    onToken(token);
-    onUsername(username);
-    // navigate("/myPage");
+  function handleAuthentication(token) {
+    localStorage.setItem("headhunter-token", token);
+    console.log(
+      "LogIn localStorage token:",
+      localStorage.getItem("headhunter-token")
+    );
+    navigate("/myPage");
+    onHandleToken(true);
   }
 
   async function handleLogin(event) {
@@ -37,11 +40,7 @@ export default function Login({ onUsername, onToken }) {
         }
       );
       console.log("Raw token from response, Login: ", response.data.data.token);
-      handleAuthentication(
-        response.data.data.token,
-        response.data.data.userInfo.username,
-        response.data.data.userInfo.roles
-      );
+      handleAuthentication(response.data.data.token);
     } catch (error) {
       console.error("Error logging in", error);
     }

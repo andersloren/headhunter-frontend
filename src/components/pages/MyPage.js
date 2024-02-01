@@ -1,40 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { extractRolesFromToken } from "../utils/extractRolesFromToken";
-import { useEffect } from "react";
+import { extractExpiredFromToken } from "../utils/token/extractExpiredFromToken";
+import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
+import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToken";
 
-export default function MyPage({ token }) {
-  console.log("MyPage:", token);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!token) navigate("/");
-  }, []);
-
-  // function handleExpiredFromToken({ token }) {
-  //   const user = jwtDecode(token);
-  //   // user exp is missing miliseconds, so user.exp * 1000 fakes the miliseconds
-  //   const exp = user.exp * 1000;
-  //   console.log(exp < Date.now());
-  // }
-
+export default function MyPage() {
   return (
     <div>
-      My Page
-      {/* `My Page ${localStorage.getItem("token")}` */}
-      <p>
-        <button onClick={() => extractRolesFromToken(token)}>
-          Extract Roles From Token
-        </button>
-      </p>
-      {/* <p>
-        <button onClick={() => extractExpiredFromToken(token)}>
-          Extract Expired From Token
-        </button>
-      </p> */}
-      {/* <Decision />
-      <Decision />
-      <Decision /> */}
+      <h1>MyPage</h1>
+      <h4>extractRolesFromToken</h4>
+      <div>{extractRolesFromToken().map((role) => `${role} `)}</div>
+      <h4>extractUsernameFromToken</h4>
+      <div>{extractUsernameFromToken()}</div>
+      <h4>extractExpiredFromToken</h4>
+      <div>
+        {extractExpiredFromToken()
+          ? "Token has not expired"
+          : "Token has expired"}
+      </div>
     </div>
   );
 }

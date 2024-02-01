@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Input from "../utils/Input";
 
-export default function GetByEmail({ token }) {
+export default function GetByEmail() {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
@@ -22,7 +22,7 @@ export default function GetByEmail({ token }) {
     try {
       const response = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
           "Content-Type": "application/json",
         },
       });

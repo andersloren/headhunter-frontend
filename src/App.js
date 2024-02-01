@@ -5,48 +5,64 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import MyPage from "./components/pages/MyPage";
 import SignUp from "./components/pages/SignUp";
-import { useState } from "react";
 import GetAll from "./components/admin/GetAll";
 import GetByEmail from "./components/admin/GetByEmail";
 import Update from "./components/admin/Update";
 import Add from "./components/admin/Add";
 import Delete from "./components/admin/Delete";
+import Welcome from "./components/pages/Welcome";
+import { useState } from "react";
 
 export default function App() {
-  const [username, setUsername] = useState("");
-  const [token, setToken] = useState("");
+  const [isToken, setIsToken] = useState(false);
 
-  function handleUsername(username) {
-    setUsername(username);
+  const localToken = "headhunter-token";
+
+  function handleToken(boolean) {
+    setIsToken(boolean);
   }
 
-  function handleToken(token) {
-    setToken(token);
+  if (!isToken) {
+    return (
+      <>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+
+          <Route path="/signUp" element={<SignUp />} />
+
+          <Route
+            path="/login"
+            element={<Login onHandleToken={handleToken} />}
+          />
+        </Routes>
+      </>
+    ); // Render nothing if the token doesn't exist
   }
 
   return (
     <>
-      <NavBar token={token}>Headhunter</NavBar>
+      <NavBar token={localToken} onHandleToken={handleToken}>
+        Headhunter
+      </NavBar>
       <Routes>
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/" element={<Home />} />
+
         <Route path="/signUp" element={<SignUp />} />
-        <Route
-          path="/login"
-          element={<Login onUsername={handleUsername} onToken={handleToken} />}
-        />
-        <Route
-          path="/myPage"
-          element={<MyPage greeting={username} token={token} />}
-        />
-        <Route path="/getAll" element={<GetAll token={token} />} />
 
-        <Route path="/getByEmail" element={<GetByEmail token={token} />} />
+        <Route path="/login" element={<Login localToken={localToken} />} />
 
-        <Route path="/update" element={<Update token={token} />} />
+        <Route path="/myPage" element={<MyPage />} token={localToken} />
 
-        <Route path="/add" element={<Add token={token} />} />
+        <Route path="/getAll" element={<GetAll />} />
 
-        <Route path="/delete" element={<Delete token={token} />} />
+        <Route path="/getByEmail" element={<GetByEmail />} />
+
+        <Route path="/update" element={<Update />} />
+
+        <Route path="/add" element={<Add />} />
+
+        <Route path="/delete" element={<Delete />} />
       </Routes>
     </>
   );

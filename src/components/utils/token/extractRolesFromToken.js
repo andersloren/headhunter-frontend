@@ -1,8 +1,9 @@
 import { jwtDecode } from "jwt-decode";
 
-export function extractRolesFromToken(token) {
-  const decodedToken = jwtDecode(token.token);
-  console.log("extractRolesFromToken:", token.token);
+export function extractRolesFromToken() {
+  // const token = ;
+  // console.log(token);
+  const decodedToken = jwtDecode(localStorage.getItem("headhunter-token"));
 
   const roles = decodedToken.roles;
 
@@ -14,6 +15,5 @@ export function extractRolesFromToken(token) {
     // +1 is required to get correct position in string
     return role.slice(indexOfUnderscore + 1);
   });
-  console.log("Roles returned from extractRolesFromToken: ", rolesArr);
   return rolesArr;
 }

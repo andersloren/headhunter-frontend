@@ -1,8 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function GetAll({ token }) {
+export default function GetAll() {
   const [userList, setUserList] = useState([]);
+
+  // console.log(localStorage.getItem("headhunter-token"));
+
+  // const token = ;
+
+  // console.log(token);
 
   useEffect(() => {
     getAll();
@@ -14,7 +20,7 @@ export default function GetAll({ token }) {
     try {
       const response = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
           "Content-Type": "application/json",
         },
       });

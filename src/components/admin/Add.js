@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Input from "../utils/Input";
 
-export default function Add({ token }) {
+export default function Add() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +31,7 @@ export default function Add({ token }) {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
             "Content-Type": "application/json",
           },
         }

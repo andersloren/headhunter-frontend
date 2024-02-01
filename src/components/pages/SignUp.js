@@ -1,11 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import Input from "../utils/Input";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   async function handleSignUp(event) {
     event.preventDefault();
@@ -27,6 +30,7 @@ export default function SignUp() {
         }
       );
       console.log(response.data.message);
+      navigate("/");
     } catch (error) {
       console.error("Error signing up", error);
     }
