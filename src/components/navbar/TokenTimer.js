@@ -27,7 +27,7 @@ const TokenTimer = ({ expirationTime, onTokenExpired }) => {
         return { minutes, seconds };
     }
     const timerStyle = {
-        color: "white", // Set the text color to white
+        color: "white",
     };
 
     return (

@@ -11,10 +11,10 @@ export default function Login({ onHandleToken }) {
 
   function handleAuthentication(token) {
     localStorage.setItem("headhunter-token", token);
-    console.log(
-      "LogIn localStorage token:",
-      localStorage.getItem("headhunter-token")
-    );
+    // console.log(
+    //   "LogIn localStorage token:",
+    //   localStorage.getItem("headhunter-token")
+    // );
     navigate("/myPage");
     onHandleToken(true);
   }
@@ -39,7 +39,7 @@ export default function Login({ onHandleToken }) {
           },
         }
       );
-      console.log("Raw token from response, Login: ", response.data.data.token);
+      // console.log("Raw token from response, Login: ", response.data.data.token);
       handleAuthentication(response.data.data.token);
     } catch (error) {
       console.error("Error logging in", error);
