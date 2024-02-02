@@ -1,12 +1,14 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import AdminNav from "./AdminNav";
 import LoggedInNav from "./LoggedInNav";
+import TokenTimer from "./TokenTimer";
 import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
-
+import { extractExpiredFromToken } from "../utils/token/extractExpiredFromToken";
 
 export default function NavBar({ onHandleToken, children }) {
   const roles = extractRolesFromToken();
-  // console.log(roles);
+  const expirationTime = extractExpiredFromToken();
 
   return (
     <nav className="navbar navbar-inverse">
@@ -17,7 +19,6 @@ export default function NavBar({ onHandleToken, children }) {
           </Link>
         </div>
 
-        {/* Admin only links */}
         {roles.map(
           (role) =>
             role === "admin" && (
@@ -27,7 +28,17 @@ export default function NavBar({ onHandleToken, children }) {
             )
         )}
 
-        {/* Log out link */}
+        {expirationTime && (
+          <ul className="nav navbar-nav">
+            <TokenTimer
+              expirationTime={expirationTime}
+              onTokenExpired={() => {
+                onHandleToken(false);
+              }}
+            />
+          </ul>
+        )}
+
         <ul className="nav navbar-nav navbar-right">
           <LoggedInNav onHandleToken={onHandleToken} />
         </ul>
