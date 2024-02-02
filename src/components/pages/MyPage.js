@@ -7,7 +7,7 @@ export default function MyPage() {
 
   const formattedUsername = username.endsWith("s") ? `${username}'` : `${username}'s`;
   return (
-    <div>
+    <div className="container">
       <h1>{formattedUsername} Page</h1>
       <h4>extractRolesFromToken</h4>
       <div>{extractRolesFromToken().map((role) => `${role} `)}</div>
