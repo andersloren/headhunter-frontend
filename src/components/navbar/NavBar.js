@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import AdminNav from "./AdminNav";
 import LoggedInNav from "./LoggedInNav";
 import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
-import LoggedOutNav from "./LoggedOutNav";
+
 
 export default function NavBar({ onHandleToken, children }) {
   const roles = extractRolesFromToken();
