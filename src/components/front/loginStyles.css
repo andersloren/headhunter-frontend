@@ -1,0 +1,25 @@
+.login-heading-text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-heading-primary {
+  color: rgb(223, 223, 223);
+  font-size: 30;
+  text-align: center;
+}
+
+.login-form-box {
+  padding: 30px;
+  margin: 0px;
+}
+
+.login-form-box-label {
+  color: rgb(223, 223, 223);
+}
+
+.login-form-input {
+  margin-bottom: 10px;
+}

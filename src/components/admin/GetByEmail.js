@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import Input from "../utils/Input";
+import Input from "../utils/input/Input";
 
 export default function GetByEmail() {
   const [email, setEmail] = useState("");
@@ -33,22 +33,36 @@ export default function GetByEmail() {
     }
   }
   return (
-    <div>
-      <form onSubmit={handleGetUserByEmail}>
-        <Input placeholder="Enter email" state={email} onSetState={setEmail} />
-        <p>
-          <button>Find User</button>
-        </p>
-      </form>
-      {isVisible && (
-        <>
-          <p>
-            Email: {user.email}, Username: {user.username}, Roles: {user.roles}
-          </p>
-          <button>❌</button>
-          <button>✏️</button>
-        </>
-      )}
+    <div className="main">
+      <div className="heading-text-box">
+        <h1 className="heading-primary">Find User</h1>
+        <div className="form-box">
+          <form onSubmit={handleGetUserByEmail}>
+            <p>
+              <Input
+                placeholder="Enter email"
+                state={email}
+                onSetState={setEmail}
+              />
+            </p>
+            <p>
+              <button>Find User</button>
+            </p>
+          </form>
+          {isVisible && (
+            <>
+              <p>
+                <div className="get-text">
+                  Email: {user.email}, Username: {user.username}, Roles:{" "}
+                  {user.roles}
+                </div>
+              </p>
+              <button>❌</button>
+              <button>✏️</button>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

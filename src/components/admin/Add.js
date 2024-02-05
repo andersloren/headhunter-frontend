@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import Input from "../utils/Input";
+import Input from "../utils/input/Input";
 
 export default function Add() {
   const [email, setEmail] = useState("");
@@ -43,44 +43,52 @@ export default function Add() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleAdd}>
-        <p>
-          <Input
-            placeholder="Enter email"
-            state={email}
-            onSetState={setEmail}
-          />
-        </p>
-        <p>
-          <Input
-            placeholder="Enter username"
-            state={username}
-            onSetState={setUsername}
-          />
-        </p>
-        <p>
-          <Input
-            type="password"
-            placeholder="Enter password"
-            state={password}
-            onSetState={setPassword}
-          />
-        </p>
-        <p>
-          <Input
-            placeholder="Enter roles"
-            state={roles}
-            onSetState={setRoles}
-          />
-        </p>
-        <button>Add User</button>
-      </form>
-      {isVisible && (
-        <p>
-          Email: {user.email}, Username: {user.username}, Roles: {user.roles}
-        </p>
-      )}
+    <div className="main">
+      <div className="heading-text-box">
+        <h1 className="heading-primary">Add a new user</h1>
+        <div className="form-box">
+          <form onSubmit={handleAdd}>
+            <p>
+              <Input
+                placeholder="Enter email"
+                state={email}
+                onSetState={setEmail}
+              />
+            </p>
+            <p>
+              <Input
+                placeholder="Enter username"
+                state={username}
+                onSetState={setUsername}
+              />
+            </p>
+            <p>
+              <Input
+                type="password"
+                placeholder="Enter password"
+                state={password}
+                onSetState={setPassword}
+              />
+            </p>
+            <p>
+              <Input
+                placeholder="Enter roles"
+                state={roles}
+                onSetState={setRoles}
+              />
+            </p>
+            <button>Add User</button>
+          </form>
+          {isVisible && (
+            <div className="get-text">
+              <p>
+                Email: {user.email}, Username: {user.username}, Roles:{" "}
+                {user.roles}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

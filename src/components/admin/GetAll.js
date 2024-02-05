@@ -1,14 +1,12 @@
+// Libraries, functions, etc.
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+// CSS
+import "./getAllStyles.css";
+
 export default function GetAll() {
   const [userList, setUserList] = useState([]);
-
-  // console.log(localStorage.getItem("headhunter-token"));
-
-  // const token = ;
-
-  // console.log(token);
 
   useEffect(() => {
     getAll();
@@ -31,14 +29,18 @@ export default function GetAll() {
   }
 
   return (
-    <div>
-      <ul>
-        {userList.map((user) => (
-          <li key={user.email}>
-            Email: {user.email}, Username: {user.username}, Roles: {user.roles}
-          </li>
-        ))}
-      </ul>
+    <div className="main">
+      <div className="heading-text-box get-text">
+        <h1 className="heading-primary">Found Users</h1>
+        <ul>
+          {userList.map((user) => (
+            <li key={user.email}>
+              Email: {user.email}, Username: {user.username}, Roles:{" "}
+              {user.roles}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,10 @@
+body {
+  /* padding: 30px; */
+  background-color: rgb(223, 223, 223);
+}
+
+.main {
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  background: radial-gradient(at 50% 40%, rgb(82, 82, 82), rgb(8, 8, 8));
+}

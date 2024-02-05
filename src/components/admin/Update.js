@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import Input from "../utils/Input";
+import Input from "../utils/input/Input";
 
 export default function Update() {
   const [email, setEmail] = useState("");
@@ -42,42 +42,50 @@ export default function Update() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleUpdateUser}>
-        <p>
-          <Input
-            placeholder="Enter email"
-            state={email}
-            onSetState={setEmail}
-          />
-        </p>
-        <p>
-          <Input
-            placeholder="Enter username"
-            state={username}
-            onSetState={setUsername}
-          />
-        </p>
-        <p>
-          <Input
-            placeholder="Enter roles"
-            state={roles}
-            onSetState={setRoles}
-          />
-        </p>
-        <p>
-          <button>Update User</button>
-        </p>
-      </form>
-      {isVisible && (
-        <>
-          <p>
-            Email: {user.email}, Username: {user.username}, Roles: {user.roles}
-          </p>
-          <button>❌</button>
-          <button>✏️</button>
-        </>
-      )}
+    <div className="main">
+      <div className="heading-text-box">
+        <h1 className="heading-primary">Update User</h1>
+        <div className="form-box">
+          <form onSubmit={handleUpdateUser}>
+            <p>
+              <Input
+                placeholder="Enter email"
+                state={email}
+                onSetState={setEmail}
+              />
+            </p>
+            <p>
+              <Input
+                placeholder="Enter username"
+                state={username}
+                onSetState={setUsername}
+              />
+            </p>
+            <p>
+              <Input
+                placeholder="Enter roles"
+                state={roles}
+                onSetState={setRoles}
+              />
+            </p>
+            <p>
+              <button>Update User</button>
+            </p>
+          </form>
+          {isVisible && (
+            <>
+              <div className="get-text">
+                <p>
+                  Email: {user.email}, Username: {user.username}, Roles:{" "}
+                  {user.roles}
+                </p>
+              </div>
+              <button>❌</button>
+              <button>✏️</button>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,26 +1,44 @@
+// Libraries, functions, etc.
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/pages/Login";
-import Home from "./components/pages/Home";
-import MyPage from "./components/pages/MyPage";
-import SignUp from "./components/pages/SignUp";
+import { useState } from "react";
+// import { extractExpiredFromToken } from "./components/utils/token/extractExpiredFromToken";
+
+// CSS
+// import "./style.css";
+
+// Front pages
+import Login from "./components/front/Login";
+import SignUp from "./components/front/SignUp";
+import Welcome from "./components/front/Welcome";
+
+// User pages
+import Home from "./components/user/Home";
+import MyPage from "./components/user/MyPage";
+
+// Admin pages
 import GetAll from "./components/admin/GetAll";
 import GetByEmail from "./components/admin/GetByEmail";
 import Update from "./components/admin/Update";
 import Add from "./components/admin/Add";
 import Delete from "./components/admin/Delete";
-import Welcome from "./components/pages/Welcome";
-import { useState } from "react";
 
 export default function App() {
   const [isToken, setIsToken] = useState(false);
 
+  // don't send this all components unless necessary
   const localToken = "headhunter-token";
 
   function handleToken(boolean) {
     setIsToken(boolean);
   }
+
+  // if (localStorage.getItem("headhunter-token"))
+  //   setIsToken(extractExpiredFromToken());
+  // else {
+  //   setIsToken(false);
+  // }
 
   if (!isToken) {
     return (
@@ -41,7 +59,10 @@ export default function App() {
 
   return (
     <>
-      <NavBar token={localToken} onHandleToken={handleToken}>
+      <NavBar
+        token={localToken}
+        // onHandleToken={handleToken}
+      >
         Headhunter
       </NavBar>
       <Routes>
