@@ -1,8 +1,32 @@
+import { useEffect, useState } from "react";
 import { extractExpiredFromToken } from "../utils/token/extractExpiredFromToken";
 import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
 import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToken";
+import axios from "axios";
 
 export default function MyPage() {
+  const [jobList, setJobList] = useState([]);
+
+  useEffect(() => {
+    getAllJobs();
+  }, []);
+
+  async function getAllJobs() {
+    const url = "http://localhost:8080/api/v1/jobs/findAll";
+
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      setJobList(response.data.data);
+    } catch (error) {
+      console.error("Error get all", error);
+    }
+  }
+
   return (
     <div className="main">
       <div className="heading-text-box">
@@ -19,6 +43,13 @@ export default function MyPage() {
               : "Token has expired"}
           </div>
         </div>
+      </div>
+      <div>
+        <ul>
+          {jobList.map((job) => (
+            <li key={job.id}>{job.description}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

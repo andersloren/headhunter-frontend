@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 // CSS
 import "./getAllStyles.css";
 
-export default function GetAll() {
+export default function GetAllUsers() {
   const [userList, setUserList] = useState([]);
 
   useEffect(() => {
-    getAll();
+    getAllUsers();
   }, []);
 
-  async function getAll() {
+  async function getAllUsers() {
     const url = "http://localhost:8080/api/v1/users/findAll";
 
     try {

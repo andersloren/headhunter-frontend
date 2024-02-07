@@ -4,6 +4,6 @@ const promptArr = [
   "Nunc mi sapien, sollicitudin sed enim quis, laoreet venenatis magna. Phasellus lacinia lobortis vestibulum. Donec maximus est neque, sed tempus lorem facilisis sed. Vestibulum sollicitudin orci id urna elementum, ut efficitur turpis tristique. Curabitur vel neque vel metus tristique commodo at eu lacus. Suspendisse vitae velit convallis, sodales risus sit amet, tincidunt lacus. Proin sem nulla, auctor in pharetra a, mollis scelerisque tortor. Fusce augue purus, semper non eleifend at, mattis sit amet nisi. Maecenas cursus lectus id consectetur posuere. Sed a ipsum id odio hendrerit iaculis.",
 ];
 
-export function Prompt({ activeButton }) {
+export default function Prompt({ activeButton }) {
   return <div>{promptArr[activeButton - 1]}</div>;
 }

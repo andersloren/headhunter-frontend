@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Button } from "./Button";
-import { Prompt } from "./prompt/Prompt";
+import useState from "react";
+import DecisionButton from "./DecisionButton";
+import Prompt from "./prompt/Prompt";
 
 export default function Decision({ theme, children }) {
   const [activeButton, setActiveButton] = useState(null);
@@ -22,13 +22,13 @@ export default function Decision({ theme, children }) {
     <div>
       <span className={`text-${getOppositeTextColor()}`}>{children}</span>
       {Array.from({ length: numberOfButtons }, (_, i) => i + 1).map((num) => (
-        <Button
+        <DecisionButton
           statusHandler={statusHandler}
           buttonId={num}
           activeButton={activeButton}
         >
           Option {num}
-        </Button>
+        </DecisionButton>
       ))}
       {activeButton != null && (
         <p>

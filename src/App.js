@@ -18,11 +18,11 @@ import Home from "./components/user/Home";
 import MyPage from "./components/user/MyPage";
 
 // Admin pages
-import GetAll from "./components/admin/GetAll";
-import GetByEmail from "./components/admin/GetByEmail";
-import Update from "./components/admin/Update";
-import Add from "./components/admin/Add";
-import Delete from "./components/admin/Delete";
+import GetAllUser from "./components/admin/GetAllUsers";
+import GetByEmailUser from "./components/admin/GetByEmailUser";
+import UpdateUser from "./components/admin/UpdateUser";
+import AddUser from "./components/admin/AddUser";
+import DeleteUser from "./components/admin/DeleteUser";
 
 export default function App() {
   const [isToken, setIsToken] = useState(false);
@@ -75,15 +75,15 @@ export default function App() {
 
         <Route path="/myPage" element={<MyPage />} token={localToken} />
 
-        <Route path="/getAll" element={<GetAll />} />
+        <Route path="/getAll" element={<GetAllUser />} />
 
-        <Route path="/getByEmail" element={<GetByEmail />} />
+        <Route path="/getByEmail" element={<GetByEmailUser />} />
 
-        <Route path="/update" element={<Update />} />
+        <Route path="/update" element={<UpdateUser />} />
 
-        <Route path="/add" element={<Add />} />
+        <Route path="/add" element={<AddUser />} />
 
-        <Route path="/delete" element={<Delete />} />
+        <Route path="/delete" element={<DeleteUser />} />
       </Routes>
     </>
   );

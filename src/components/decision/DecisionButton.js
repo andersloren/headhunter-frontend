@@ -1,4 +1,9 @@
-export function Button({ statusHandler, buttonId, activeButton, children }) {
+export default function DecisionButton({
+  statusHandler,
+  buttonId,
+  activeButton,
+  children,
+}) {
   return (
     <div className="btn ">
       <button
