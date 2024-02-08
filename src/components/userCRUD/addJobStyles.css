@@ -1,0 +1,37 @@
+.addjob-heading-text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addjob-heading-primary {
+  color: rgb(223, 223, 223);
+  text-transform: uppercase;
+}
+
+.addjob-heading-primary-main {
+  display: block;
+  position: relative;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: 11.5px;
+  margin-bottom: 8px;
+}
+
+.addjob-heading-primary-sub {
+  display: block;
+  position: relative;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 3.35px;
+}
+
+.addjob-interaction-text-box {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(223, 223, 223);
+  font-size: 25px;
+}

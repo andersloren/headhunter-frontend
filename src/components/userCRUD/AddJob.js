@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
-import Button from "../utils/buttons/Button";
+import "./addJobStyles.css";
+// import Button from "../utils/buttons/Button";
 import axios from "axios";
 import Input from "../utils/input/Input";
+import Span from "../utils/span/Span";
 
 export default function AddJob() {
   const [description, setDescription] = useState("");
@@ -43,15 +45,16 @@ export default function AddJob() {
 
   return (
     <div className="main">
-      <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Write job ad description here"
-          state={description}
-          onSetState={setDescription}
-        ></Input>
-        <Button></Button>
-      </form>
+      <div className="addjob-heading-text-box">
+        <h1 className="addjob-heading-primary">Add new job</h1>
+      </div>
+      <div className="addjob-interaction-text-box">
+        <form onSubmit={handleSubmit}>
+          <Span>Add</Span>
+        </form>
+      </div>
     </div>
   );
 }
+
+// className={"Enter job ad text here"}

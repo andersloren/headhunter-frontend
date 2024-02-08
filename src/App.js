@@ -14,15 +14,19 @@ import SignUp from "./components/front/SignUp";
 import Welcome from "./components/front/Welcome";
 
 // User pages
-import MyPage from "./components/user/MyPage";
-import AddJob from "./components/user/AddJob";
+import MyPage from "./components/userCRUD/MyPage";
+import GetByIdJob from "./components/userCRUD/GetByIdJob";
+import GetAllJobs from "./components/userCRUD/GetAllJobs";
+import AddJob from "./components/userCRUD/AddJob";
+import UpdateJob from "./components/userCRUD/UpdateJob";
+import DeleteJob from "./components/userCRUD/DeleteJob";
 
 // Admin pages
-import GetAllUser from "./components/admin/GetAllUsers";
-import GetByEmailUser from "./components/admin/GetByEmailUser";
-import UpdateUser from "./components/admin/UpdateUser";
-import AddUser from "./components/admin/AddUser";
-import DeleteUser from "./components/admin/DeleteUser";
+import GetAllUser from "./components/adminCRUD/GetAllUsers";
+import GetByEmailUser from "./components/adminCRUD/GetByEmailUser";
+import UpdateUser from "./components/adminCRUD/UpdateUser";
+import AddUser from "./components/adminCRUD/AddUser";
+import DeleteUser from "./components/adminCRUD/DeleteUser";
 
 export default function App() {
   const [isToken, setIsToken] = useState(false);
@@ -69,20 +73,24 @@ export default function App() {
         {/* {Landing} */}
         <Route path="/" element={<Welcome />} />
 
-        {/* {Anonymous user links} */}
+        {/* {Anonymous User links} */}
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
 
-        {/* {Logged in user links} */}
+        {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />
+        <Route path="/getAllJobs" element={<GetAllJobs />} />
+        <Route path="/getByIdJob" element={<GetByIdJob />} />
+        <Route path="/updateJob" element={<UpdateJob />} />
         <Route path="/addJob" element={<AddJob />} />
+        <Route path="/deleteJob" element={<DeleteJob />} />
 
         {/* {Admin only links} */}
-        <Route path="/getAll" element={<GetAllUser />} />
-        <Route path="/getByEmail" element={<GetByEmailUser />} />
-        <Route path="/update" element={<UpdateUser />} />
-        <Route path="/add" element={<AddUser />} />
-        <Route path="/delete" element={<DeleteUser />} />
+        <Route path="/getAllUsers" element={<GetAllUser />} />
+        <Route path="/getByEmailUser" element={<GetByEmailUser />} />
+        <Route path="/updateUser" element={<UpdateUser />} />
+        <Route path="/addUser" element={<AddUser />} />
+        <Route path="/deleteUser" element={<DeleteUser />} />
       </Routes>
     </>
   );

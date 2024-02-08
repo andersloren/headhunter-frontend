@@ -4,19 +4,19 @@ export default function AdminNav() {
   return (
     <>
       <li>
-        <Link to="/getAll">Get All</Link>
+        <Link to="/getAllUsers">Get All</Link>
       </li>
       <li>
-        <Link to="/getByEmail">Get User</Link>
+        <Link to="/getByEmailUser">Get User</Link>
       </li>
       <li>
-        <Link to="/update">Update User</Link>
+        <Link to="/updateUser">Update User</Link>
       </li>
       <li>
-        <Link to="/add">Add User</Link>
+        <Link to="/addUser">Add User</Link>
       </li>
       <li>
-        <Link to="/delete">Delete User</Link>
+        <Link to="/deleteUser">Delete User</Link>
       </li>
     </>
   );

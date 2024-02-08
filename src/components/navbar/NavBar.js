@@ -3,7 +3,8 @@ import AdminNav from "./AdminNav";
 import LoggedInNav from "./LoggedInNav";
 import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AddJob from "../user/AddJob";
+import AddJob from "../userCRUD/AddJob";
+import UserNav from "./UserNav";
 
 export default function NavBar({ onHandleToken, children }) {
   const roles = extractRolesFromToken();
@@ -28,7 +29,14 @@ export default function NavBar({ onHandleToken, children }) {
         )}
 
         {/* All user links */}
-        <Link to="/addJob">Add Job</Link>
+        {roles.map(
+          (role) =>
+            role === "user" && (
+              <ul className="nav navbar-nav">
+                <UserNav />
+              </ul>
+            )
+        )}
 
         {/* Log out link */}
         <ul className="nav navbar-nav navbar-right">
