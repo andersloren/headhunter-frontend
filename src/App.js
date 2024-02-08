@@ -14,8 +14,8 @@ import SignUp from "./components/front/SignUp";
 import Welcome from "./components/front/Welcome";
 
 // User pages
-import Home from "./components/user/Home";
 import MyPage from "./components/user/MyPage";
+import AddJob from "./components/user/AddJob";
 
 // Admin pages
 import GetAllUser from "./components/admin/GetAllUsers";
@@ -66,23 +66,22 @@ export default function App() {
         Headhunter
       </NavBar>
       <Routes>
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/" element={<Home />} />
+        {/* {Landing} */}
+        <Route path="/" element={<Welcome />} />
 
+        {/* {Anonymous user links} */}
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
 
-        <Route path="/login" element={<Login localToken={localToken} />} />
+        {/* {Logged in user links} */}
+        <Route path="/myPage" element={<MyPage />} />
+        <Route path="/addJob" element={<AddJob />} />
 
-        <Route path="/myPage" element={<MyPage />} token={localToken} />
-
+        {/* {Admin only links} */}
         <Route path="/getAll" element={<GetAllUser />} />
-
         <Route path="/getByEmail" element={<GetByEmailUser />} />
-
         <Route path="/update" element={<UpdateUser />} />
-
         <Route path="/add" element={<AddUser />} />
-
         <Route path="/delete" element={<DeleteUser />} />
       </Routes>
     </>

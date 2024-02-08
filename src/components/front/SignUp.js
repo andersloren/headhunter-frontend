@@ -115,12 +115,14 @@ export default function SignUp() {
             </p>
 
             <div className="clickable-form">
-              <Button onHandleClick={navigateBack}>Go Back</Button>
               <Button
                 onHandleClick={handleClick}
                 border={"clickable-login"}
                 icon={"glyphicon glyphicon-pencil"}
-                alignment={"clickable-center-alignment"}
+              ></Button>
+              <Button
+                icon={"glyphicon glyphicon-arrow-left"}
+                onHandleClick={navigateBack}
               ></Button>
             </div>
           </form>

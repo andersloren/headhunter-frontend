@@ -8,22 +8,24 @@ import Input from "../utils/input/Input";
 export default function AddJob() {
   const [description, setDescription] = useState("");
 
-  function handleSubmit(jobDescription) {
-    console.log(jobDescription);
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("Handle Submit description", description);
     addJob();
   }
 
-  async function addJob() {
-    const email = extractEmailFromToken();
+  const email = extractEmailFromToken();
+  console.log("Extracted email from token:", email);
 
+  async function addJob() {
     const url = "http://localhost:8080/api/v1/jobs/addJob";
 
     try {
       const response = await axios.post(
         url,
         {
-          email: { email },
-          description: { description },
+          email: `${email}`,
+          description: `${description}`,
         },
         {
           headers: {
@@ -32,14 +34,15 @@ export default function AddJob() {
           },
         }
       );
+      console.log("Add Success");
       console.log(response.data.data);
     } catch (error) {
-      console.error("Error signing up", error);
+      console.error("Error adding job", error);
     }
   }
 
   return (
-    <div>
+    <div className="main">
       <form onSubmit={handleSubmit}>
         <Input
           type="text"

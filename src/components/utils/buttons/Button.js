@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./buttonStyles.css";
 
 export default function Button({
-  navigate,
   alignment = "",
   border = "",
   icon = "",

@@ -88,12 +88,14 @@ export default function Login({ onHandleToken }) {
               </Input>
             </p>
             <div className="clickable-form">
-              <Button onHandleClick={navigateBack}>Go Back</Button>
               <Button
                 border={"clickable-login"}
                 icon={"glyphicon glyphicon-log-in"}
-                alignment={"clickable-center-alignment"}
                 onHandleClick={handleClick}
+              ></Button>
+              <Button
+                icon={"glyphicon glyphicon-arrow-left"}
+                onHandleClick={navigateBack}
               ></Button>
             </div>
           </form>
