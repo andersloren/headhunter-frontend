@@ -29,10 +29,12 @@ import AddUser from "./components/adminCRUD/AddUser";
 import DeleteUser from "./components/adminCRUD/DeleteUser";
 
 export default function App() {
-  const [isToken, setIsToken] = useState(false);
-
-  // don't send this all components unless necessary
   const localToken = "headhunter-token";
+  // Getting the token from local storage to check if it is null or not later
+  const storedToken = localStorage.getItem(localToken);
+  const [isToken, setIsToken] = useState(false);
+  // don't send this all components unless necessary
+
 
   function handleToken(boolean) {
     setIsToken(boolean);
@@ -44,7 +46,7 @@ export default function App() {
   //   setIsToken(false);
   // }
 
-  if (!isToken) {
+  if (storedToken == null) {  // If the token doesn't exist
     return (
       <>
         <Routes>
@@ -58,14 +60,14 @@ export default function App() {
           />
         </Routes>
       </>
-    ); // Render nothing if the token doesn't exist
-  }
+    );
+  } // else if token exists execute the following lines
 
   return (
     <>
       <NavBar
         token={localToken}
-        // onHandleToken={handleToken}
+      // onHandleToken={handleToken}
       >
         Headhunter
       </NavBar>
@@ -78,7 +80,9 @@ export default function App() {
         <Route path="/login" element={<Login />} />
 
         {/* {Logged in User only links} */}
+        {console.log("Route to MyPage matched")}
         <Route path="/myPage" element={<MyPage />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/getAllJobs" element={<GetAllJobs />} />
         <Route path="/getByIdJob" element={<GetByIdJob />} />
         <Route path="/updateJob" element={<UpdateJob />} />

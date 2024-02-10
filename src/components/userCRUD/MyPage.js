@@ -7,6 +7,7 @@ import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToke
 import AddJob from "./AddJob";
 
 export default function MyPage() {
+  console.log("MyPage component rendered");
   // const [jobList, setJobList] = useState([]);
 
   // useEffect(() => {
