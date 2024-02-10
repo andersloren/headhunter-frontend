@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
+
 import "./addJobStyles.css";
 // import Button from "../utils/buttons/Button";
 import axios from "axios";
 import Input from "../utils/input/Input";
 import Span from "../utils/span/Span";
+import Button from "../utils/buttons/Button";
 
 export default function AddJob() {
   const [description, setDescription] = useState("");
@@ -50,7 +52,13 @@ export default function AddJob() {
       </div>
       <div className="addjob-interaction-text-box">
         <form onSubmit={handleSubmit}>
-          <Span>Add</Span>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter job ad text here"
+          />
+          <p><Button>Add</Button></p>
+
         </form>
       </div>
     </div>
