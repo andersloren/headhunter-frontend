@@ -1,8 +1,8 @@
 // Libraries, functions, etc
 import axios from "axios";
 import { useState } from "react";
+// TODO This doesn't work, neither in Postman, check back-end
 
-// Custom components
 import Input from "../utils/input/Input";
 
 export default function DeleteUser() {

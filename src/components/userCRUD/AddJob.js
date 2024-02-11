@@ -4,8 +4,11 @@ import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
 import "./addJobStyles.css";
 // import Button from "../utils/buttons/Button";
+// eslint-disable-next-line
 import axios from "axios";
+// eslint-disable-next-line
 import Input from "../utils/input/Input";
+// eslint-disable-next-line
 import Span from "../utils/span/Span";
 import Button from "../utils/buttons/Button";
 
@@ -14,12 +17,10 @@ export default function AddJob() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Handle Submit description", description);
     addJob();
   }
 
   const email = extractEmailFromToken();
-  console.log("Extracted email from token:", email);
 
   async function addJob() {
     const url = "http://localhost:8080/api/v1/jobs/addJob";

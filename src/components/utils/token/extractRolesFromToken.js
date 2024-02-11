@@ -1,8 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
 export function extractRolesFromToken() {
-  // const token = ;
-  // console.log(token);
+
   const decodedToken = jwtDecode(localStorage.getItem("headhunter-token"));
 
   const roles = decodedToken.roles;

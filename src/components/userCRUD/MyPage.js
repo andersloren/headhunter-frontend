@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { extractExpiredFromToken } from "../utils/token/extractExpiredFromToken";
 import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
 import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToken";
-// import axios from "axios";
 
+
+// import axios from "axios";
+// eslint-disable-next-line
 import AddJob from "./AddJob";
 
 export default function MyPage() {
-  console.log("MyPage component rendered");
   // const [jobList, setJobList] = useState([]);
 
   // useEffect(() => {

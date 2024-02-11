@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-// import { extractExpiredFromToken } from "./components/utils/token/extractExpiredFromToken";
+import { extractExpiredFromToken } from "./components/utils/token/extractExpiredFromToken";
 
 // CSS
 // import "./style.css";
@@ -32,21 +32,20 @@ export default function App() {
   const localToken = "headhunter-token";
   // Getting the token from local storage to check if it is null or not later
   const storedToken = localStorage.getItem(localToken);
+  // eslint-disable-next-line
   const [isToken, setIsToken] = useState(false);
-  // don't send this all components unless necessary
 
+  let isNotExpired = false; // By default the token is expired
+  // If the token exists then extract if the token is still valid or not
+  if (storedToken != null) { // If the token exists
+    isNotExpired = extractExpiredFromToken(); // Get the token expiration date
+  }
 
   function handleToken(boolean) {
     setIsToken(boolean);
   }
 
-  // if (localStorage.getItem("headhunter-token"))
-  //   setIsToken(extractExpiredFromToken());
-  // else {
-  //   setIsToken(false);
-  // }
-
-  if (storedToken == null) {  // If the token doesn't exist
+  if (storedToken == null || !isNotExpired) {  // If the token doesn't exist or if it exists but has expired, execute the following lines
     return (
       <>
         <Routes>
@@ -66,7 +65,7 @@ export default function App() {
   return (
     <>
       <NavBar
-        token={localToken}
+        token={localToken}  // This will show the authority's functions in the navbar
       // onHandleToken={handleToken}
       >
         Headhunter
@@ -80,7 +79,6 @@ export default function App() {
         <Route path="/login" element={<Login />} />
 
         {/* {Logged in User only links} */}
-        {console.log("Route to MyPage matched")}
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/getAllJobs" element={<GetAllJobs />} />
@@ -98,4 +96,4 @@ export default function App() {
       </Routes>
     </>
   );
-}
+}  // TODO Check authorities and make the app act accordingly
