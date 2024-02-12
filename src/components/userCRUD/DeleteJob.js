@@ -1,6 +1,7 @@
 // Libraries, functions, etc
 import axios from "axios";
 import { useState } from "react";
+import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
 // Custom components
 import Input from "../utils/input/Input";
@@ -11,16 +12,23 @@ export default function DeleteJob() {
 
     function handleDeleteJobById(e) {
         e.preventDefault();
-        console.log(e.target.value);
+        // console.log(e.target.value);
         deleteJob(id);
-        console.log("id in handelDeleteJobById = ", id);
+
     }
+    const email = extractEmailFromToken();
+    console.log("email in delete job = ", email);
+
     async function deleteJob() {
         console.log("id in function = ", id);
-        const url = `http://localhost:8080/api/v1/jobs/delete/${id}`;
+        const url = `http://localhost:8080/api/v1/jobs/delete`;
 
         try {
-            const response = await axios.delete(url, {
+            const response = await axios.delete(url,
+                {
+                    email: `${email}`,
+                    id: `${id}`
+                }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
                     "Content-Type": "application/json",

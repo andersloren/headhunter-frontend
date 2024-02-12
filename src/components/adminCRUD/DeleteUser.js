@@ -11,8 +11,7 @@ export default function DeleteUser() {
 
   function handleGetUserByEmail(e) {
     e.preventDefault();
-
-    deleteUser(e.target.value);
+    deleteUser(email);
   }
 
   async function deleteUser() {

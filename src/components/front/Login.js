@@ -43,7 +43,7 @@ export default function Login({ onHandleToken }) {
           },
         }
       );
-      console.log("Raw token from response, Login: ", response.data.data.token);
+      // console.log("Raw token from response, Login: ", response.data.data.token);
       handleAuthentication(response.data.data.token);
     } catch (error) {
       console.error("Error logging in", error);
