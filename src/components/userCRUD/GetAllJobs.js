@@ -35,6 +35,7 @@ export default function GetAllJobs() {
                 <ul>
                     {jobList.map((job) => (
                         <li key={job.id}>
+                            Id: {job.id},
                             Description: {job.description}
                         </li>
                     ))}
