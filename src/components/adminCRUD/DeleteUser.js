@@ -9,7 +9,7 @@ export default function DeleteUser() {
   const [email, setEmail] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
-  function handleGetUserByEmail(e) {
+  function handleDeleteUserByEmail(e) {
     e.preventDefault();
     deleteUser(email);
   }
@@ -18,12 +18,13 @@ export default function DeleteUser() {
     const url = `http://localhost:8080/api/v1/users/delete/${email}`;
 
     try {
-      const response = await axios.delete(url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.delete(url,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
+            "Content-Type": "application/json",
+          },
+        });
       console.log(response.data.message);
       setIsVisible(true);
     } catch (error) {
@@ -35,7 +36,7 @@ export default function DeleteUser() {
       <div className="heading-text-box">
         <h1 className="heading-primary">Delete User</h1>
         <div className="form-box">
-          <form onSubmit={handleGetUserByEmail}>
+          <form onSubmit={handleDeleteUserByEmail}>
             <p>
               <Input
                 placeholder="Enter email"

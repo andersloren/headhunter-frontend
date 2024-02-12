@@ -17,23 +17,24 @@ export default function DeleteJob() {
 
     }
     const email = extractEmailFromToken();
-    console.log("email in delete job = ", email);
 
     async function deleteJob() {
         console.log("id in function = ", id);
+        console.log("email in function = ", email);
         const url = `http://localhost:8080/api/v1/jobs/delete`;
 
         try {
             const response = await axios.delete(url,
                 {
+                    id: `${id}`,
                     email: `${email}`,
-                    id: `${id}`
-                }, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
-                    "Content-Type": "application/json",
                 },
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
+                        "Content-Type": "application/json",
+                    },
+                });
             console.log(response.data.message);
             setIsVisible(true);
         } catch (error) {
