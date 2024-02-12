@@ -22,7 +22,7 @@ export default function DeleteJob() {
         console.log("id in function = ", id);
         console.log("email in function = ", email);
         const url = `http://localhost:8080/api/v1/jobs/delete`;
-
+        console.log(localStorage.getItem("headhunter-token"));
         try {
             const response = await axios.delete(url,
                 {
