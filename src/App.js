@@ -27,6 +27,7 @@ import GetByEmailUser from "./components/adminCRUD/GetByEmailUser";
 import UpdateUser from "./components/adminCRUD/UpdateUser";
 import AddUser from "./components/adminCRUD/AddUser";
 import DeleteUser from "./components/adminCRUD/DeleteUser";
+import GenerateJobAd from "./components/userCRUD/GenerateJobAd";
 
 export default function App() {
   const localToken = "headhunter-token";
@@ -86,6 +87,7 @@ export default function App() {
         <Route path="/updateJob" element={<UpdateJob />} />
         <Route path="/addJob" element={<AddJob />} />
         <Route path="/deleteJob" element={<DeleteJob />} />
+        <Route path="/generateJobAd" element={<GenerateJobAd />} />
 
         {/* {Admin only links} */}
         <Route path="/getAllUsers" element={<GetAllUser />} />

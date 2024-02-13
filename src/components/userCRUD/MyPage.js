@@ -3,6 +3,8 @@ import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
 import axios from "axios";
 
+import "./userCrud.css";
+
 export default function MyPage() {
   const [jobList, setJobList] = useState([]);
 

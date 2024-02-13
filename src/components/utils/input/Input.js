@@ -5,7 +5,7 @@ export default function Input({
   placeholder = "Enter input here",
   state,
   onSetState,
-  textColor,
+  textColor = "input-default",
 }) {
   return (
     <>

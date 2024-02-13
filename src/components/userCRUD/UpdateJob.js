@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import Input from "../utils/input/Input";
 
+import "./userCrud.css";
+
 export default function UpdateJob() {
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");

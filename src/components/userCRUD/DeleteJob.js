@@ -6,6 +6,9 @@ import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 // Custom components
 import Input from "../utils/input/Input";
 
+// CSS
+import "./userCrud.css";
+
 export default function DeleteJob() {
   const [id, setId] = useState(null);
   const [isVisible, setIsVisible] = useState(false);

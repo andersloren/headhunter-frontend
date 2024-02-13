@@ -1,16 +1,16 @@
-.welcome-heading-text-box {
+.generate-heading-text-box {
   position: absolute;
-  top: 40%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.welcome-heading-primary {
+.generate-heading-primary {
   color: rgb(223, 223, 223);
   text-transform: uppercase;
 }
 
-.welcome-heading-primary-main {
+.generate-heading-primary-main {
   display: block;
   position: relative;
   font-size: 50px;
@@ -19,7 +19,7 @@
   margin-bottom: 8px;
 }
 
-.welcome-heading-primary-sub {
+.generate-heading-primary-sub {
   display: block;
   position: relative;
   font-size: 30px;
@@ -27,11 +27,7 @@
   letter-spacing: 3.35px;
 }
 
-.welcome-interaction-text-box {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgb(223, 223, 223);
-  font-size: 25px;
+.side-by-side-container {
+  display: flex;
+  justify-content: space-around; /* This spreads out the items evenly. You can adjust this as needed. */
 }

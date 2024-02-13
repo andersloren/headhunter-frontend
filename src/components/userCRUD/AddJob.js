@@ -1,18 +1,18 @@
+// Libraries, functions, etc.
 import { useState } from "react";
 import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
-
-import "./addJobStyles.css";
-// import Button from "../utils/buttons/Button";
-// eslint-disable-next-line
 import axios from "axios";
-// eslint-disable-next-line
-import Input from "../utils/input/Input";
-// eslint-disable-next-line
-import Span from "../utils/span/Span";
 import Button from "../utils/buttons/Button";
+
+// Custom components
+import Input from "../utils/input/Input";
+
+// CSS
+import "./addJobStyles.css";
 
 export default function AddJob() {
   const [description, setDescription] = useState("");
+  const [instruction, setInstruction] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,6 +30,7 @@ export default function AddJob() {
         {
           email: email,
           description: description,
+          instruction: instruction,
         },
         {
           headers: {
@@ -52,7 +53,13 @@ export default function AddJob() {
       </div>
       <div className="addjob-interaction-text-box">
         <form onSubmit={handleSubmit}>
+          <Input
+            placeholder="Enter instruction1 here"
+            state={instruction}
+            onSetState={setInstruction}
+          ></Input>
           <textarea
+            className="input-default"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter job ad text here"
@@ -65,5 +72,3 @@ export default function AddJob() {
     </div>
   );
 }
-
-// className={"Enter job ad text here"}

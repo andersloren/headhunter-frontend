@@ -19,14 +19,16 @@ export default function Welcome() {
 
   return (
     <div className="main">
-      <div className="heading-text-box">
-        <h1 className="heading-primary">
-          <span className="heading-primary-main">Headhunter</span>
-          <span className="heading-primary-sub">Intelligent recruiting</span>
+      <div className="welcome-heading-text-box">
+        <h1 className="welcome-heading-primary">
+          <span className="welcome-heading-primary-main">Headhunter</span>
+          <span className="welcome-heading-primary-sub">
+            Intelligent recruiting
+          </span>
         </h1>
       </div>
 
-      <div className="interaction-text-box">
+      <div className="welcome-interaction-text-box">
         <Button
           className={"clickable-welcome"}
           onHandleClick={handleNavigateSignUp}

@@ -18,6 +18,9 @@ export default function UserNav() {
       <li>
         <Link to="/deleteJob">Delete Job</Link>
       </li>
+      <li>
+        <Link to="/generateJobAd">Generate Job Ad</Link>
+      </li>
     </>
   );
 }

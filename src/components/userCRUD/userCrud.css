@@ -1,16 +1,16 @@
-.welcome-heading-text-box {
+.heading-text-box {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.welcome-heading-primary {
+.heading-primary {
   color: rgb(223, 223, 223);
   text-transform: uppercase;
 }
 
-.welcome-heading-primary-main {
+.heading-primary-main {
   display: block;
   position: relative;
   font-size: 50px;
@@ -19,7 +19,7 @@
   margin-bottom: 8px;
 }
 
-.welcome-heading-primary-sub {
+.heading-primary-sub {
   display: block;
   position: relative;
   font-size: 30px;
@@ -27,11 +27,22 @@
   letter-spacing: 3.35px;
 }
 
-.welcome-interaction-text-box {
+.interaction-text-box {
   position: absolute;
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(223, 223, 223);
   font-size: 25px;
+}
+
+.html-display-box {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  background-color: rgb(223, 223, 223);
+  font-size: 25px;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  width: 600px;
 }
