@@ -37,7 +37,8 @@ export default function App() {
 
   let isNotExpired = false; // By default the token is expired
   // If the token exists then extract if the token is still valid or not
-  if (storedToken != null) { // If the token exists
+  if (storedToken != null) {
+    // If the token exists
     isNotExpired = extractExpiredFromToken(); // Get the token expiration date
   }
 
@@ -45,14 +46,13 @@ export default function App() {
     setIsToken(boolean);
   }
 
-  if (storedToken == null || !isNotExpired) {  // If the token doesn't exist or if it exists but has expired, execute the following lines
+  if (storedToken == null || !isNotExpired) {
+    // If the token doesn't exist or if it exists but has expired, execute the following lines
     return (
       <>
         <Routes>
           <Route path="/" element={<Welcome />} />
-
           <Route path="/signUp" element={<SignUp />} />
-
           <Route
             path="/login"
             element={<Login onHandleToken={handleToken} />}
@@ -65,8 +65,8 @@ export default function App() {
   return (
     <>
       <NavBar
-        token={localToken}  // This will show the authority's functions in the navbar
-      // onHandleToken={handleToken}
+        token={localToken} // This will show the authority's functions in the navbar
+        // onHandleToken={handleToken}
       >
         Headhunter
       </NavBar>
@@ -96,4 +96,4 @@ export default function App() {
       </Routes>
     </>
   );
-}  // TODO Check authorities and make the app act accordingly
+} // TODO Check authorities and make the app act accordingly

@@ -18,13 +18,12 @@ export default function DeleteUser() {
     const url = `http://localhost:8080/api/v1/users/delete/${email}`;
 
     try {
-      const response = await axios.delete(url,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
-            "Content-Type": "application/json",
-          },
-        });
+      const response = await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
+          "Content-Type": "application/json",
+        },
+      });
       console.log(response.data.message);
       setIsVisible(true);
     } catch (error) {

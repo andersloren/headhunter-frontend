@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
-
 import "./addJobStyles.css";
 // import Button from "../utils/buttons/Button";
 // eslint-disable-next-line
@@ -29,8 +28,8 @@ export default function AddJob() {
       const response = await axios.post(
         url,
         {
-          email: `${email}`,
-          description: `${description}`,
+          email: email,
+          description: description,
         },
         {
           headers: {
@@ -58,8 +57,9 @@ export default function AddJob() {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter job ad text here"
           />
-          <p><Button>Add</Button></p>
-
+          <p>
+            <Button>Add</Button>
+          </p>
         </form>
       </div>
     </div>

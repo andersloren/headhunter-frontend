@@ -1,61 +1,44 @@
-// import { useEffect, useState } from "react";
-import { extractExpiredFromToken } from "../utils/token/extractExpiredFromToken";
-import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
-import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToken";
+import { useEffect, useState } from "react";
+import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
 
-
-// import axios from "axios";
-// eslint-disable-next-line
-import AddJob from "./AddJob";
+import axios from "axios";
 
 export default function MyPage() {
-  // const [jobList, setJobList] = useState([]);
+  const [jobList, setJobList] = useState([]);
 
-  // useEffect(() => {
-  //   getAllJobs();
-  // }, []);
+  useEffect(() => {
+    getAllUserJobs();
+  }, []);
 
-  // Move this a different component
-  // async function getAllJobs() {
-  //   const url = "http://localhost:8080/api/v1/jobs/findAll";
+  const email = extractEmailFromToken();
 
-  //   try {
-  //     const response = await axios.get(url, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     setJobList(response.data.data);
-  //   } catch (error) {
-  //     console.error("Error get all", error);
-  //   }
-  // }
+  async function getAllUserJobs() {
+    const url = `http://localhost:8080/api/v1/jobs/findAllByUserEmail/${email}`;
+
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      setJobList(response.data.data);
+    } catch (error) {
+      console.error("Error get all", error);
+    }
+  }
 
   return (
     <div className="main">
       <div className="heading-text-box">
         <h1 className="heading-primary">My Page</h1>
-        <div className="get-text">
-          <h4>extractRolesFromToken</h4>
-          <div>{extractRolesFromToken().map((role) => `${role} `)}</div>
-          <h4>extractUsernameFromToken</h4>
-          <div>{extractUsernameFromToken()}</div>
-          <h4>extractExpiredFromToken</h4>
-          <div>
-            {extractExpiredFromToken()
-              ? "Token has not expired"
-              : "Token has expired"}
-          </div>
-        </div>
       </div>
-      <div>
-        {/*} Remove this once we have moved the getAll function */}
-        {/* <ul>
+      <div className="job-description">
+        <ul>
           {jobList.map((job) => (
             <li key={job.id}>{job.description}</li>
           ))}
-        </ul> */}
+        </ul>
       </div>
     </div>
   );

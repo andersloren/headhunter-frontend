@@ -35,3 +35,12 @@
   color: rgb(223, 223, 223);
   font-size: 25px;
 }
+
+.job-description {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(223, 223, 223);
+  font-size: 12.5px;
+}

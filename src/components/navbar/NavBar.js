@@ -19,23 +19,17 @@ export default function NavBar({ onHandleToken, children }) {
         </div>
 
         {/* Admin only links */}
-        {roles.map(
-          (role) =>
-            role === "admin" && (
-              <ul className="nav navbar-nav">
-                <AdminNav />
-              </ul>
-            )
+        {roles.includes("user") && (
+          <ul className="nav navbar-nav">
+            <AdminNav />
+          </ul>
         )}
 
         {/* All user links */}
-        {roles.map(
-          (role) =>
-            role === "user" && (
-              <ul className="nav navbar-nav">
-                <UserNav />
-              </ul>
-            )
+        {roles.includes("user") && (
+          <ul className="nav navbar-nav">
+            <UserNav />
+          </ul>
         )}
 
         {/* Log out link */}

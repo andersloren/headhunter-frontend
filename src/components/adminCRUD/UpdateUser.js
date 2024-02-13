@@ -23,17 +23,14 @@ export default function UpdateUser() {
     const url = `http://localhost:8080/api/v1/users/update/${email}`;
 
     try {
-      const response = await axios.put(
+      const response = await axios.put({
         url,
         roles,
-
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
+          "Content-Type": "application/json",
+        },
+      });
       console.log(response.data.data);
       setUser(response.data.data);
     } catch (error) {
