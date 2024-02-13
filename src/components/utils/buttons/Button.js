@@ -8,8 +8,10 @@ export default function Button({
   onHandleClick,
   children = "",
   className = "",
+  id,
 }) {
   const [activeButton, setActiveButton] = useState(null);
+
   return (
     <>
       <button

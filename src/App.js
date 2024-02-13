@@ -15,11 +15,8 @@ import Welcome from "./components/front/Welcome";
 
 // User pages
 import MyPage from "./components/userCRUD/MyPage";
-import GetByIdJob from "./components/userCRUD/GetByIdJob";
-import GetAllJobs from "./components/userCRUD/GetAllJobs";
-import AddJob from "./components/userCRUD/AddJob";
+import GetAllMyJobs from "./components/userCRUD/GetAllMyJobs";
 import UpdateJob from "./components/userCRUD/UpdateJob";
-import DeleteJob from "./components/userCRUD/DeleteJob";
 
 // Admin pages
 import GetAllUser from "./components/adminCRUD/GetAllUsers";
@@ -27,7 +24,6 @@ import GetByEmailUser from "./components/adminCRUD/GetByEmailUser";
 import UpdateUser from "./components/adminCRUD/UpdateUser";
 import AddUser from "./components/adminCRUD/AddUser";
 import DeleteUser from "./components/adminCRUD/DeleteUser";
-import GenerateJobAd from "./components/userCRUD/GenerateJobAd";
 
 export default function App() {
   const localToken = "headhunter-token";
@@ -82,12 +78,8 @@ export default function App() {
         {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/getAllJobs" element={<GetAllJobs />} />
-        <Route path="/getByIdJob" element={<GetByIdJob />} />
+        <Route path="/getAllMyJobs" element={<GetAllMyJobs />} />
         <Route path="/updateJob" element={<UpdateJob />} />
-        <Route path="/addJob" element={<AddJob />} />
-        <Route path="/deleteJob" element={<DeleteJob />} />
-        <Route path="/generateJobAd" element={<GenerateJobAd />} />
 
         {/* {Admin only links} */}
         <Route path="/getAllUsers" element={<GetAllUser />} />

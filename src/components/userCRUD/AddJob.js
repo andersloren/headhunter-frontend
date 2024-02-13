@@ -10,7 +10,7 @@ import Input from "../utils/input/Input";
 // CSS
 import "./addJobStyles.css";
 
-export default function AddJob() {
+export default function AddJob({ onAddSuccess }) {
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
 
@@ -41,34 +41,33 @@ export default function AddJob() {
       );
       console.log("Add Success");
       console.log(response.data.data);
+      onAddSuccess();
     } catch (error) {
       console.error("Error adding job", error);
     }
   }
 
   return (
-    <div className="main">
-      <div className="addjob-heading-text-box">
-        <h1 className="addjob-heading-primary">Add new job</h1>
-      </div>
-      <div className="addjob-interaction-text-box">
-        <form onSubmit={handleSubmit}>
-          <Input
-            placeholder="Enter instruction1 here"
-            state={instruction}
-            onSetState={setInstruction}
-          ></Input>
+    <div>
+      <h1>Add new job</h1>
+      <form onSubmit={handleSubmit}>
+        <Input
+          placeholder="Enter instruction1 here"
+          state={instruction}
+          onSetState={setInstruction}
+        ></Input>
+        <p>
           <textarea
             className="input-default"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter job ad text here"
           />
-          <p>
-            <Button>Add</Button>
-          </p>
-        </form>
-      </div>
+        </p>
+        <p>
+          <Button>Add</Button>
+        </p>
+      </form>
     </div>
   );
 }
