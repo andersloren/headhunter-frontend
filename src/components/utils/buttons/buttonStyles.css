@@ -29,5 +29,13 @@
 }
 
 .clickable-form {
-  margin-top: 29px;
+  margin-top: 20px;
+}
+
+.save-html {
+  border: black;
+  border: solid;
+  margin-top: 10px;
+  height: 50px;
+  width: 50px;
 }

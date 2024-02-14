@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "../utils/buttons/Button";
 
 // Custom components
-import Input from "../utils/input/Input";
+// import Input from "../utils/input/Input";
 
 // CSS
 import "./addJobStyles.css";
@@ -51,17 +51,25 @@ export default function AddJob({ onAddSuccess }) {
     <div>
       <h1>Add new job</h1>
       <form onSubmit={handleSubmit}>
-        <Input
+        {/* <Input
           placeholder="Enter instruction1 here"
           state={instruction}
           onSetState={setInstruction}
-        ></Input>
+        ></Input> */}
         <p>
           <textarea
             className="input-default"
+            placeholder="Enter ad instruction here"
+            value={instruction}
+            onChange={(e) => setInstruction(e.target.value)}
+          />
+        </p>
+        <p>
+          <textarea
+            className="input-default"
+            placeholder="Enter job ad text here"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter job ad text here"
           />
         </p>
         <p>

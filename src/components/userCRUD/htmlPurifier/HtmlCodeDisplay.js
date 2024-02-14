@@ -1,11 +1,9 @@
 import DOMPurify from "dompurify";
 
-export default function HtmlCodeDisplay({ htmlCode }) {
-  const sanitizedHtml = DOMPurify.sanitize(htmlCode);
+export function htmlCodeDisplay(htmlCode) {
+  const sanitizedHtml = DOMPurify.sanitize(htmlCode, {
+    ALLOWED_ATTR: ["style"],
+  });
 
-  return (
-    <div className="htmlCode-display-box">
-      <pre dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
-    </div>
-  );
+  return sanitizedHtml;
 }
