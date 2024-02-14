@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { deleteJob } from "./jobFunctions/deleteJob";
 import { generateJobAd } from "./jobFunctions/generateJobAd";
-import { htmlCodeDisplay } from "./htmlPurifier/htmlCodeDisplay";
+import { updateJob } from "./jobFunctions/updateJob";
 
 // Custom components
 import Button from "../utils/buttons/Button";
@@ -24,6 +24,8 @@ export default function GetAllMyJobs() {
   const [htmlCode, setHtmlCode] = useState("");
   const email = extractEmailFromToken();
 
+  console.log(htmlCode);
+
   useEffect(() => {
     getAllMyJobs();
   }, [refreshTable]);
@@ -42,6 +44,13 @@ export default function GetAllMyJobs() {
 
   function handleDelete(id) {
     deleteJob(id, handleCRUDSuccess);
+  }
+
+  function handleUpdate(id, description, instruction, htmlCode) {
+    console.log("handlePreview description", description);
+    console.log("handlePreview instruction", instruction);
+    console.log("handlePreview htmlCode", htmlCode);
+    updateJob(id, handleCRUDSuccess, description, instruction, htmlCode);
   }
 
   function handlePreview(id) {
@@ -128,6 +137,9 @@ export default function GetAllMyJobs() {
                 <Button
                   className="save-html"
                   icon="glyphicon glyphicon-floppy-save"
+                  onHandleClick={() =>
+                    handleUpdate(ad.id, "Description", "Instruction", htmlCode)
+                  }
                 ></Button>
                 <div
                   className="flex-container-ad"

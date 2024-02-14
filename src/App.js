@@ -16,7 +16,6 @@ import Welcome from "./components/front/Welcome";
 // User pages
 import MyPage from "./components/userCRUD/MyPage";
 import GetAllMyJobs from "./components/userCRUD/GetAllMyJobs";
-import UpdateJob from "./components/userCRUD/UpdateJob";
 
 // Admin pages
 import GetAllUser from "./components/adminCRUD/GetAllUsers";
@@ -79,7 +78,6 @@ export default function App() {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/getAllMyJobs" element={<GetAllMyJobs />} />
-        <Route path="/updateJob" element={<UpdateJob />} />
 
         {/* {Admin only links} */}
         <Route path="/getAllUsers" element={<GetAllUser />} />
