@@ -4,14 +4,14 @@ export default function UserNav() {
   return (
     <>
       <li>
-        <Link to="/getAllMyJobs">All My Jobs</Link>
+        <Link to="/getAllMyJobs">My Jobs</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/updateJob">Update Job</Link>
       </li>
       <li>
         <Link to="/generateJobAd">Generate Job Ad</Link>
-      </li>
+      </li> */}
     </>
   );
 }

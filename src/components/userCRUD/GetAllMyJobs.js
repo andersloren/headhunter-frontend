@@ -4,16 +4,17 @@ import { useEffect, useState } from "react";
 import { deleteJob } from "./jobFunctions/deleteJob";
 import { generateJobAd } from "./jobFunctions/generateJobAd";
 import { updateJob } from "./jobFunctions/updateJob";
+import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
+import { getJobById } from "./jobFunctions/getJobById";
 
 // Custom components
 import Button from "../utils/buttons/Button";
 import AddJob from "./AddJob";
+import Preview from "./Preview";
 
 // CSS
 import "./userCrud.css";
 import "./table.css";
-import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
-import { getJobById } from "./jobFunctions/getJobById";
 
 export default function GetAllMyJobs() {
   const [ad, setAd] = useState({});
@@ -21,6 +22,8 @@ export default function GetAllMyJobs() {
   const [addVisible, setAddVisible] = useState(false);
   const [refreshTable, setRefreshTable] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [description, setDescription] = useState("");
+  const [instruction, setInstruction] = useState("");
   const [htmlCode, setHtmlCode] = useState("");
   const email = extractEmailFromToken();
 
@@ -47,20 +50,19 @@ export default function GetAllMyJobs() {
   }
 
   function handleUpdate(id, description, instruction, htmlCode) {
-    console.log("handlePreview description", description);
-    console.log("handlePreview instruction", instruction);
-    console.log("handlePreview htmlCode", htmlCode);
     updateJob(id, handleCRUDSuccess, description, instruction, htmlCode);
   }
 
   function handlePreview(id) {
     setPreviewVisible((preview) => !preview);
-    getJobById(id, setAd, setHtmlCode);
+    getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
   }
 
-  function handleGenerate(id) {
-    generateJobAd(id, handleCRUDSuccess, handlePreview);
+  function handleGenerate(id, setPreviewVisible) {
+    generateJobAd(id, handleCRUDSuccess, handlePreview, setPreviewVisible);
   }
+
+  function handleActiveField(textInput) {}
 
   async function getAllMyJobs() {
     const url = `http://localhost:8080/api/v1/jobs/findAllJobsByUserEmail/${email}`;
@@ -98,8 +100,16 @@ export default function GetAllMyJobs() {
                 {jobList.map((job) => (
                   <tr key={job.id}>
                     <td>{job.id}</td>
-                    <td>{job.description.slice(0, 40)}...</td>
-                    <td>{job.instruction.slice(0, 20)}...</td>
+                    <td>
+                      {job.description
+                        ? `${job.description.slice(0, 40)}...`
+                        : ""}
+                    </td>
+                    <td>
+                      {job.instruction
+                        ? `${job.instruction.slice(0, 20)}...`
+                        : ""}
+                    </td>
                     <td>
                       {job.htmlCode ? `${job.htmlCode.slice(0, 40)}...` : ""}
                     </td>
@@ -128,31 +138,19 @@ export default function GetAllMyJobs() {
               </tbody>
             </table>
             {previewVisible && (
-              <div className="preview">
-                <textarea
-                  className="flex-container-edit"
-                  value={htmlCode}
-                  onChange={(e) => setHtmlCode(e.target.value)}
-                />
-                <Button
-                  className="save-html"
-                  icon="glyphicon glyphicon-floppy-save"
-                  onHandleClick={() =>
-                    handleUpdate(ad.id, "Description", "Instruction", htmlCode)
-                  }
-                ></Button>
-                <div
-                  className="flex-container-ad"
-                  dangerouslySetInnerHTML={{
-                    __html: htmlCode,
-                  }}
-                />
-              </div>
+              <Preview
+                description={description}
+                instruction={instruction}
+                htmlCode={htmlCode}
+                setDescription={setDescription}
+                setInstruction={setInstruction}
+                setHtmlCode={setHtmlCode}
+                handleUpdate={handleUpdate}
+                handleAddVisible={handleAddVisible}
+                handleActiveField={handleActiveField}
+                ad={ad}
+              />
             )}
-            <Button
-              icon="glyphicon glyphicon-plus"
-              onHandleClick={handleAddVisible}
-            ></Button>
           </div>
         </div>
       </div>

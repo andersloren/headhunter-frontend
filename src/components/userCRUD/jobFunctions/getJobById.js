@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export async function getJobById(id, setAd, setHtmlCode) {
+export async function getJobById(
+  id,
+  setAd,
+  setDescription,
+  setInstruction,
+  setHtmlCode
+) {
   const url = `http://localhost:8080/api/v1/jobs/findJob/${id}`;
 
   try {
@@ -12,6 +18,8 @@ export async function getJobById(id, setAd, setHtmlCode) {
     });
     console.log(response.data.data);
     setAd(response.data.data);
+    setDescription(response.data.data.description);
+    setInstruction(response.data.data.instruction);
     setHtmlCode(response.data.data.htmlCode);
   } catch (error) {
     console.error("Error getting job by id", error);

@@ -1,6 +1,11 @@
 import axios from "axios";
 
-export async function generateJobAd(id, handleCRUDSuccess, handlePreview) {
+export async function generateJobAd(
+  id,
+  handleCRUDSuccess,
+  handlePreview,
+  setPreviewVisible
+) {
   const url = `http://localhost:8080/api/v1/jobs/generate/${id}`;
 
   try {
@@ -16,6 +21,7 @@ export async function generateJobAd(id, handleCRUDSuccess, handlePreview) {
     console.log(response.data.data);
     handleCRUDSuccess();
     handlePreview(id);
+    setPreviewVisible((preview) => !preview);
   } catch (error) {
     console.error("Error generating job ad", error);
   }
