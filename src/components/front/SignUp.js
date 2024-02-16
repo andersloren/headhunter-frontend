@@ -79,20 +79,20 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             type="email"
             placeholder="Enter Email"
             value={email}
-            color={String(isEmailOk)}
+            $color={String(isEmailOk)}
             onChange={(e) => handleEmailChange(e.target.value)}
           />
           {isEmailOk && <S_Check>Email format is OK </S_Check>}
           <S_Input
             type="text"
             placeholder="Enter Username"
-            state={username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <S_Input
             type="password"
             placeholder="Enter Password"
-            color={String(isPasswordOk)}
+            $color={String(isPasswordOk)}
             value={password}
             onChange={(e) => handlePasswordChange(e.target.value)}
           />

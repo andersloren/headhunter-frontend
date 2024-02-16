@@ -40,7 +40,7 @@ export const S_Subtitle = styled(S_Title)`
 export const S_ButtonBox = styled.div`
   position: absolute;
   left: 50%;
-  color: #{color};
+  color: ${color};
   font-size: ${font_size};
 `;
 
@@ -60,10 +60,10 @@ export const S_ButtonBox_Login = styled(S_ButtonBox)`
 `;
 
 export const S_Button = styled.button`
-  margin-left: ${(props) => (props.left ? props.left : "0px")};
-  margin-right: ${(props) => (props.right ? props.right : "0px")};
+  margin-left: ${(props) => (props.$shift ? props.left : "0px")};
+  margin-right: ${(props) => (props.$right ? props.right : "0px")};
   background: ${(props) =>
-    props.active
+    props.$active === "true"
       ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"
       : "rgba(0, 0, 0, 0.1)"};
   padding: 15px;
@@ -89,7 +89,7 @@ export const S_Formbox = styled.div`
 `;
 
 export const S_Input = styled.input`
-  color: ${(props) => (props.color === "true" ? "#156429" : "#bc6640")};
+  color: ${(props) => (props.$color === "true" ? "#156429" : "#bc6640")};
   width: 100%;
   padding: 25px;
   background: #f0f0f0;

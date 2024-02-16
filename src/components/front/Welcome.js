@@ -1,5 +1,4 @@
 // Libraris, functions, etc.
-import { useNavigate } from "react-router-dom";
 import {
   S_Main,
   S_HeadingBox,
@@ -19,10 +18,7 @@ export default function Welcome() {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
 
-  const navigate = useNavigate();
-
   function handleSignUp() {
-    // navigate("/signUp")
     setSignUpVisible((vis) => !vis);
     setLoginVisible(false);
   }
@@ -42,17 +38,17 @@ export default function Welcome() {
       <S_ButtonBox_Welcome>
         <S_Button
           key={1}
-          right={"20px"}
+          $right={"20px"}
           onClick={() => handleSignUp()}
-          active={signUpVisible ? true : false}
+          $active={signUpVisible ? "true" : "false"}
         >
           Sign Up
         </S_Button>
         <S_Button
           key={2}
-          left={"20px"}
+          $left={"20px"}
           onClick={() => handleLogin()}
-          active={loginVisible ? true : false}
+          $active={loginVisible ? "true" : "false"}
         >
           Log In
         </S_Button>
