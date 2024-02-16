@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { extractUsernameFromToken } from "../utils/token/extractUsernameFromToken";
+import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
 import { useState } from "react";
 
 export default function LoggedInNav({ onHandleToken }) {

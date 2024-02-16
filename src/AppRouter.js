@@ -2,8 +2,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { authorize } from "./components/security/authorize";
 
 // Front page
 import Welcome from "./components/front/Welcome";
@@ -19,34 +17,19 @@ import UpdateUser from "./components/adminCRUD/UpdateUser";
 import AddUser from "./components/adminCRUD/AddUser";
 import DeleteUser from "./components/adminCRUD/DeleteUser";
 
-import { useNavigate } from "react-router-dom";
-
-export default function App() {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-
-  setIsAuthorized(authorize());
-  // setIsAuthorized(true);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isAuthorized) {
-      navigate("/");
-    }
-  }, [!isAuthorized]);
-
-  console.log(isAuthorized);
+export default function AppRoute({ isAuthorized }) {
   return (
     <>
-      {isAuthorized && <NavBar>Headhunter</NavBar>}
+      {isAuthorized}
+      <NavBar>Headhunter</NavBar>
       <Routes>
         <Route path="/" element={<Welcome />} />
         {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/getAllMyJobs" element={<GetAllMyJobs />} />
+
         {/* {Admin only links} */}
         <Route path="/getAllUsers" element={<GetAllUser />} />
-        {console.log("MIDDLE")}
         <Route path="/getByEmailUser" element={<GetByEmailUser />} />
         <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/addUser" element={<AddUser />} />

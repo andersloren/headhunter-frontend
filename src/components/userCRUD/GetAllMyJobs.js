@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { deleteJob } from "./jobFunctions/deleteJob";
 import { generateJobAd } from "./jobFunctions/generateJobAd";
 import { updateJob } from "./jobFunctions/updateJob";
-import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
+import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
 import { getJobById } from "./jobFunctions/getJobById";
 
 // Custom components

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { extractEmailFromToken } from "../../utils/token/extractEmailFromToken";
+import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
 export async function updateJob(
   id,

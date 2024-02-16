@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import AdminNav from "./AdminNav";
 import LoggedInNav from "./LoggedInNav";
-import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
+import { extractRolesFromToken } from "../security/token/extractRolesFromToken";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserNav from "./UserNav";
 

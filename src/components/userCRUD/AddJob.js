@@ -1,6 +1,6 @@
 // Libraries, functions, etc.
 import { useState } from "react";
-import { extractEmailFromToken } from "../utils/token/extractEmailFromToken";
+import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
 import axios from "axios";
 import Button from "../utils/buttons/Button";
 
