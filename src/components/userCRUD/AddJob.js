@@ -39,8 +39,7 @@ export default function AddJob({ onAddSuccess }) {
           },
         }
       );
-      console.log("Add Success");
-      console.log(response.data.data);
+      console.log("Job Add Success");
       onAddSuccess();
     } catch (error) {
       console.error("Error adding job", error);

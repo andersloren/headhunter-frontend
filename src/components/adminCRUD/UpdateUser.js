@@ -11,7 +11,6 @@ export default function UpdateUser() {
   const [isVisible, setIsVisible] = useState(false);
 
   function handleUpdateUser(e) {
-    console.log(e.target.value);
     e.preventDefault();
 
     updateUser(e.target.value);
@@ -31,7 +30,7 @@ export default function UpdateUser() {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data.data);
+      console.log("Update Successful");
       setUser(response.data.data);
     } catch (error) {
       console.error("Error updating user by email", error);

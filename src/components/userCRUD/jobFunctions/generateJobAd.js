@@ -9,16 +9,13 @@ export async function generateJobAd(
   const url = `http://localhost:8080/api/v1/jobs/generate/${id}`;
 
   try {
-    console.log(id);
-    console.log(url);
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
         "Content-Type": "application/json",
       },
     });
-    console.log("get successful");
-    console.log(response.data.data);
+    console.log("Job Generate Success");
     handleCRUDSuccess();
     handlePreview(id);
     setPreviewVisible((preview) => !preview);

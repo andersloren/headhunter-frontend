@@ -27,8 +27,6 @@ export default function GetAllMyJobs() {
   const [htmlCode, setHtmlCode] = useState("");
   const email = extractEmailFromToken();
 
-  console.log(htmlCode);
-
   useEffect(() => {
     getAllMyJobs();
   }, [refreshTable]);

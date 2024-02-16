@@ -18,7 +18,7 @@ export async function deleteJob(id, handleCRUDSuccess) {
         "Content-Type": "application/json",
       },
     });
-    console.log(response.data.message);
+    console.log("Job Delete Success");
     handleCRUDSuccess();
   } catch (error) {
     console.error("Error deleting job by id", error);

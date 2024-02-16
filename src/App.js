@@ -29,7 +29,7 @@ export default function App() {
   // Getting the token from local storage to check if it is null or not later
   const storedToken = localStorage.getItem(localToken);
   // eslint-disable-next-line
-  const [isToken, setIsToken] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(0);
 
   let isNotExpired = false; // By default the token is expired
   // If the token exists then extract if the token is still valid or not
@@ -38,21 +38,12 @@ export default function App() {
     isNotExpired = extractExpiredFromToken(); // Get the token expiration date
   }
 
-  function handleToken(boolean) {
-    setIsToken(boolean);
-  }
-
   if (storedToken == null || !isNotExpired) {
     // If the token doesn't exist or if it exists but has expired, execute the following lines
     return (
       <>
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route
-            path="/login"
-            element={<Login onHandleToken={handleToken} />}
-          />
         </Routes>
       </>
     );
@@ -69,10 +60,6 @@ export default function App() {
       <Routes>
         {/* {Landing} */}
         <Route path="/" element={<Welcome />} />
-
-        {/* {Anonymous User links} */}
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
 
         {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />

@@ -22,6 +22,7 @@ export default function GetAllUsers() {
           "Content-Type": "application/json",
         },
       });
+      console.log("User List Found Success");
       setUserList(response.data.data);
     } catch (error) {
       console.error("Error get all", error);

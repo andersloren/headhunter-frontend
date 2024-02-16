@@ -15,8 +15,6 @@ export default function Preview({
 }) {
   const [active, setActive] = useState(3);
 
-  console.log(active);
-
   return (
     <div className="preview-main">
       <button

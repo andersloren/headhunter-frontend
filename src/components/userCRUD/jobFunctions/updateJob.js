@@ -31,7 +31,7 @@ export async function updateJob(
         },
       }
     );
-    console.log(response.data.data);
+    console.log("Update Job Success");
     handleCRUDSuccess();
   } catch (error) {
     console.error("Error updating job by id", error);

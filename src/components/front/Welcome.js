@@ -1,47 +1,69 @@
 // Libraris, functions, etc.
 import { useNavigate } from "react-router-dom";
-import Button from "../utils/buttons/Button";
-// import { extractExpiredFromToken } from "../../utils/token/extractExpiredFromToken";
+import {
+  S_Main,
+  S_HeadingBox,
+  S_Title,
+  S_Subtitle,
+  S_Button,
+  S_ButtonBox_Welcome,
+} from "./styledComponents.js";
 
-// CSS
-import "./welcomeStyles.css";
+import SignUp from "./SignUp.js";
+import { useState } from "react";
+import Login from "./Login.js";
+
+// Styled components
 
 export default function Welcome() {
+  const [signUpVisible, setSignUpVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(false);
+
   const navigate = useNavigate();
 
-  function handleNavigateSignUp() {
-    navigate("/signUp");
+  function handleSignUp() {
+    // navigate("/signUp")
+    setSignUpVisible((vis) => !vis);
+    setLoginVisible(false);
   }
 
-  function handleNavigateLogIn() {
-    navigate("/logIn");
+  function handleLogin() {
+    setLoginVisible((vis) => !vis);
+    setSignUpVisible(false);
   }
 
   return (
-    <div className="main">
-      <div className="welcome-heading-text-box">
-        <h1 className="welcome-heading-primary">
-          <span className="welcome-heading-primary-main">Headhunter</span>
-          <span className="welcome-heading-primary-sub">
-            Intelligent recruiting
-          </span>
-        </h1>
-      </div>
+    <S_Main>
+      <S_HeadingBox>
+        <S_Title>Headhunter</S_Title>
+        <S_Subtitle>Intelligent recruiting</S_Subtitle>
+      </S_HeadingBox>
 
-      <div className="welcome-interaction-text-box">
-        <Button
-          className={"clickable-welcome"}
-          onHandleClick={handleNavigateSignUp}
+      <S_ButtonBox_Welcome>
+        <S_Button
+          key={1}
+          right={"20px"}
+          onClick={() => handleSignUp()}
+          active={signUpVisible ? true : false}
         >
-          Sign up
-        </Button>
-        <Button
-          className={"clickable-welcome"}
-          onHandleClick={handleNavigateLogIn}
+          Sign Up
+        </S_Button>
+        <S_Button
+          key={2}
+          left={"20px"}
+          onClick={() => handleLogin()}
+          active={loginVisible ? true : false}
         >
-          Sign in
-        </Button>
-      </div>
-    </div>
+          Log In
+        </S_Button>
+      </S_ButtonBox_Welcome>
+      {signUpVisible && (
+        <SignUp
+          setLoginVisible={setLoginVisible}
+          setSignUpVisible={setSignUpVisible}
+        />
+      )}
+      {loginVisible && <Login />}
+    </S_Main>
   );
 }

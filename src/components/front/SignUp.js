@@ -1,26 +1,29 @@
 // Libraris, functions, etc
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // Custom components
-import Input from "../utils/input/Input";
-import Button from "../utils/buttons/Button";
+import {
+  S_Formbox,
+  S_Input,
+  S_Check,
+  S_ButtonBox_SignUp,
+  S_Button,
+} from "./styledComponents.js";
 
 // CSS
 import "./signupStyles.css";
 
-export default function SignUp() {
+export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailOk, setIsEmailOk] = useState(false);
   const [isPasswordOk, setIsPasswordOk] = useState(false);
 
-  const navigate = useNavigate();
-
-  async function handleSignUp(event) {
-    event.preventDefault();
+  async function handleSignUp() {
+    // event.preventDefault();
     const url = "http://localhost:8080/api/v1/users/register";
 
     try {
@@ -38,7 +41,7 @@ export default function SignUp() {
           },
         }
       );
-      console.log(response.data.message);
+      console.log("New User Sign Up Success", response.data.data);
     } catch (error) {
       console.error("Error signing up", error);
     }
@@ -52,82 +55,58 @@ export default function SignUp() {
     );
     let boolean = matcher.test(newEmail);
     setIsEmailOk(boolean);
-    console.log("SignUp Component:", isEmailOk);
   }
 
   function handlePasswordChange(password) {
     const newPassword = password;
     setPassword(newPassword);
-    const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{13,}$/;
-    let boolean = matcher.test(newPassword);
-    setIsPasswordOk(boolean);
-    console.log("SignUp Component:", isPasswordOk);
+    // const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{4}$/;
+    // let boolean = matcher.test(newPassword);
+    setIsPasswordOk(true); // CHANGE THIS WHEN DECOMMENTING THE ABOVE!!!!!
   }
 
-  function handleClick(e) {
-    e.preventDefault();
-
-    handleSignUp(e);
-    navigate("/login");
-  }
-
-  function navigateBack() {
-    navigate("/");
+  function handleClick() {
+    handleSignUp();
+    setLoginVisible(true);
+    setSignUpVisible(false);
   }
 
   return (
-    <div className="main">
-      <div className="signup-heading-text-box">
-        <h1 className="signup-heading-primary">Sign up</h1>
-        <div className="signup-form-box">
-          <form className="form" onSubmit={handleClick}>
-            <p>
-              <Input
-                textColor={isEmailOk ? "input-valid" : "input-invalid"}
-                type={"email"}
-                placeholder={"Email"}
-                state={email}
-                onSetState={handleEmailChange}
-              >
-                Email
-              </Input>
-            </p>
-            <p>
-              <Input
-                type="text"
-                placeholder="Username"
-                state={username}
-                onSetState={setUsername}
-              >
-                Username
-              </Input>
-            </p>
-            <p>
-              <Input
-                textColor={isPasswordOk ? "input-valid" : "input-invalid"}
-                type="password"
-                placeholder="Password"
-                state={password}
-                onSetState={handlePasswordChange}
-              >
-                Password
-              </Input>
-            </p>
+    <>
+      <S_Formbox>
+        <form onSubmit={handleClick}>
+          <S_Input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            color={String(isEmailOk)}
+            onChange={(e) => handleEmailChange(e.target.value)}
+          />
+          {isEmailOk && <S_Check>Email format is OK </S_Check>}
+          <S_Input
+            type="text"
+            placeholder="Enter Username"
+            state={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <S_Input
+            type="password"
+            placeholder="Enter Password"
+            color={String(isPasswordOk)}
+            value={password}
+            onChange={(e) => handlePasswordChange(e.target.value)}
+          />
+          {isPasswordOk && <S_Check>Password format is OK </S_Check>}
 
-            <div className="clickable-form">
-              <Button
-                onHandleClick={handleClick}
-                border={"clickable-login"}
-                icon={"glyphicon glyphicon-pencil"}
-              ></Button>
-              <Button
-                icon={"glyphicon glyphicon-arrow-left"}
-                onHandleClick={navigateBack}
-              ></Button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          <div className="clickable-form">
+            {isEmailOk && username != null && isPasswordOk && (
+              <S_ButtonBox_SignUp>
+                <S_Button onClick={() => handleSignUp()}>Submit</S_Button>
+              </S_ButtonBox_SignUp>
+            )}
+          </div>
+        </form>
+      </S_Formbox>
+    </>
   );
 }

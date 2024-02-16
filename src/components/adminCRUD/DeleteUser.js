@@ -24,7 +24,7 @@ export default function DeleteUser() {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data.message);
+      console.log("User Delete Success");
       setIsVisible(true);
     } catch (error) {
       console.error("Error delete user by email", error);
