@@ -2,13 +2,9 @@ import { Link } from "react-router-dom";
 import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
 import { useState } from "react";
 
-export default function LoggedInNav({ onHandleToken }) {
-  const [username, setUsername] = useState(extractUsernameFromToken());
-
+export default function LoggedInNav({ username }) {
   function removeTokenFromLocalStorage() {
     localStorage.removeItem("headhunter-token");
-    setUsername("");
-    onHandleToken(false);
   }
 
   return (

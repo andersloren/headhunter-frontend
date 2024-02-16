@@ -15,8 +15,9 @@ import {
 
 // CSS
 import "./loginStyles.css";
+import { authorize } from "../security/authorize.js";
 
-export default function Login() {
+export default function Login({ setIsAuthorized }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -51,6 +52,7 @@ export default function Login() {
 
   function handleAuthentication(token) {
     localStorage.setItem("headhunter-token", token);
+    setIsAuthorized(authorize());
     navigate("/myPage");
   }
 

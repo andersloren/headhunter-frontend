@@ -19,28 +19,21 @@ import UpdateUser from "./components/adminCRUD/UpdateUser";
 import AddUser from "./components/adminCRUD/AddUser";
 import DeleteUser from "./components/adminCRUD/DeleteUser";
 
-import { useNavigate } from "react-router-dom";
-
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
-  setIsAuthorized(authorize());
-  // setIsAuthorized(true);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isAuthorized) {
-      navigate("/");
-    }
-  }, [!isAuthorized]);
-
   console.log(isAuthorized);
+
   return (
     <>
-      {isAuthorized && <NavBar>Headhunter</NavBar>}
+      {isAuthorized && (
+        <NavBar setIsAuthorized={setIsAuthorized}>Headhunter</NavBar>
+      )}
       <Routes>
-        <Route path="/" element={<Welcome />} />
+        <Route
+          path="/"
+          element={<Welcome setIsAuthorized={setIsAuthorized} />}
+        />
         {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/getAllMyJobs" element={<GetAllMyJobs />} />

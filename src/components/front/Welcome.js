@@ -14,7 +14,7 @@ import Login from "./Login.js";
 
 // Styled components
 
-export default function Welcome() {
+export default function Welcome({ setIsAuthorized }) {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
 
@@ -59,7 +59,7 @@ export default function Welcome() {
           setSignUpVisible={setSignUpVisible}
         />
       )}
-      {loginVisible && <Login />}
+      {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
     </S_Main>
   );
 }
