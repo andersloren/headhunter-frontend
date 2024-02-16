@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 // Syled Components
 import {
-  S_Formbox,
+  S_FormBox,
   S_Input,
   S_ButtonBox_Login,
   S_Button,
@@ -58,7 +58,7 @@ export default function Login() {
   }
 
   return (
-    <S_Formbox>
+    <S_FormBox>
       <form action="" onSubmit={handleClick}>
         <S_Input
           type="email"
@@ -78,6 +78,6 @@ export default function Login() {
           </S_ButtonBox_Login>
         )}
       </form>
-    </S_Formbox>
+    </S_FormBox>
   );
 }

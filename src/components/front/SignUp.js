@@ -1,15 +1,17 @@
 // Libraris, functions, etc
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 // Custom components
 import {
-  S_Formbox,
+  S_FormBox,
   S_Input,
-  S_Check,
+  S_FormatConfirm,
   S_ButtonBox_SignUp,
   S_Button,
+  S_InputLabel,
+  S_Check,
+  S_InputFlex,
 } from "./styledComponents.js";
 
 // CSS
@@ -59,10 +61,11 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
 
   function handlePasswordChange(password) {
     const newPassword = password;
-    setPassword(newPassword);
-    // const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{4}$/;
+    // setPassword(newPassword);
+    // const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     // let boolean = matcher.test(newPassword);
-    setIsPasswordOk(true); // CHANGE THIS WHEN DECOMMENTING THE ABOVE!!!!!
+    // setIsPasswordOk(boolean);
+    setIsPasswordOk(newPassword); // temporary, remove when in prod
   }
 
   function handleClick() {
@@ -73,30 +76,50 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
 
   return (
     <>
-      <S_Formbox>
+      <S_FormBox>
         <form onSubmit={handleClick}>
-          <S_Input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            $color={String(isEmailOk)}
-            onChange={(e) => handleEmailChange(e.target.value)}
-          />
-          {isEmailOk && <S_Check>Email format is OK </S_Check>}
-          <S_Input
-            type="text"
-            placeholder="Enter Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <S_Input
-            type="password"
-            placeholder="Enter Password"
-            $color={String(isPasswordOk)}
-            value={password}
-            onChange={(e) => handlePasswordChange(e.target.value)}
-          />
-          {isPasswordOk && <S_Check>Password format is OK </S_Check>}
+          <S_InputLabel>Email</S_InputLabel>
+          <br />
+          <S_InputFlex>
+            <S_Input
+              type="email"
+              // placeholder="Enter Email"
+              value={email}
+              $color={String(isEmailOk)}
+              onChange={(e) => handleEmailChange(e.target.value)}
+            />
+            <S_Check $approved={isEmailOk ? "true" : "false"}>✔</S_Check>
+          </S_InputFlex>
+          {/* {isEmailOk && <S_FormatConfirm>Email format is OK </S_FormatConfirm>} */}
+
+          <S_InputLabel>Username</S_InputLabel>
+          <br />
+          <S_InputFlex>
+            <S_Input
+              type="text"
+              // placeholder="Enter Username"
+              $color={String(username ? "true" : "false")}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <S_Check $approved={username !== "" ? "true" : "false"}>✔</S_Check>
+          </S_InputFlex>
+
+          <S_InputLabel>Password</S_InputLabel>
+          <br />
+          <S_InputFlex>
+            <S_Input
+              type="password"
+              // placeholder="Enter Password"
+              $color={String(isPasswordOk ? "true" : "false")}
+              value={password}
+              onChange={(e) => handlePasswordChange(e.target.value)}
+            />
+            <S_Check $approved={isPasswordOk ? "true" : "false"}>✔</S_Check>
+          </S_InputFlex>
+          {/* {isPasswordOk && (
+            <S_FormatConfirm>Password format is OK </S_FormatConfirm>
+          )} */}
 
           <div className="clickable-form">
             {isEmailOk && username != null && isPasswordOk && (
@@ -106,7 +129,7 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             )}
           </div>
         </form>
-      </S_Formbox>
+      </S_FormBox>
     </>
   );
 }
