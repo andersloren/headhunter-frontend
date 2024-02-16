@@ -36,6 +36,7 @@ export default function AddUser() {
           },
         }
       );
+      console.log("User Added Success");
       setUser(response.data.data);
     } catch (error) {
       console.error("Error signing up", error);

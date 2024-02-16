@@ -18,7 +18,7 @@ export default function NavBar({ onHandleToken, children }) {
         </div>
 
         {/* Admin only links */}
-        {roles.includes("user") && (
+        {roles.includes("admin") && (
           <ul className="nav navbar-nav">
             <AdminNav />
           </ul>

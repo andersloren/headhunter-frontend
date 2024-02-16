@@ -10,8 +10,6 @@ export default function GetByEmailUser() {
   function handleGetByEmailUser(e) {
     e.preventDefault();
 
-    console.log(email);
-
     setIsVisible(true);
     getUserByEmail(e.target.value);
   }
@@ -26,7 +24,7 @@ export default function GetByEmailUser() {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data.data);
+      console.log("User Found Success");
       setUser(response.data.data);
     } catch (error) {
       console.error("Error get user by email", error);

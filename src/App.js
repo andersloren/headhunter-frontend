@@ -45,7 +45,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login onHandleToken={handleToken} />}
+          />
         </Routes>
       </>
     );
@@ -62,10 +65,6 @@ export default function App() {
       <Routes>
         {/* {Landing} */}
         <Route path="/" element={<Welcome />} />
-
-        {/* {Anonymous User links} */}
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
 
         {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />
