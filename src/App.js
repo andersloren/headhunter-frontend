@@ -2,15 +2,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { extractExpiredFromToken } from "./components/utils/token/extractExpiredFromToken";
 
-// CSS
-// import "./style.css";
-
-// Front pages
-import Login from "./components/front/Login";
-import SignUp from "./components/front/SignUp";
+// Front page
 import Welcome from "./components/front/Welcome";
 
 // User pages
@@ -28,8 +22,6 @@ export default function App() {
   const localToken = "headhunter-token";
   // Getting the token from local storage to check if it is null or not later
   const storedToken = localStorage.getItem(localToken);
-  // eslint-disable-next-line
-  const [windowHeight, setWindowHeight] = useState(0);
 
   let isNotExpired = false; // By default the token is expired
   // If the token exists then extract if the token is still valid or not
@@ -44,11 +36,6 @@ export default function App() {
       <>
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route
-            path="/login"
-            element={<Login onHandleToken={handleToken} />}
-          />
         </Routes>
       </>
     );
