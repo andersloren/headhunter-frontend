@@ -2,7 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { extractExpiredFromToken } from "./components/utils/token/extractExpiredFromToken";
 
 // CSS
@@ -29,17 +29,13 @@ export default function App() {
   // Getting the token from local storage to check if it is null or not later
   const storedToken = localStorage.getItem(localToken);
   // eslint-disable-next-line
-  const [isToken, setIsToken] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(0);
 
   let isNotExpired = false; // By default the token is expired
   // If the token exists then extract if the token is still valid or not
   if (storedToken != null) {
     // If the token exists
     isNotExpired = extractExpiredFromToken(); // Get the token expiration date
-  }
-
-  function handleToken(boolean) {
-    setIsToken(boolean);
   }
 
   if (storedToken == null || !isNotExpired) {
@@ -49,10 +45,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route
-            path="/login"
-            element={<Login onHandleToken={handleToken} />}
-          />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </>
     );

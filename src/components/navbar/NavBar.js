@@ -3,7 +3,6 @@ import AdminNav from "./AdminNav";
 import LoggedInNav from "./LoggedInNav";
 import { extractRolesFromToken } from "../utils/token/extractRolesFromToken";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AddJob from "../userCRUD/AddJob";
 import UserNav from "./UserNav";
 
 export default function NavBar({ onHandleToken, children }) {
