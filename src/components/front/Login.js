@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import {
   S_FormBox,
   S_Input,
-  S_ButtonBox_Login,
+  S_ButtonBox_LoginSubmit,
   S_Button,
+  S_InputFlex,
+  S_Check,
 } from "./styledComponents.js";
 
 // CSS
@@ -59,23 +61,31 @@ export default function Login() {
 
   return (
     <S_FormBox>
-      <form action="" onSubmit={handleClick}>
-        <S_Input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <S_Input
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <form onSubmit={handleClick}>
+        <S_InputFlex>
+          <S_Input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <S_Check $approved="false">✔</S_Check>
+        </S_InputFlex>
+
+        <S_InputFlex>
+          <S_Input
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <S_Check $approved="false">✔</S_Check>
+        </S_InputFlex>
+
         {email !== "" && password !== "" && (
-          <S_ButtonBox_Login>
+          <S_ButtonBox_LoginSubmit>
             <S_Button onClick={(e) => handleClick(e)}>Submit</S_Button>
-          </S_ButtonBox_Login>
+          </S_ButtonBox_LoginSubmit>
         )}
       </form>
     </S_FormBox>

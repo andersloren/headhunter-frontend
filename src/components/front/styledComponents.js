@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const border_radius = "15px";
-const font_size = "25px";
+const font_size = "20px";
 const color = "#fff0d9";
 
 export const S_Main = styled.div`
@@ -10,20 +10,20 @@ export const S_Main = styled.div`
 `;
 
 export const S_HeadingBox = styled.h1`
+  justify-content: center;
   position: absolute;
   font-family: "Merriweather", sans-serif;
-  top: 20%;
+  top: 17%;
   left: 50%;
   transform: translate(-50%);
   text-transform: uppercase;
 `;
 
 export const S_Title = styled.div`
-  display: block;
-  position: relative;
   font-size: 70px;
   font-weight: 700;
   letter-spacing: 20px;
+  margin-right: -20px;
   margin-bottom: 8px;
   color: ${color};
   text-align: justify;
@@ -47,16 +47,17 @@ export const S_ButtonBox = styled.div`
 `;
 
 export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
-  top: 41%;
+  top: 36%;
   transform: translateX(-56%);
 `;
 
-export const S_ButtonBox_SignUp = styled(S_ButtonBox)`
+export const S_ButtonBox_SignUpSubmit = styled(S_ButtonBox)`
   top: 110%;
   transform: translateX(-50%);
+  /* margin-bottom: 30px; */
 `;
 
-export const S_ButtonBox_Login = styled(S_ButtonBox)`
+export const S_ButtonBox_LoginSubmit = styled(S_ButtonBox)`
   top: 120%;
   transform: translateX(-50%);
 `;
@@ -68,7 +69,7 @@ export const S_Button = styled.button`
     props.$active === "true"
       ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"
       : "rgba(0, 0, 0, 0.1)"};
-  padding: 15px;
+  padding: 12px;
   color: ${color};
   border-color: rgb(223, 223, 223);
   border: 2px solid;
@@ -84,17 +85,17 @@ export const S_FormBox = styled.div`
   position: absolute;
   width: 30%;
   font-size: ${font_size};
-  top: 54%;
+  top: 46%;
   left: 50%;
   transform: translateX(-50%);
 `;
 
-export const S_InputLabel = styled.div`
-  /* text-align: center; */
-  letter-spacing: 3.5px;
-  color: ${color};
-  margin-left: 40px;
-`;
+// export const S_InputLabel = styled.div`
+//   /* text-align: center; */
+//   letter-spacing: 3.5px;
+//   color: ${color};
+//   margin-left: 40px;
+// `;
 
 export const S_InputFlex = styled.div`
   display: flex;
@@ -103,12 +104,13 @@ export const S_InputFlex = styled.div`
 
 export const S_Input = styled.input`
   color: ${(props) => (props.$color === "true" ? "#156429" : "#bc6640")};
-  padding: 25px;
+  padding: 15px;
   background: #f0f0f0;
   border-radius: ${border_radius};
   border: 0;
-  font-weight: 600;
-  margin: 0px 0px 35px 15px;
+  /* font-size: 20px; */
+  font-weight: 500;
+  margin: 0px 0px 15px 15px;
   /* color: rgb(214, 143, 112) ; */
 `;
 

@@ -7,7 +7,7 @@ import {
   S_FormBox,
   S_Input,
   S_FormatConfirm,
-  S_ButtonBox_SignUp,
+  S_ButtonBox_SignUpSubmit,
   S_Button,
   S_InputLabel,
   S_Check,
@@ -61,11 +61,12 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
 
   function handlePasswordChange(password) {
     const newPassword = password;
-    // setPassword(newPassword);
-    // const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    // let boolean = matcher.test(newPassword);
-    // setIsPasswordOk(boolean);
-    setIsPasswordOk(newPassword); // temporary, remove when in prod
+    setPassword(newPassword);
+    const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    let boolean = matcher.test(newPassword);
+    setIsPasswordOk(boolean);
+    // setPassword(password); // temporary, remove when in
+    // setIsPasswordOk(true); // temporary, remove when in prod
   }
 
   function handleClick() {
@@ -78,40 +79,36 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
     <>
       <S_FormBox>
         <form onSubmit={handleClick}>
-          <S_InputLabel>Email</S_InputLabel>
-          <br />
           <S_InputFlex>
             <S_Input
               type="email"
-              // placeholder="Enter Email"
+              placeholder="Enter Email"
               value={email}
-              $color={String(isEmailOk)}
+              // $color={String(isEmailOk)}
               onChange={(e) => handleEmailChange(e.target.value)}
             />
             <S_Check $approved={isEmailOk ? "true" : "false"}>✔</S_Check>
           </S_InputFlex>
           {/* {isEmailOk && <S_FormatConfirm>Email format is OK </S_FormatConfirm>} */}
 
-          <S_InputLabel>Username</S_InputLabel>
-          <br />
+          {/* <S_InputLabel>Username</S_InputLabel> */}
           <S_InputFlex>
             <S_Input
               type="text"
-              // placeholder="Enter Username"
-              $color={String(username ? "true" : "false")}
+              placeholder="Enter Username"
+              // $color={String(username ? "true" : "false")}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <S_Check $approved={username !== "" ? "true" : "false"}>✔</S_Check>
           </S_InputFlex>
 
-          <S_InputLabel>Password</S_InputLabel>
-          <br />
+          {/* <S_InputLabel>Password</S_InputLabel> */}
           <S_InputFlex>
             <S_Input
               type="password"
-              // placeholder="Enter Password"
-              $color={String(isPasswordOk ? "true" : "false")}
+              placeholder="Enter Password"
+              // $color={isPasswordOk ? "true" : "false"}
               value={password}
               onChange={(e) => handlePasswordChange(e.target.value)}
             />
@@ -121,13 +118,11 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             <S_FormatConfirm>Password format is OK </S_FormatConfirm>
           )} */}
 
-          <div className="clickable-form">
-            {isEmailOk && username != null && isPasswordOk && (
-              <S_ButtonBox_SignUp>
-                <S_Button onClick={() => handleSignUp()}>Submit</S_Button>
-              </S_ButtonBox_SignUp>
-            )}
-          </div>
+          {isEmailOk && username != null && isPasswordOk && (
+            <S_ButtonBox_SignUpSubmit>
+              <S_Button onClick={() => handleSignUp()}>Submit</S_Button>
+            </S_ButtonBox_SignUpSubmit>
+          )}
         </form>
       </S_FormBox>
     </>
