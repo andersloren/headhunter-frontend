@@ -45,6 +45,7 @@ export default function Login({ setIsAuthorized }) {
       );
       console.log("User Log In Success");
       handleAuthentication(response.data.data.token);
+      setIsAuthorized(authorize());
     } catch (error) {
       console.error("Error logging in", error);
     }
@@ -52,7 +53,6 @@ export default function Login({ setIsAuthorized }) {
 
   function handleAuthentication(token) {
     localStorage.setItem("headhunter-token", token);
-    setIsAuthorized(authorize());
     navigate("/myPage");
   }
 

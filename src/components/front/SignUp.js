@@ -6,10 +6,8 @@ import axios from "axios";
 import {
   S_FormBox,
   S_Input,
-  S_FormatConfirm,
   S_ButtonBox_SignUpSubmit,
   S_Button,
-  S_InputLabel,
   S_Check,
   S_InputFlex,
 } from "./styledComponents.js";
@@ -25,7 +23,6 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   const [isPasswordOk, setIsPasswordOk] = useState(false);
 
   async function handleSignUp() {
-    // event.preventDefault();
     const url = "http://localhost:8080/api/v1/users/register";
 
     try {
@@ -53,7 +50,7 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
     const newEmail = email;
     setEmail(newEmail);
     const matcher = new RegExp(
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ // How to accept 2 character top domain
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     );
     let boolean = matcher.test(newEmail);
     setIsEmailOk(boolean);
@@ -84,39 +81,29 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
               type="email"
               placeholder="Enter Email"
               value={email}
-              // $color={String(isEmailOk)}
               onChange={(e) => handleEmailChange(e.target.value)}
             />
             <S_Check $approved={isEmailOk ? "true" : "false"}>✔</S_Check>
           </S_InputFlex>
-          {/* {isEmailOk && <S_FormatConfirm>Email format is OK </S_FormatConfirm>} */}
-
-          {/* <S_InputLabel>Username</S_InputLabel> */}
           <S_InputFlex>
             <S_Input
               type="text"
               placeholder="Enter Username"
-              // $color={String(username ? "true" : "false")}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <S_Check $approved={username !== "" ? "true" : "false"}>✔</S_Check>
           </S_InputFlex>
 
-          {/* <S_InputLabel>Password</S_InputLabel> */}
           <S_InputFlex>
             <S_Input
               type="password"
               placeholder="Enter Password"
-              // $color={isPasswordOk ? "true" : "false"}
               value={password}
               onChange={(e) => handlePasswordChange(e.target.value)}
             />
             <S_Check $approved={isPasswordOk ? "true" : "false"}>✔</S_Check>
           </S_InputFlex>
-          {/* {isPasswordOk && (
-            <S_FormatConfirm>Password format is OK </S_FormatConfirm>
-          )} */}
 
           {isEmailOk && username != null && isPasswordOk && (
             <S_ButtonBox_SignUpSubmit>

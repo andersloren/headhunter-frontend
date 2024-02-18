@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
-import { useState } from "react";
 
-export default function LoggedInNav({ username }) {
-  function removeTokenFromLocalStorage() {
+const username = extractUsernameFromToken();
+
+export default function LoggedInNav({ setIsAuthorized }) {
+  function handleClick() {
     localStorage.removeItem("headhunter-token");
+    setIsAuthorized(false);
   }
-
   return (
     <>
       <li>
@@ -16,7 +17,7 @@ export default function LoggedInNav({ username }) {
         </Link>
       </li>
       <li>
-        <Link to="/" onClick={removeTokenFromLocalStorage}>
+        <Link to="/" onClick={() => handleClick}>
           <span className="glyphicon glyphicon-log-out"></span> Logout
         </Link>
       </li>

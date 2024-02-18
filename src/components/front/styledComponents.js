@@ -54,7 +54,6 @@ export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
 export const S_ButtonBox_SignUpSubmit = styled(S_ButtonBox)`
   top: 110%;
   transform: translateX(-50%);
-  /* margin-bottom: 30px; */
 `;
 
 export const S_ButtonBox_LoginSubmit = styled(S_ButtonBox)`
@@ -90,13 +89,6 @@ export const S_FormBox = styled.div`
   transform: translateX(-50%);
 `;
 
-// export const S_InputLabel = styled.div`
-//   /* text-align: center; */
-//   letter-spacing: 3.5px;
-//   color: ${color};
-//   margin-left: 40px;
-// `;
-
 export const S_InputFlex = styled.div`
   display: flex;
   justify-content: center;
@@ -108,10 +100,8 @@ export const S_Input = styled.input`
   background: #f0f0f0;
   border-radius: ${border_radius};
   border: 0;
-  /* font-size: 20px; */
   font-weight: 500;
   margin: 0px 0px 15px 15px;
-  /* color: rgb(214, 143, 112) ; */
 `;
 
 export const S_Check = styled.div`
