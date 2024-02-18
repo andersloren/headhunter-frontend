@@ -17,7 +17,7 @@ export default function LoggedInNav({ setIsAuthorized }) {
         </Link>
       </li>
       <li>
-        <Link to="/" onClick={() => handleClick}>
+        <Link to="/" onClick={() => handleClick()}>
           <span className="glyphicon glyphicon-log-out"></span> Logout
         </Link>
       </li>
