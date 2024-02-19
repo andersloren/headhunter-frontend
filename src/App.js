@@ -2,7 +2,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { authorize } from "./components/security/authorize";
 
 // Front page
 import Welcome from "./components/front/Welcome";
@@ -20,6 +21,10 @@ import DeleteUser from "./components/adminCRUD/DeleteUser";
 
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthorized) setIsAuthorized(authorize());
+  }, [isAuthorized]);
 
   console.log("App, isAuthorized:", isAuthorized);
 

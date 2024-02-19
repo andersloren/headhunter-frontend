@@ -67,7 +67,7 @@ export default function Preview({
           dangerouslySetInnerHTML={{
             __html: htmlCode,
           }}
-        />
+        ></div>
       </div>
       <Button
         icon="glyphicon glyphicon-plus"

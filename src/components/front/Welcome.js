@@ -3,13 +3,13 @@ import { useState } from "react";
 
 // Styled components
 import {
-  S_Main,
   S_HeadingBox_Welcome,
   S_Title_Welcome,
   S_Subtitle_Welcome,
   S_Button,
   S_ButtonBox_Welcome,
 } from "./styledComponents.js";
+import { S_Main } from "../utils/styledMain.js";
 
 // Components
 import SignUp from "./SignUp.js";
