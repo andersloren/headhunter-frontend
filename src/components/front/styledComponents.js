@@ -9,7 +9,7 @@ export const S_Main = styled.div`
   background-color: green;
 `;
 
-export const S_HeadingBox = styled.h1`
+export const S_HeadingBox_Welcome = styled.h1`
   justify-content: center;
   position: absolute;
   font-family: "Merriweather", sans-serif;
@@ -19,7 +19,7 @@ export const S_HeadingBox = styled.h1`
   text-transform: uppercase;
 `;
 
-export const S_Title = styled.div`
+export const S_Title_Welcome = styled.div`
   font-size: 70px;
   font-weight: 700;
   letter-spacing: 20px;
@@ -31,7 +31,7 @@ export const S_Title = styled.div`
 
 // const ratio =
 
-export const S_Subtitle = styled(S_Title)`
+export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
   font-size: 35px;
   font-weight: 400;
   letter-spacing: 10.5px;

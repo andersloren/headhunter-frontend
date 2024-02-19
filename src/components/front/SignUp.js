@@ -12,9 +12,6 @@ import {
   S_InputFlex,
 } from "./styledComponents.js";
 
-// CSS
-import "./signupStyles.css";
-
 export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");

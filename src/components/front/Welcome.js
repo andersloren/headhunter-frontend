@@ -1,18 +1,19 @@
 // Libraris, functions, etc.
+import { useState } from "react";
+
+// Styled components
 import {
   S_Main,
-  S_HeadingBox,
-  S_Title,
-  S_Subtitle,
+  S_HeadingBox_Welcome,
+  S_Title_Welcome,
+  S_Subtitle_Welcome,
   S_Button,
   S_ButtonBox_Welcome,
 } from "./styledComponents.js";
 
+// Components
 import SignUp from "./SignUp.js";
-import { useState } from "react";
 import Login from "./Login.js";
-
-// Styled components
 
 export default function Welcome({ setIsAuthorized }) {
   const [signUpVisible, setSignUpVisible] = useState(false);
@@ -30,10 +31,10 @@ export default function Welcome({ setIsAuthorized }) {
 
   return (
     <S_Main>
-      <S_HeadingBox>
-        <S_Title>Headhunter</S_Title>
-        <S_Subtitle>Intelligent recruiting</S_Subtitle>
-      </S_HeadingBox>
+      <S_HeadingBox_Welcome>
+        <S_Title_Welcome>Headhunter</S_Title_Welcome>
+        <S_Subtitle_Welcome>Intelligent recruiting</S_Subtitle_Welcome>
+      </S_HeadingBox_Welcome>
 
       <S_ButtonBox_Welcome>
         <S_Button
