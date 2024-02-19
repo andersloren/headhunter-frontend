@@ -14,7 +14,6 @@ import {
 } from "./styledComponents.js";
 
 // CSS
-import "./loginStyles.css";
 import { authorize } from "../security/authorize.js";
 
 export default function Login({ setIsAuthorized }) {
