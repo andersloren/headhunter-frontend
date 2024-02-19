@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
 
-const username = extractUsernameFromToken();
-
-export default function LoggedInNav({ setIsAuthorized }) {
+export default function LoggedInNav({ setIsAuthorized, username }) {
   function handleClick() {
     localStorage.removeItem("headhunter-token");
     setIsAuthorized(false);
