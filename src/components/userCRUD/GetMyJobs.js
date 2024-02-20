@@ -95,7 +95,10 @@ export default function GetMyJobs() {
         setHtmlCode
       );
       setPreviewVisible(true);
-    } else setPreviewVisible(false);
+    } else {
+      setPreviewVisible(false);
+      setActiveId(null);
+    }
   }
 
   function handleGenerate(id, setPreviewVisible) {
@@ -126,7 +129,6 @@ export default function GetMyJobs() {
         <S_Title_MyJobs>My Jobs</S_Title_MyJobs>
       </S_HeadingBox_MyJobs>
       <S_WindowSplit_MyJobs>
-        {/* <table className="table">*/}
         <S_Table_Box_MyJobs>
           <S_Table_MyJobs>
             <thead>
@@ -137,9 +139,6 @@ export default function GetMyJobs() {
                 <S_Table_Headers_MyJobs $firstChild="false">
                   Title
                 </S_Table_Headers_MyJobs>
-                {/* <S_Table_Headers_MyJobs $firstChild="false">
-                Functionality
-              </S_Table_Headers_MyJobs> */}
               </tr>
             </thead>
             <tbody>
@@ -156,29 +155,6 @@ export default function GetMyJobs() {
                       ? job.title.slice(0, 20) + "..."
                       : job.title}
                   </S_Table_Data_MyJobs>
-                  {/* <td>
-                  <S_Button_Squared
-                    key={["view", job.id]}
-                    id={job.id}
-                    onClick={() => handlePreview(job.id)}
-                  >
-                    👁️
-                  </S_Button_Squared>
-                  <S_Button_Squared
-                    key={["delete", job.id]}
-                    id={job.id}
-                    onClick={() => handleDelete(job.id)}
-                  >
-                    ❌
-                  </S_Button_Squared>
-                  <S_Button_Squared
-                    key={["generate", job.id]}
-                    id={job.id}
-                    onClick={() => handleGenerate(job.id)}
-                  >
-                    🔌
-                  </S_Button_Squared>
-                </td> */}
                 </S_Table_Rows_MyJobs>
               ))}
             </tbody>

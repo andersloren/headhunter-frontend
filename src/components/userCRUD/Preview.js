@@ -102,13 +102,7 @@ export default function Preview({
           height="500"
           frameborder="0"
         ></iframe> */}
-        <S_Iframe_Preview
-          src={url}
-          title={"Ad Content"}
-          // width="500"
-          // height="500"
-          frameborder="0"
-        ></S_Iframe_Preview>
+        <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
       </S_PreviewBox_Preview>
     </S_Main>
   );
