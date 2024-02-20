@@ -8,6 +8,7 @@ import {
   S_Iframe_Preview,
   S_PreviewBox_Preview,
   S_TextArea_Preview,
+  S_Buttons_Edit_Preview,
 } from "./styledComponents.js";
 
 export default function Preview({
@@ -22,22 +23,49 @@ export default function Preview({
   handleUpdate,
   ad,
 }) {
-  const [active, setActive] = useState(3);
+  const [active, setActive] = useState(4);
 
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
+  console.log("Active:", active);
+
   return (
     <S_Main>
-      <button
+      <S_Buttons_Edit_Preview
+        $firstChild={"true"}
+        onClick={() => setActive(1)}
+        $active={active === 1 ? "true" : "false"}
+      >
+        Title
+      </S_Buttons_Edit_Preview>
+      <S_Buttons_Edit_Preview
+        onClick={() => setActive(2)}
+        $active={active === 2 ? "true" : "false"}
+      >
+        Description
+      </S_Buttons_Edit_Preview>
+      <S_Buttons_Edit_Preview
+        onClick={() => setActive(3)}
+        $active={active === 3 ? "true" : "false"}
+      >
+        Instruction
+      </S_Buttons_Edit_Preview>
+      <S_Buttons_Edit_Preview
+        onClick={() => setActive(4)}
+        $active={active === 4 ? "true" : "false"}
+      >
+        HTML-code
+      </S_Buttons_Edit_Preview>
+      {/* <button
         className={`preview-button preview-button-leftmost ${
           active === 1 ? "preview-button-active" : ""
         }`}
         onClick={() => setActive(1)}
       >
         Title
-      </button>
-      <button
+      </button> */}
+      {/* <button
         className={`preview-button ${
           active === 2 ? "preview-button-active" : ""
         }`}
@@ -60,7 +88,7 @@ export default function Preview({
         onClick={() => setActive(4)}
       >
         HTML-code
-      </button>
+      </button> */}
       <S_PreviewBox_Preview>
         <S_TextArea_Preview
           value={
