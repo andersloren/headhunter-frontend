@@ -6,7 +6,7 @@ import axios from "axios";
 import {
   S_FormBox,
   S_Input,
-  S_ButtonBox_SignUpSubmit,
+  S_ButtonBox_Submit,
   S_Button,
   S_Check,
   S_InputFlex,
@@ -103,9 +103,9 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
           </S_InputFlex>
 
           {isEmailOk && username != null && isPasswordOk && (
-            <S_ButtonBox_SignUpSubmit>
+            <S_ButtonBox_Submit>
               <S_Button onClick={() => handleSignUp()}>Submit</S_Button>
-            </S_ButtonBox_SignUpSubmit>
+            </S_ButtonBox_Submit>
           )}
         </form>
       </S_FormBox>

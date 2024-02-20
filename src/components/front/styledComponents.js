@@ -8,7 +8,7 @@ export const S_HeadingBox_Welcome = styled.h1`
   justify-content: center;
   position: absolute;
   font-family: "Merriweather", sans-serif;
-  top: 17%;
+  top: 200px;
   left: 50%;
   transform: translate(-50%);
   text-transform: uppercase;
@@ -42,17 +42,12 @@ export const S_ButtonBox = styled.div`
 `;
 
 export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
-  top: 36%;
+  top: 400px;
   transform: translateX(-56%);
 `;
 
-export const S_ButtonBox_SignUpSubmit = styled(S_ButtonBox)`
-  top: 110%;
-  transform: translateX(-50%);
-`;
-
-export const S_ButtonBox_LoginSubmit = styled(S_ButtonBox)`
-  top: 120%;
+export const S_ButtonBox_Submit = styled(S_ButtonBox)`
+  margin-top: 25px;
   transform: translateX(-50%);
 `;
 
@@ -79,7 +74,7 @@ export const S_FormBox = styled.div`
   position: absolute;
   width: 30%;
   font-size: ${font_size};
-  top: 46%;
+  top: 510px;
   left: 50%;
   transform: translateX(-50%);
 `;

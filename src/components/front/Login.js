@@ -8,7 +8,7 @@ import axios from "axios";
 import {
   S_FormBox,
   S_Input,
-  S_ButtonBox_LoginSubmit,
+  S_ButtonBox_Submit,
   S_Button,
   S_InputFlex,
   S_Check,
@@ -82,9 +82,9 @@ export default function Login({ setIsAuthorized }) {
         </S_InputFlex>
 
         {email !== "" && password !== "" && (
-          <S_ButtonBox_LoginSubmit>
+          <S_ButtonBox_Submit>
             <S_Button onClick={(e) => handleClick(e)}>Submit</S_Button>
-          </S_ButtonBox_LoginSubmit>
+          </S_ButtonBox_Submit>
         )}
       </form>
     </S_FormBox>
