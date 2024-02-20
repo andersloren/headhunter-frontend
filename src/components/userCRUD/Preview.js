@@ -5,12 +5,14 @@ import "./preview.css";
 import { S_Iframe_Preview } from "./styledComponents.js";
 
 export default function Preview({
+  title,
   description,
   instruction,
   htmlCode,
   setHtmlCode,
   setDescription,
   setInstruction,
+  setTitle,
   handleUpdate,
   handleAddVisible,
   ad,
@@ -29,15 +31,15 @@ export default function Preview({
         }`}
         onClick={() => setActive(1)}
       >
-        Description
+        Title
       </button>
       <button
-        className={`preview-button ${
+        className={`preview-button preview-button ${
           active === 2 ? "preview-button-active" : ""
         }`}
         onClick={() => setActive(2)}
       >
-        Instruction
+        Description
       </button>
       <button
         className={`preview-button ${
@@ -45,18 +47,34 @@ export default function Preview({
         }`}
         onClick={() => setActive(3)}
       >
+        Instruction
+      </button>
+      <button
+        className={`preview-button ${
+          active === 4 ? "preview-button-active" : ""
+        }`}
+        onClick={() => setActive(4)}
+      >
         HTML-code
       </button>
       <div className="preview-container">
         <textarea
           className="flex-container-edit"
           value={
-            active < 3 ? (active < 2 ? description : instruction) : htmlCode
+            active < 4
+              ? active < 3
+                ? active < 2
+                  ? title
+                  : description
+                : instruction
+              : htmlCode
           }
           onChange={(e) => {
-            active < 3
-              ? active < 2
-                ? setDescription(e.target.value)
+            active < 4
+              ? active < 3
+                ? active < 2
+                  ? setTitle(e.target.value)
+                  : setDescription(e.target.value)
                 : setInstruction(e.target.value)
               : setHtmlCode(e.target.value);
           }}
@@ -65,7 +83,7 @@ export default function Preview({
           className="save-html"
           icon="glyphicon glyphicon-floppy-save"
           onHandleClick={() =>
-            handleUpdate(ad.id, description, instruction, htmlCode)
+            handleUpdate(ad.id, title, description, instruction, htmlCode)
           }
         ></Button>
         {/* <div

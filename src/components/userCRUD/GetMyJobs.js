@@ -32,6 +32,7 @@ import { S_Main } from "../utils/styledMain.js";
 
 export default function GetMyJobs() {
   const [activeId, setActiveId] = useState(null);
+  const [title, setTitle] = useState("");
   const [ad, setAd] = useState({});
   const [jobList, setJobList] = useState([]);
   const [addVisible, setAddVisible] = useState(false);
@@ -67,7 +68,7 @@ export default function GetMyJobs() {
   }
 
   function handleUpdate(id, description, instruction, htmlCode) {
-    updateJob(id, handleCRUDSuccess, description, instruction, htmlCode);
+    updateJob(id, handleCRUDSuccess, title, description, instruction, htmlCode);
   }
 
   console.log("GetMyJobs:", activeId);
@@ -179,9 +180,11 @@ export default function GetMyJobs() {
         <S_Preview_MyJobs>
           {previewVisible && (
             <Preview
+              title={title}
               description={description}
               instruction={instruction}
               htmlCode={htmlCode}
+              setTitle={setTitle}
               setDescription={setDescription}
               setInstruction={setInstruction}
               setHtmlCode={setHtmlCode}

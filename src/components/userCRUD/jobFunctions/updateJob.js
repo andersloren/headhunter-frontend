@@ -4,6 +4,7 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
 export async function updateJob(
   id,
   handleCRUDSuccess,
+  title,
   description,
   instruction,
   htmlCode
@@ -20,6 +21,7 @@ export async function updateJob(
       url,
       {
         email: email,
+        title: title,
         description: description,
         instruction: instruction,
         htmlCode: htmlCode,
