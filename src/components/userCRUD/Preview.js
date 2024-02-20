@@ -2,6 +2,8 @@ import { useState } from "react";
 import Button from "../utils/buttons/Button";
 import "./preview.css";
 
+import { S_Iframe_Preview } from "./styledComponents.js";
+
 export default function Preview({
   description,
   instruction,
@@ -72,13 +74,20 @@ export default function Preview({
             __html: htmlCode,
           }}
         ></div> */}
-        <iframe
+        {/* <iframe
           src={url}
           title={"Ad Content"}
           width="500"
           height="500"
           frameborder="0"
-        ></iframe>
+        ></iframe> */}
+        <S_Iframe_Preview
+          src={url}
+          title={"Ad Content"}
+          // width="500"
+          // height="500"
+          frameborder="0"
+        ></S_Iframe_Preview>
       </div>
       <Button
         icon="glyphicon glyphicon-plus"

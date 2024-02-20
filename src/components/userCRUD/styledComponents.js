@@ -68,3 +68,8 @@ export const S_Button_Squared = styled.button`
     background: radial-gradient(at 50% 50%, #c0806550, #fff0d9);
   }
 `;
+
+export const S_Iframe_Preview = styled.iframe`
+  margin-left: 20px;
+  resize: both;
+`;
