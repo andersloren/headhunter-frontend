@@ -1,7 +1,11 @@
+// Libraries, functions, etc...
 import { useState } from "react";
 import Button from "../utils/buttons/Button";
+
+// CSS
 import "./preview.css";
 
+// Styled Components
 import { S_Main } from "../utils/styledMain.js";
 import {
   S_Iframe_Preview,
@@ -19,7 +23,6 @@ export default function Preview({
   setInstruction,
   setTitle,
   handleUpdate,
-  handleAddVisible,
   ad,
 }) {
   const [active, setActive] = useState(3);
@@ -30,7 +33,7 @@ export default function Preview({
   return (
     <S_Main>
       <button
-        className={`preview-button preview-button preview-button-leftmost ${
+        className={`preview-button preview-button-leftmost ${
           active === 1 ? "preview-button-active" : ""
         }`}
         onClick={() => setActive(1)}
@@ -38,7 +41,7 @@ export default function Preview({
         Title
       </button>
       <button
-        className={`preview-button preview-button ${
+        className={`preview-button ${
           active === 2 ? "preview-button-active" : ""
         }`}
         onClick={() => setActive(2)}
@@ -89,19 +92,6 @@ export default function Preview({
             handleUpdate(ad.id, title, description, instruction, htmlCode)
           }
         ></Button>
-        {/* <div
-          className="flex-container-ad"
-          dangerouslySetInnerHTML={{
-            __html: htmlCode,
-          }}
-        ></div> */}
-        {/* <iframe
-          src={url}
-          title={"Ad Content"}
-          width="500"
-          height="500"
-          frameborder="0"
-        ></iframe> */}
         <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
       </S_PreviewBox_Preview>
     </S_Main>
