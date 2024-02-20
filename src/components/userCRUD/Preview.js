@@ -15,6 +15,10 @@ export default function Preview({
 }) {
   const [active, setActive] = useState(3);
 
+  const blob = new Blob([htmlCode], { type: "text/html" });
+
+  const url = URL.createObjectURL(blob);
+
   return (
     <div className="preview-main">
       <button
@@ -62,12 +66,19 @@ export default function Preview({
             handleUpdate(ad.id, description, instruction, htmlCode)
           }
         ></Button>
-        <div
+        {/* <div
           className="flex-container-ad"
           dangerouslySetInnerHTML={{
             __html: htmlCode,
           }}
-        ></div>
+        ></div> */}
+        <iframe
+          src={url}
+          title={"Ad Content"}
+          width="500"
+          height="500"
+          frameborder="0"
+        ></iframe>
       </div>
       <Button
         icon="glyphicon glyphicon-plus"
