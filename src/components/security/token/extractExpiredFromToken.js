@@ -1,7 +1,7 @@
+// Libraries, functions, etc.
 import { jwtDecode } from "jwt-decode";
 
 export function extractExpiredFromToken() {
-
   const decodedToken = jwtDecode(localStorage.getItem("headhunter-token"));
 
   const tokenExpireTime = decodedToken.exp * 1000;
@@ -9,5 +9,4 @@ export function extractExpiredFromToken() {
   const isExpired = tokenExpireTime > Date.now();
 
   return isExpired;
-
 }

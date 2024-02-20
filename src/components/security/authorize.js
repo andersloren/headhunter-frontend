@@ -1,3 +1,4 @@
+// Libraries, functions, etc.
 import { extractExpiredFromToken } from "./token/extractExpiredFromToken";
 
 export function authorize() {
