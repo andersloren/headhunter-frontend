@@ -13,6 +13,7 @@ import "./addJobStyles.css";
 export default function AddJob({ onAddSuccess }) {
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
+  const [title, setTitle] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,6 +30,7 @@ export default function AddJob({ onAddSuccess }) {
         url,
         {
           email: email,
+          title: title,
           description: description,
           instruction: instruction,
         },
@@ -40,6 +42,7 @@ export default function AddJob({ onAddSuccess }) {
         }
       );
       console.log("Job Add Success");
+      console.log(response.data.data.title);
       onAddSuccess();
     } catch (error) {
       console.error("Error adding job", error);
@@ -50,11 +53,14 @@ export default function AddJob({ onAddSuccess }) {
     <div>
       <h1>Add new job</h1>
       <form onSubmit={handleSubmit}>
-        {/* <Input
-          placeholder="Enter instruction1 here"
-          state={instruction}
-          onSetState={setInstruction}
-        ></Input> */}
+        <p>
+          <textarea
+            className="input-default"
+            placeholder="Enter title here"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </p>
         <p>
           <textarea
             className="input-default"

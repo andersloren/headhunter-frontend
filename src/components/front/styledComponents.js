@@ -4,11 +4,6 @@ const border_radius = "15px";
 const font_size = "20px";
 const color = "#fff0d9";
 
-export const S_Main = styled.div`
-  font-family: "Montserrat", sans-serif;
-  background-color: green;
-`;
-
 export const S_HeadingBox_Welcome = styled.h1`
   justify-content: center;
   position: absolute;

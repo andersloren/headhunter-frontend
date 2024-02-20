@@ -8,7 +8,6 @@ import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
 import { getJobById } from "./jobFunctions/getJobById";
 
 // Custom components
-import Button from "../utils/buttons/Button";
 import AddJob from "./AddJob";
 import Preview from "./Preview";
 
@@ -23,9 +22,13 @@ import {
   S_Preview_MyJobs,
   S_Table_MyJobs,
   S_Table_Headers_MyJobs,
+  S_Table_Data_MyJobs,
+  S_Table_Rows_MyJobs,
 } from "./styledComponents.js";
+import { S_Main } from "../utils/styledMain.js";
 
 export default function GetAllMyJobs() {
+  const [activeId, setActiveId] = useState(null);
   const [ad, setAd] = useState({});
   const [jobList, setJobList] = useState([]);
   const [addVisible, setAddVisible] = useState(false);
@@ -61,8 +64,12 @@ export default function GetAllMyJobs() {
   }
 
   function handlePreview(id) {
-    setPreviewVisible((preview) => !preview);
-    getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
+    if (id !== activeId) {
+      getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
+      setActiveId(id);
+    } else {
+      setPreviewVisible((vis) => !vis);
+    }
   }
 
   function handleGenerate(id, setPreviewVisible) {
@@ -88,7 +95,7 @@ export default function GetAllMyJobs() {
   }
 
   return (
-    <div>
+    <S_Main>
       <S_HeadingBox_MyJobs>
         <S_Title_MyJobs>My Jobs</S_Title_MyJobs>
       </S_HeadingBox_MyJobs>
@@ -97,19 +104,27 @@ export default function GetAllMyJobs() {
         <S_Table_MyJobs>
           <thead>
             <tr>
-              <S_Table_Headers_MyJobs $lastChild="false">
+              <S_Table_Headers_MyJobs $firstChild="true">
                 #
               </S_Table_Headers_MyJobs>
-              <S_Table_Headers_MyJobs $lastChild="true">
-                Functionality
+              <S_Table_Headers_MyJobs $firstChild="false">
+                Title
               </S_Table_Headers_MyJobs>
+              {/* <S_Table_Headers_MyJobs $firstChild="false">
+                Functionality
+              </S_Table_Headers_MyJobs> */}
             </tr>
           </thead>
           <tbody>
             {jobList.map((job) => (
-              <tr key={job.id}>
-                <td>{job.id}</td>
-                <td>
+              <S_Table_Rows_MyJobs key={job.id} $title="true">
+                <S_Table_Data_MyJobs>{job.id}</S_Table_Data_MyJobs>
+                <S_Table_Data_MyJobs onClick={() => handlePreview(job.id)}>
+                  {job.title.length > 20
+                    ? job.title.slice(0, 20) + "..."
+                    : job.title}
+                </S_Table_Data_MyJobs>
+                {/* <td>
                   <S_Button_Squared
                     key={["view", job.id]}
                     id={job.id}
@@ -131,8 +146,8 @@ export default function GetAllMyJobs() {
                   >
                     🔌
                   </S_Button_Squared>
-                </td>
-              </tr>
+                </td> */}
+              </S_Table_Rows_MyJobs>
             ))}
           </tbody>
         </S_Table_MyJobs>
@@ -155,6 +170,6 @@ export default function GetAllMyJobs() {
           {addVisible && <AddJob onAddSuccess={handleCRUDSuccess} />}
         </S_Preview_MyJobs>
       </S_WindowSplit_MyJobs>
-    </div>
+    </S_Main>
   );
 }
