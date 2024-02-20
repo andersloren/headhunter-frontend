@@ -1,15 +1,15 @@
 // Libraries, functions, etc.
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { deleteJob } from "./jobFunctions/deleteJob";
-import { generateJobAd } from "./jobFunctions/generateJobAd";
-import { updateJob } from "./jobFunctions/updateJob";
-import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
-import { getJobById } from "./jobFunctions/getJobById";
+import { deleteJob } from "./jobFunctions/deleteJob.js";
+import { generateJobAd } from "./jobFunctions/generateJobAd.js";
+import { updateJob } from "./jobFunctions/updateJob.js";
+import { extractEmailFromToken } from "../security/token/extractEmailFromToken.js";
+import { getJobById } from "./jobFunctions/getJobById.js";
 
 // Custom components
-import AddJob from "./AddJob";
-import Preview from "./Preview";
+import AddJob from "./AddJob.js";
+import Preview from "./Preview.js";
 
 // CSS
 import "./userCrud.css";
@@ -27,7 +27,7 @@ import {
 } from "./styledComponents.js";
 import { S_Main } from "../utils/styledMain.js";
 
-export default function GetAllMyJobs() {
+export default function GetMyJobs() {
   const [activeId, setActiveId] = useState(null);
   const [ad, setAd] = useState({});
   const [jobList, setJobList] = useState([]);
@@ -63,13 +63,17 @@ export default function GetAllMyJobs() {
     updateJob(id, handleCRUDSuccess, description, instruction, htmlCode);
   }
 
+  console.log("GetMyJobs:", activeId);
+
   function handlePreview(id) {
-    if (id !== activeId) {
+    setActiveId(id);
+    if (activeId === null) {
       getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
-      setActiveId(id);
-    } else {
-      setPreviewVisible((vis) => !vis);
-    }
+      setPreviewVisible(true);
+    } else if (activeId !== id) {
+      getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
+      setPreviewVisible(true);
+    } else setPreviewVisible(false);
   }
 
   function handleGenerate(id, setPreviewVisible) {

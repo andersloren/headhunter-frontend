@@ -10,7 +10,7 @@ import Welcome from "./components/front/Welcome";
 
 // User pages
 import MyPage from "./components/userCRUD/MyPage";
-import GetAllMyJobs from "./components/userCRUD/GetAllMyJobs";
+import GetAllMyJobs from "./components/userCRUD/GetMyJobs";
 
 // Admin pages
 import GetAllUser from "./components/adminCRUD/GetAllUsers";
