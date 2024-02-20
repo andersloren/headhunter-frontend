@@ -1,5 +1,8 @@
+// Libraries, functions, etc.
 import axios from "axios";
 import { useState } from "react";
+
+// Custom Components
 import Input from "../utils/input/Input";
 
 export default function GetByEmailUser() {
@@ -55,8 +58,6 @@ export default function GetByEmailUser() {
                   {user.roles}
                 </div>
               </p>
-              <button>❌</button>
-              <button>✏️</button>
             </>
           )}
         </div>

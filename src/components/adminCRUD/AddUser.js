@@ -1,5 +1,8 @@
+// Libraries, functions...
 import axios from "axios";
 import { useState } from "react";
+
+// Custom components
 import Input from "../utils/input/Input";
 
 export default function AddUser() {

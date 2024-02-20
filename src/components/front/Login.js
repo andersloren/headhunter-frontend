@@ -1,7 +1,8 @@
 // Libraris, functions, etc
 import { useState } from "react";
-import axios from "axios";
+import { authorize } from "../security/authorize.js";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Syled Components
 import {
@@ -12,9 +13,6 @@ import {
   S_InputFlex,
   S_Check,
 } from "./styledComponents.js";
-
-// CSS
-import { authorize } from "../security/authorize.js";
 
 export default function Login({ setIsAuthorized }) {
   const [email, setEmail] = useState("");

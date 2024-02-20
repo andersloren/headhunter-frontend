@@ -2,9 +2,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-// CSS
-import "./getAllStyles.css";
-
 export default function GetAllUsers() {
   const [userList, setUserList] = useState([]);
 

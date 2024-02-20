@@ -1,5 +1,8 @@
+// Libraries, functions, etc.
 import axios from "axios";
 import { useState } from "react";
+
+// Custom Components
 import Input from "../utils/input/Input";
 
 export default function UpdateUser() {
@@ -76,8 +79,6 @@ export default function UpdateUser() {
                   {user.roles}
                 </p>
               </div>
-              <button>❌</button>
-              <button>✏️</button>
             </>
           )}
         </div>
