@@ -1,3 +1,4 @@
+// CSS
 import "./inputStyle.css";
 
 export default function Input({

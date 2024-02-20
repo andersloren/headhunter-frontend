@@ -1,4 +1,7 @@
+// Libraries, functions, etc.
 import { useState } from "react";
+
+// CSS
 import "./buttonStyles.css";
 
 export default function Button({

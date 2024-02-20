@@ -2,9 +2,6 @@
 import { useState } from "react";
 import Button from "../utils/buttons/Button";
 
-// CSS
-import "./preview.css";
-
 // Styled Components
 import { S_Main } from "../utils/styledMain.js";
 import {
