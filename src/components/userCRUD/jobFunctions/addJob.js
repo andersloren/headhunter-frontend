@@ -12,7 +12,7 @@ export async function addJob(handleCRUDSuccess) {
       url,
       {
         email: email,
-        title: "New Job",
+        title: "Add a Title",
         description: "Add a description",
         instruction: "Add an instruction",
       },
@@ -24,7 +24,6 @@ export async function addJob(handleCRUDSuccess) {
       }
     );
     console.log("Job Add Success");
-    console.log(response.data.data.title);
     handleCRUDSuccess();
   } catch (error) {
     console.error("Error adding job", error);

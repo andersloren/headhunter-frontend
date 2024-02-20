@@ -1,3 +1,4 @@
+// Libraries, functions, etc.
 import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
@@ -12,10 +13,6 @@ export async function updateJob(
   console.log(id);
   const email = extractEmailFromToken();
   const url = `http://localhost:8080/api/v1/jobs/update/${id}`;
-  console.log(url);
-  console.log("UPDATE DESCRIPTION:", description);
-  console.log("UPDATE INSTRUCTION:", instruction);
-  console.log("UPDATE HTMLCODE:", htmlCode);
   try {
     const response = await axios.put(
       url,

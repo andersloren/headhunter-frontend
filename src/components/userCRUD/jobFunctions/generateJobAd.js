@@ -1,3 +1,4 @@
+// Libraries, functions, etc.
 import axios from "axios";
 
 export async function generateJobAd(

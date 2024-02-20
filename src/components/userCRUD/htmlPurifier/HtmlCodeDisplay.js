@@ -1,3 +1,4 @@
+// Libraries, functions, etc.
 import DOMPurify from "dompurify";
 
 export function htmlCodeDisplay(htmlCode) {
