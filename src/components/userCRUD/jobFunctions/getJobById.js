@@ -3,6 +3,7 @@ import axios from "axios";
 export async function getJobById(
   id,
   setAd,
+  setTitle,
   setDescription,
   setInstruction,
   setHtmlCode
@@ -18,6 +19,7 @@ export async function getJobById(
     });
     console.log("Get Job By Id Success");
     setAd(response.data.data);
+    setTitle(response.data.data.title);
     setDescription(response.data.data.description);
     setInstruction(response.data.data.instruction);
     setHtmlCode(response.data.data.htmlCode);

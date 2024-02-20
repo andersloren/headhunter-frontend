@@ -76,10 +76,24 @@ export default function GetMyJobs() {
   function handlePreview(id) {
     setActiveId(id);
     if (activeId === null) {
-      getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
+      getJobById(
+        id,
+        setAd,
+        setTitle,
+        setDescription,
+        setInstruction,
+        setHtmlCode
+      );
       setPreviewVisible(true);
     } else if (activeId !== id) {
-      getJobById(id, setAd, setDescription, setInstruction, setHtmlCode);
+      getJobById(
+        id,
+        setAd,
+        setTitle,
+        setDescription,
+        setInstruction,
+        setHtmlCode
+      );
       setPreviewVisible(true);
     } else setPreviewVisible(false);
   }
