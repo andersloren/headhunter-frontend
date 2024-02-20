@@ -85,7 +85,26 @@ export const S_Button_Squared = styled.button`
   }
 `;
 
+export const S_PreviewBox_Preview = styled.div`
+  display: flex;
+`;
+
+export const S_TextArea_Preview = styled.textarea`
+  box-shadow: 10px 5px 5px #c0806580;
+  border: black;
+  border: solid;
+
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding: 20px;
+  width: 30%;
+`;
+
 export const S_Iframe_Preview = styled.iframe`
   margin-left: 20px;
   resize: both;
+
+  box-shadow: 10px 5px 5px #c0806580;
+  border: black;
+  border: solid;
 `;

@@ -2,7 +2,12 @@ import { useState } from "react";
 import Button from "../utils/buttons/Button";
 import "./preview.css";
 
-import { S_Iframe_Preview } from "./styledComponents.js";
+import { S_Main } from "../utils/styledMain.js";
+import {
+  S_Iframe_Preview,
+  S_PreviewBox_Preview,
+  S_TextArea_Preview,
+} from "./styledComponents.js";
 
 export default function Preview({
   title,
@@ -20,11 +25,10 @@ export default function Preview({
   const [active, setActive] = useState(3);
 
   const blob = new Blob([htmlCode], { type: "text/html" });
-
   const url = URL.createObjectURL(blob);
 
   return (
-    <div className="preview-main">
+    <S_Main>
       <button
         className={`preview-button preview-button preview-button-leftmost ${
           active === 1 ? "preview-button-active" : ""
@@ -57,9 +61,8 @@ export default function Preview({
       >
         HTML-code
       </button>
-      <div className="preview-container">
-        <textarea
-          className="flex-container-edit"
+      <S_PreviewBox_Preview>
+        <S_TextArea_Preview
           value={
             active < 4
               ? active < 3
@@ -78,7 +81,7 @@ export default function Preview({
                 : setInstruction(e.target.value)
               : setHtmlCode(e.target.value);
           }}
-        />
+        ></S_TextArea_Preview>
         <Button
           className="save-html"
           icon="glyphicon glyphicon-floppy-save"
@@ -106,11 +109,7 @@ export default function Preview({
           // height="500"
           frameborder="0"
         ></S_Iframe_Preview>
-      </div>
-      <Button
-        icon="glyphicon glyphicon-plus"
-        onHandleClick={handleAddVisible}
-      ></Button>
-    </div>
+      </S_PreviewBox_Preview>
+    </S_Main>
   );
 }
