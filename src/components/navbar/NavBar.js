@@ -1,11 +1,16 @@
+// Libraries, functions, etc.
 import { Link } from "react-router-dom";
-import AdminNav from "./AdminNav";
-import LoggedInNav from "./LoggedInNav";
 import { extractRolesFromToken } from "../security/token/extractRolesFromToken";
-import "bootstrap/dist/css/bootstrap.min.css";
 import UserNav from "./UserNav";
 import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
 import { useEffect, useState } from "react";
+
+// CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// Components
+import AdminNav from "./AdminNav";
+import LoggedInNav from "./LoggedInNav";
 
 export default function NavBar({ isAuthorized, setIsAuthorized, children }) {
   const [username, setUsername] = useState("");
