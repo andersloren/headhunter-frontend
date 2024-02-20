@@ -59,6 +59,22 @@ export const S_Table_Data_MyJobs = styled.td`
 export const S_Preview_MyJobs = styled.div`
   width: 80%;
 `;
+
+export const S_Button_AddJob_MyJobs = styled.button`
+  font-size: ${font_size};
+  font-weight: bold;
+  background-color: #78ff86;
+  &:hover {
+    background-color: #00ff19;
+  }
+
+  margin-top: 10px;
+  margin-left: ${margin_left_from_screen};
+  width: 290px;
+  height: 40px;
+  border-radius: ${border_radius};
+`;
+
 export const S_Button_Squared = styled.button`
   color: ${color};
   height: 40px;

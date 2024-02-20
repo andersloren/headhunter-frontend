@@ -6,9 +6,10 @@ import { generateJobAd } from "./jobFunctions/generateJobAd.js";
 import { updateJob } from "./jobFunctions/updateJob.js";
 import { extractEmailFromToken } from "../security/token/extractEmailFromToken.js";
 import { getJobById } from "./jobFunctions/getJobById.js";
+import { addJob } from "./jobFunctions/addJob.js";
 
 // Custom components
-import AddJob from "./AddJob.js";
+// import AddJob from "./AddJob.js";
 import Preview from "./Preview.js";
 
 // CSS
@@ -25,6 +26,7 @@ import {
   S_Table_Data_MyJobs,
   S_Table_Rows_MyJobs,
   S_Table_Box_MyJobs,
+  S_Button_AddJob_MyJobs,
 } from "./styledComponents.js";
 import { S_Main } from "../utils/styledMain.js";
 
@@ -54,6 +56,10 @@ export default function GetMyJobs() {
 
   function handleCRUDSuccess() {
     setRefreshTable((refresh) => !refresh);
+  }
+
+  function handleAddJob() {
+    addJob(handleCRUDSuccess); // rename this and the file holding this function
   }
 
   function handleDelete(id) {
@@ -162,6 +168,12 @@ export default function GetMyJobs() {
               ))}
             </tbody>
           </S_Table_MyJobs>
+          <S_Button_AddJob_MyJobs
+            $firstChild="true"
+            onClick={() => handleAddJob()}
+          >
+            ➕ Add New Job
+          </S_Button_AddJob_MyJobs>
         </S_Table_Box_MyJobs>
         {/* </table> */}
         <S_Preview_MyJobs>
@@ -179,7 +191,7 @@ export default function GetMyJobs() {
               ad={ad}
             />
           )}
-          {addVisible && <AddJob onAddSuccess={handleCRUDSuccess} />}
+          {/* {addVisible && <AddJob onAddSuccess={handleCRUDSuccess} />} */}
         </S_Preview_MyJobs>
       </S_WindowSplit_MyJobs>
     </S_Main>
