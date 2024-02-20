@@ -24,6 +24,8 @@ export const S_WindowSplit_MyJobs = styled.div`
   display: flex;
 `;
 
+export const S_Table_Box_MyJobs = styled.div``;
+
 // All Table
 export const S_Table_MyJobs = styled.table`
   width: 290px;
@@ -37,17 +39,21 @@ export const S_Table_Headers_MyJobs = styled.th`
 `;
 
 export const S_Table_Rows_MyJobs = styled.tr`
-  /* margin-bottom: 40px;
-  padding: 20px; */
   &:hover {
     cursor: pointer;
-    border: 2px solid;
+    background: #fff0d9;
+    /* border: 2px solid;
     border-color: #c08065;
     border-radius: ${border_radius};
-    background: radial-gradient(at 50% 50%, #fff0d9, #c08065);
+    background: radial-gradient(at 50% 50%, #fff0d9, #c08065); */
   }
 `;
-export const S_Table_Data_MyJobs = styled.td``;
+
+export const S_Table_Data_MyJobs = styled.td`
+  /* margin-bottom: 40px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
 
 // All Preview
 export const S_Preview_MyJobs = styled.div`

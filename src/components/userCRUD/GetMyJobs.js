@@ -24,6 +24,7 @@ import {
   S_Table_Headers_MyJobs,
   S_Table_Data_MyJobs,
   S_Table_Rows_MyJobs,
+  S_Table_Box_MyJobs,
 } from "./styledComponents.js";
 import { S_Main } from "../utils/styledMain.js";
 
@@ -105,30 +106,36 @@ export default function GetMyJobs() {
       </S_HeadingBox_MyJobs>
       <S_WindowSplit_MyJobs>
         {/* <table className="table">*/}
-        <S_Table_MyJobs>
-          <thead>
-            <tr>
-              <S_Table_Headers_MyJobs $firstChild="true">
-                #
-              </S_Table_Headers_MyJobs>
-              <S_Table_Headers_MyJobs $firstChild="false">
-                Title
-              </S_Table_Headers_MyJobs>
-              {/* <S_Table_Headers_MyJobs $firstChild="false">
+        <S_Table_Box_MyJobs>
+          <S_Table_MyJobs>
+            <thead>
+              <tr>
+                <S_Table_Headers_MyJobs $firstChild="true">
+                  #
+                </S_Table_Headers_MyJobs>
+                <S_Table_Headers_MyJobs $firstChild="false">
+                  Title
+                </S_Table_Headers_MyJobs>
+                {/* <S_Table_Headers_MyJobs $firstChild="false">
                 Functionality
               </S_Table_Headers_MyJobs> */}
-            </tr>
-          </thead>
-          <tbody>
-            {jobList.map((job) => (
-              <S_Table_Rows_MyJobs key={job.id} $title="true">
-                <S_Table_Data_MyJobs>{job.id}</S_Table_Data_MyJobs>
-                <S_Table_Data_MyJobs onClick={() => handlePreview(job.id)}>
-                  {job.title.length > 20
-                    ? job.title.slice(0, 20) + "..."
-                    : job.title}
-                </S_Table_Data_MyJobs>
-                {/* <td>
+              </tr>
+            </thead>
+            <tbody>
+              {jobList.map((job) => (
+                <S_Table_Rows_MyJobs key={job.id} $title="true">
+                  <S_Table_Data_MyJobs $firstChild="true">
+                    {job.id}
+                  </S_Table_Data_MyJobs>
+                  <S_Table_Data_MyJobs
+                    onClick={() => handlePreview(job.id)}
+                    $firstChild="false"
+                  >
+                    {job.title.length > 20
+                      ? job.title.slice(0, 20) + "..."
+                      : job.title}
+                  </S_Table_Data_MyJobs>
+                  {/* <td>
                   <S_Button_Squared
                     key={["view", job.id]}
                     id={job.id}
@@ -151,10 +158,11 @@ export default function GetMyJobs() {
                     🔌
                   </S_Button_Squared>
                 </td> */}
-              </S_Table_Rows_MyJobs>
-            ))}
-          </tbody>
-        </S_Table_MyJobs>
+                </S_Table_Rows_MyJobs>
+              ))}
+            </tbody>
+          </S_Table_MyJobs>
+        </S_Table_Box_MyJobs>
         {/* </table> */}
         <S_Preview_MyJobs>
           {previewVisible && (
