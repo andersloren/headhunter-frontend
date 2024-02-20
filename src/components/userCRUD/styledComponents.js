@@ -101,6 +101,7 @@ export const S_TextArea_Preview = styled.textarea`
 `;
 
 export const S_Iframe_Preview = styled.iframe`
+  background-color: white;
   margin-left: 20px;
   resize: both;
 
