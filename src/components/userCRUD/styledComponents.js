@@ -32,11 +32,12 @@ export const S_WindowSplit_MyJobs = styled.div`
 // All Jobs
 export const S_JobList_Box_MyJobs = styled.div`
   margin-left: ${margin_left_from_table};
+  margin-top: 10px;
 `;
 
 export const S_JobList_Heading_MyJobs = styled.div`
   font-size: 30px;
-  padding: 10px;
+  padding-bottom: 10px;
   font-weight: bold;
 `;
 
@@ -70,6 +71,7 @@ export const S_Button_AddJob_MyJobs = styled.button`
 
 // All Preview
 export const S_Preview_MyJobs = styled.div`
+  margin-top: 10px;
   margin-left: ${margin_left_from_box};
   width: 80%;
 `;
