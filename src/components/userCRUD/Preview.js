@@ -8,7 +8,9 @@ import {
   S_PreviewBox_Preview,
   S_TextArea_Preview,
   S_Buttons_Edit_Preview,
-  S_Button_Squared,
+  S_FunctionalityButton_Box_Preview,
+  S_FunctionalityButton_Preview,
+  S_Tooltip_FunctionalityButton_Preview,
 } from "./styledComponents.js";
 
 export default function Preview({
@@ -27,14 +29,20 @@ export default function Preview({
   handleDelete,
 }) {
   const [active, setActive] = useState(4);
+  const [activeButton, setActiveButton] = useState("");
 
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
+  console.log("Preview, activeButton", activeButton);
+
+  function handleActiveButton(buttonId) {
+    setActiveButton(buttonId);
+  }
+
   return (
     <S_Main>
       <S_Buttons_Edit_Preview
-        $firstChild={"true"}
         onClick={() => setActive(1)}
         $active={active === 1 ? "true" : "false"}
       >
@@ -81,26 +89,40 @@ export default function Preview({
         ></S_TextArea_Preview>
         <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
       </S_PreviewBox_Preview>
-      <S_Button_Squared
-        $firstChild={"true"}
-        onClick={() =>
-          handleUpdate(ad.id, title, description, instruction, htmlCode)
-        }
-      >
-        💾
-      </S_Button_Squared>
-      <S_Button_Squared
-        $firstChild={"false"}
-        onClick={() => handleGenerate(ad.id, setPreviewVisible)}
-      >
-        ⚡
-      </S_Button_Squared>
-      <S_Button_Squared
-        $firstChild={"false"}
-        onClick={() => handleDelete(ad.id)}
-      >
-        ❌
-      </S_Button_Squared>
+      <S_FunctionalityButton_Box_Preview>
+        <S_FunctionalityButton_Preview
+          onClick={() =>
+            handleUpdate(ad.id, title, description, instruction, htmlCode)
+          }
+          onMouseOver={() => handleActiveButton("1")}
+          onMouseLeave={() => handleActiveButton("")}
+        >
+          💾
+        </S_FunctionalityButton_Preview>
+        <S_FunctionalityButton_Preview
+          onClick={() => handleGenerate(ad.id, setPreviewVisible)}
+          onMouseOver={() => handleActiveButton("2")}
+          onMouseLeave={() => handleActiveButton("")}
+        >
+          ⚡
+        </S_FunctionalityButton_Preview>
+        <S_FunctionalityButton_Preview
+          onClick={() => handleDelete(ad.id)}
+          onMouseOver={() => handleActiveButton("3")}
+          onMouseLeave={() => handleActiveButton("")}
+        >
+          ❌
+        </S_FunctionalityButton_Preview>
+        {activeButton && (
+          <S_Tooltip_FunctionalityButton_Preview $activeButton={activeButton}>
+            {activeButton !== "3"
+              ? activeButton !== "2"
+                ? "Save title, description and instruction"
+                : "Generate a new ad"
+              : "Delete job"}
+          </S_Tooltip_FunctionalityButton_Preview>
+        )}
+      </S_FunctionalityButton_Box_Preview>
     </S_Main>
   );
 }

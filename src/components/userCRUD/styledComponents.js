@@ -4,6 +4,7 @@ const border_radius = "5px";
 const font_size = "20px";
 const color = "#fff0d9";
 const margin_left_from_screen = "30px";
+const margin_left_from_box = margin_left_from_screen;
 const margin_left_from_table = "20px";
 
 const border_preview_border = "2px solid";
@@ -28,11 +29,7 @@ export const S_WindowSplit_MyJobs = styled.div`
   display: flex;
 `;
 
-export const S_Table_Box_MyJobs = styled.div`
-  width: ${table_width};
-`;
-
-// All Table
+// All Jobs
 export const S_JobList_Box_MyJobs = styled.div`
   margin-left: ${margin_left_from_table};
 `;
@@ -73,10 +70,13 @@ export const S_Button_AddJob_MyJobs = styled.button`
 
 // All Preview
 export const S_Preview_MyJobs = styled.div`
+  margin-left: ${margin_left_from_box};
   width: 80%;
 `;
 
-export const S_Button_Squared = styled.button`
+export const S_FunctionalityButton_Box_Preview = styled.div``;
+
+export const S_FunctionalityButton_Preview = styled.button`
   font-size: 40px;
   color: ${color};
   height: 70px;
@@ -86,8 +86,25 @@ export const S_Button_Squared = styled.button`
   &:hover {
     background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
   }
+`;
+
+export const S_Tooltip_FunctionalityButton_Preview = styled.div`
   margin-left: ${(props) =>
-    props.$firstChild === "true" ? margin_left_from_table : "0px"};
+    // (props.$activeButton === "1" ? "70px" : "0px")};
+    props.$activeButton !== "3"
+      ? props.$activeButton !== "2"
+        ? "0px"
+        : "70px"
+      : "140px"};
+  padding: 20px;
+  width: 200px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: ${border_radius};
+  border: 2px solid;
+  background-color: #fff0d9;
 `;
 
 export const S_PreviewBox_Preview = styled.div`
@@ -96,8 +113,6 @@ export const S_PreviewBox_Preview = styled.div`
 
 export const S_Buttons_Edit_Preview = styled.button`
   font-size: ${font_size};
-  margin-left: ${(props) =>
-    props.$firstChild === "true" ? margin_left_from_table : "0px"};
   width: auto;
   background-color: ${(props) =>
     props.$active === "true" ? "#fff0d9" : "rgb(214, 143, 112)"};
@@ -112,8 +127,6 @@ export const S_TextArea_Preview = styled.textarea`
   box-shadow: 10px 5px 5px #c0806580;
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
-
-  margin-left: ${margin_left_from_table};
   padding: 20px;
   width: 392px;
 `;

@@ -157,45 +157,6 @@ export default function MyJobs() {
             ➕ Add New Job
           </S_Button_AddJob_MyJobs>
         </S_JobList_Box_MyJobs>
-        {/* <S_Table_Box_MyJobs>
-          <S_Table_MyJobs>
-            <thead>
-              <tr>
-                {/* <S_Table_Headers_MyJobs $firstChild="true">
-                  #
-                </S_Table_Headers_MyJobs>
-                <S_Table_Headers_MyJobs $firstChild="false">
-                  Title
-                </S_Table_Headers_MyJobs>
-              </tr>
-            </thead>
-            <tbody>
-              {jobList.map((job) => (
-                <S_Table_Rows_MyJobs key={job.id} $title="true">
-                  {/* <S_Table_Data_MyJobs $firstChild="true">
-                    {job.id}
-                  </S_Table_Data_MyJobs>
-                  <S_Table_Data_MyJobs
-                    onClick={() => handlePreview(job.id)}
-                    $firstChild="false"
-                    $active={activeId === job.id ? "true" : "false"}
-                  >
-                    {job.title.length > 20
-                      ? job.title.slice(0, 20) + "..."
-                      : job.title}
-                  </S_Table_Data_MyJobs>
-                </S_Table_Rows_MyJobs>
-              ))}
-            </tbody>
-          </S_Table_MyJobs>
-          <S_Button_AddJob_MyJobs
-            $firstChild="true"
-            onClick={() => handleAddJob()}
-          >
-            ➕ Add New Job
-          </S_Button_AddJob_MyJobs>
-        </S_Table_Box_MyJobs> */}
-        {/* </table> */}
         <S_Preview_MyJobs>
           {previewVisible && (
             <Preview
@@ -219,7 +180,6 @@ export default function MyJobs() {
               handleDelete={handleDelete}
             />
           )}
-          {/* {addVisible && <AddJob onAddSuccess={handleCRUDSuccess} />} */}
         </S_Preview_MyJobs>
       </S_WindowSplit_MyJobs>
     </S_Main>
