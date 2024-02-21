@@ -39,7 +39,6 @@ export default function MyJobs() {
 
   const [ad, setAd] = useState({});
   const [jobList, setJobList] = useState([]);
-  const [addVisible, setAddVisible] = useState(false);
   const [refreshTable, setRefreshTable] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [title, setTitle] = useState("");
@@ -49,6 +48,8 @@ export default function MyJobs() {
 
   const email = extractEmailFromToken();
 
+  console.log(ad);
+
   useEffect(() => {
     getAllMyJobs();
   }, [refreshTable]);
@@ -56,10 +57,6 @@ export default function MyJobs() {
   useEffect(() => {
     getAllMyJobs();
   }, []);
-
-  function handleAddVisible() {
-    setAddVisible((vis) => !vis);
-  }
 
   function handleCRUDSuccess() {
     setRefreshTable((refresh) => !refresh);
@@ -80,6 +77,7 @@ export default function MyJobs() {
   function handleDelete(id) {
     if (window.confirm("Are you sure you want to delete this job?")) {
       deleteJob(id, handleCRUDSuccess);
+      setPreviewVisible(false);
     } else {
       console.log("User cancelled delete");
     }
@@ -141,6 +139,7 @@ export default function MyJobs() {
           <S_JobList_Heading_MyJobs>Job titles</S_JobList_Heading_MyJobs>
           {jobList.map((job) => (
             <S_JobList_Jobs_MyJobs
+              key={job.id}
               onClick={() => handlePreview(job.id)}
               $firstChild="false"
               $active={activeId === job.id ? "true" : "false"}
@@ -165,7 +164,6 @@ export default function MyJobs() {
               handleCRUDSuccess={handleCRUDSuccess}
               handlePreview={handlePreview}
               setPreviewVisible={setPreviewVisible}
-              handleAddVisible={handleAddVisible}
               handleActiveField={handleActiveField}
               ad={ad}
               htmlCode={htmlCode}
