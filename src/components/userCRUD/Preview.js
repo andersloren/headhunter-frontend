@@ -34,8 +34,6 @@ export default function Preview({
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
-  console.log("Preview, activeButton", activeButton);
-
   function handleActiveButton(buttonId) {
     setActiveButton(buttonId);
   }

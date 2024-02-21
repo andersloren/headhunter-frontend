@@ -49,9 +49,6 @@ export default function MyJobs() {
 
   const email = extractEmailFromToken();
 
-  console.log("ad.id", ad.id);
-  console.log("activeId", activeId);
-
   useEffect(() => {
     getAllMyJobs();
   }, [refreshTable]);
@@ -81,7 +78,11 @@ export default function MyJobs() {
   }
 
   function handleDelete(id) {
-    deleteJob(id, handleCRUDSuccess);
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      deleteJob(id, handleCRUDSuccess);
+    } else {
+      console.log("User cancelled delete");
+    }
   }
 
   function handlePreview(id) {
