@@ -6,6 +6,9 @@ const color = "#fff0d9";
 const margin_left_from_screen = "30px";
 const margin_left_from_table = "20px";
 
+const border_preview_border = "2px solid";
+const border_preview_border_radius = "5px 0px 0px 5px";
+
 // All Heading
 export const S_HeadingBox_MyJobs = styled.h1`
   /* justify-content: center; */
@@ -35,6 +38,8 @@ export const S_Table_MyJobs = styled.table`
 `;
 
 export const S_Table_Headers_MyJobs = styled.th`
+  padding: 10px;
+  font-size: 30px;
   font-weight: bold;
   padding-right: ${(props) => (props.$firstChild === "true" ? "50px" : "0px")};
 `;
@@ -51,9 +56,15 @@ export const S_Table_Rows_MyJobs = styled.tr`
 `;
 
 export const S_Table_Data_MyJobs = styled.td`
+  white-space: nowrap;
   /* margin-bottom: 40px; */
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
+  background-color: ${(props) =>
+    props.$active === "true" ? "#fff0d9" : "rgb(214, 143, 112)"};
+  &:hover {
+    background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
+  }
+  border-radius: 5px;
 `;
 
 // All Preview
@@ -110,8 +121,8 @@ export const S_Buttons_Edit_Preview = styled.button`
 
 export const S_TextArea_Preview = styled.textarea`
   box-shadow: 10px 5px 5px #c0806580;
-  border: black;
-  border: solid;
+  border-radius: ${border_preview_border_radius};
+  border: ${border_preview_border};
 
   margin-left: ${margin_left_from_table};
   padding: 20px;
@@ -119,11 +130,12 @@ export const S_TextArea_Preview = styled.textarea`
 `;
 
 export const S_Iframe_Preview = styled.iframe`
+  border-radius: ${border_preview_border_radius};
+  border: ${border_preview_border};
   background-color: white;
   margin-left: 20px;
   resize: both;
 
   box-shadow: 10px 5px 5px #c0806580;
-  border: black;
-  border: solid;
+  /* border: solid; */
 `;

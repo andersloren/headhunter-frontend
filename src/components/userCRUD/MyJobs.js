@@ -46,6 +46,9 @@ export default function MyJobs() {
 
   const email = extractEmailFromToken();
 
+  console.log("ad.id", ad.id);
+  console.log("activeId", activeId);
+
   useEffect(() => {
     getAllMyJobs();
   }, [refreshTable]);
@@ -77,8 +80,6 @@ export default function MyJobs() {
   function handleDelete(id) {
     deleteJob(id, handleCRUDSuccess);
   }
-
-  console.log("GetMyJobs:", activeId);
 
   function handlePreview(id) {
     setActiveId(id);
@@ -136,9 +137,9 @@ export default function MyJobs() {
           <S_Table_MyJobs>
             <thead>
               <tr>
-                <S_Table_Headers_MyJobs $firstChild="true">
+                {/* <S_Table_Headers_MyJobs $firstChild="true">
                   #
-                </S_Table_Headers_MyJobs>
+                </S_Table_Headers_MyJobs> */}
                 <S_Table_Headers_MyJobs $firstChild="false">
                   Title
                 </S_Table_Headers_MyJobs>
@@ -147,15 +148,16 @@ export default function MyJobs() {
             <tbody>
               {jobList.map((job) => (
                 <S_Table_Rows_MyJobs key={job.id} $title="true">
-                  <S_Table_Data_MyJobs $firstChild="true">
+                  {/* <S_Table_Data_MyJobs $firstChild="true">
                     {job.id}
-                  </S_Table_Data_MyJobs>
+                  </S_Table_Data_MyJobs> */}
                   <S_Table_Data_MyJobs
                     onClick={() => handlePreview(job.id)}
                     $firstChild="false"
+                    $active={activeId === job.id ? "true" : "false"}
                   >
-                    {job.title.length > 20
-                      ? job.title.slice(0, 20) + "..."
+                    {job.title.length > 30
+                      ? job.title.slice(0, 30) + "..."
                       : job.title}
                   </S_Table_Data_MyJobs>
                 </S_Table_Rows_MyJobs>

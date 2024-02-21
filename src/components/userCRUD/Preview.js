@@ -31,9 +31,6 @@ export default function Preview({
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
-  console.log("Active:", active);
-  console.log("Ad id:", ad.id);
-
   return (
     <S_Main>
       <S_Buttons_Edit_Preview
