@@ -3,6 +3,8 @@ import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
 export async function deleteJob(id, handleCRUDSuccess) {
+  console.log("Got to deleteJob");
+
   const email = extractEmailFromToken();
 
   const url = "http://localhost:8080/api/v1/jobs/delete";

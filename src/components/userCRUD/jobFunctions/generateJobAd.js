@@ -9,6 +9,8 @@ export async function generateJobAd(
 ) {
   const url = `http://localhost:8080/api/v1/jobs/generate/${id}`;
 
+  console.log("Communication with OpenAI API initialized");
+
   try {
     const response = await axios.get(url, {
       headers: {
@@ -19,7 +21,7 @@ export async function generateJobAd(
     console.log("Job Generate Success");
     handleCRUDSuccess();
     handlePreview(id);
-    setPreviewVisible((preview) => !preview);
+    setPreviewVisible(true);
   } catch (error) {
     console.error("Error generating job ad", error);
   }

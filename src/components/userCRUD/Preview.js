@@ -1,6 +1,5 @@
 // Libraries, functions, etc...
 import { useState } from "react";
-import Button from "../utils/buttons/Button";
 
 // Styled Components
 import { S_Main } from "../utils/styledMain.js";
@@ -9,19 +8,23 @@ import {
   S_PreviewBox_Preview,
   S_TextArea_Preview,
   S_Buttons_Edit_Preview,
+  S_Button_Squared,
 } from "./styledComponents.js";
 
 export default function Preview({
-  title,
-  description,
-  instruction,
-  htmlCode,
-  setHtmlCode,
-  setDescription,
-  setInstruction,
-  setTitle,
-  handleUpdate,
   ad,
+  setPreviewVisible,
+  htmlCode,
+  title,
+  setTitle,
+  description,
+  setDescription,
+  instruction,
+  setInstruction,
+  setHtmlCode,
+  handleUpdate,
+  handleGenerate,
+  handleDelete,
 }) {
   const [active, setActive] = useState(4);
 
@@ -29,6 +32,7 @@ export default function Preview({
   const url = URL.createObjectURL(blob);
 
   console.log("Active:", active);
+  console.log("Ad id:", ad.id);
 
   return (
     <S_Main>
@@ -57,38 +61,6 @@ export default function Preview({
       >
         HTML-code
       </S_Buttons_Edit_Preview>
-      {/* <button
-        className={`preview-button preview-button-leftmost ${
-          active === 1 ? "preview-button-active" : ""
-        }`}
-        onClick={() => setActive(1)}
-      >
-        Title
-      </button> */}
-      {/* <button
-        className={`preview-button ${
-          active === 2 ? "preview-button-active" : ""
-        }`}
-        onClick={() => setActive(2)}
-      >
-        Description
-      </button>
-      <button
-        className={`preview-button ${
-          active === 3 ? "preview-button-active" : ""
-        }`}
-        onClick={() => setActive(3)}
-      >
-        Instruction
-      </button>
-      <button
-        className={`preview-button ${
-          active === 4 ? "preview-button-active" : ""
-        }`}
-        onClick={() => setActive(4)}
-      >
-        HTML-code
-      </button> */}
       <S_PreviewBox_Preview>
         <S_TextArea_Preview
           value={
@@ -110,15 +82,28 @@ export default function Preview({
               : setHtmlCode(e.target.value);
           }}
         ></S_TextArea_Preview>
-        <Button
-          className="save-html"
-          icon="glyphicon glyphicon-floppy-save"
-          onHandleClick={() =>
-            handleUpdate(ad.id, title, description, instruction, htmlCode)
-          }
-        ></Button>
         <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
       </S_PreviewBox_Preview>
+      <S_Button_Squared
+        $firstChild={"true"}
+        onClick={() =>
+          handleUpdate(ad.id, title, description, instruction, htmlCode)
+        }
+      >
+        💾
+      </S_Button_Squared>
+      <S_Button_Squared
+        $firstChild={"false"}
+        onClick={() => handleGenerate(ad.id, setPreviewVisible)}
+      >
+        ⚡
+      </S_Button_Squared>
+      <S_Button_Squared
+        $firstChild={"false"}
+        onClick={() => handleDelete(ad.id)}
+      >
+        ❌
+      </S_Button_Squared>
     </S_Main>
   );
 }

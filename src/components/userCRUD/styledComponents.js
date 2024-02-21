@@ -77,13 +77,17 @@ export const S_Button_AddJob_MyJobs = styled.button`
 `;
 
 export const S_Button_Squared = styled.button`
+  font-size: 40px;
   color: ${color};
-  height: 40px;
-  width: 40px;
-  background: #c08065;
+  height: 70px;
+  width: 70px;
+  border-radius: 5px;
+  /* background: rgb(214, 143, 112); */
   &:hover {
-    background: radial-gradient(at 50% 50%, #c0806550, #fff0d9);
+    background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
   }
+  margin-left: ${(props) =>
+    props.$firstChild === "true" ? margin_left_from_table : "0px"};
 `;
 
 export const S_PreviewBox_Preview = styled.div`
@@ -109,7 +113,6 @@ export const S_TextArea_Preview = styled.textarea`
   border: black;
   border: solid;
 
-  margin-bottom: 10px;
   margin-left: ${margin_left_from_table};
   padding: 20px;
   width: 392px;
