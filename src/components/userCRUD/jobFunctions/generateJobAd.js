@@ -21,7 +21,6 @@ export async function generateJobAd(
     console.log("Job Generate Success");
     handleCRUDSuccess();
     handlePreview(id);
-    setPreviewVisible(true);
   } catch (error) {
     console.error("Error generating job ad", error);
   }

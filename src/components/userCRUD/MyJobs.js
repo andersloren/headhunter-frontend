@@ -10,7 +10,6 @@ import { updateJob } from "./jobFunctions/updateJob.js";
 import { generateJobAd } from "./jobFunctions/generateJobAd.js";
 
 // Custom components
-// import AddJob from "./AddJob.js";
 import Preview from "./Preview.js";
 
 // CSS
@@ -20,13 +19,7 @@ import {
   S_WindowSplit_MyJobs,
   S_Title_MyJobs,
   S_HeadingBox_MyJobs,
-  S_Button_Squared,
   S_Preview_MyJobs,
-  // S_Table_MyJobs,
-  // S_Table_Headers_MyJobs,
-  // S_Table_Data_MyJobs,
-  // S_Table_Rows_MyJobs,
-  // S_Table_Box_MyJobs,
   S_Button_AddJob_MyJobs,
   S_JobList_Box_MyJobs,
   S_JobList_Heading_MyJobs,
@@ -36,11 +29,12 @@ import { S_Main } from "../utils/styledMain.js";
 
 export default function MyJobs() {
   const [activeId, setActiveId] = useState(null);
-
   const [ad, setAd] = useState({});
   const [jobList, setJobList] = useState([]);
   const [refreshTable, setRefreshTable] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
+
+  // Job states
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
@@ -48,7 +42,7 @@ export default function MyJobs() {
 
   const email = extractEmailFromToken();
 
-  console.log(ad);
+  console.log(htmlCode);
 
   useEffect(() => {
     getAllMyJobs();
@@ -78,6 +72,7 @@ export default function MyJobs() {
     if (window.confirm("Are you sure you want to delete this job?")) {
       deleteJob(id, handleCRUDSuccess);
       setPreviewVisible(false);
+      setAd({});
     } else {
       console.log("User cancelled delete");
     }
@@ -104,14 +99,18 @@ export default function MyJobs() {
         setInstruction,
         setHtmlCode
       );
-      setPreviewVisible(true);
     } else {
-      setPreviewVisible(false);
-      setActiveId(null);
+      setPreviewVisible(true);
+      getJobById(
+        id,
+        setAd,
+        setTitle,
+        setDescription,
+        setInstruction,
+        setHtmlCode
+      );
     }
   }
-
-  function handleActiveField(textInput) {}
 
   async function getAllMyJobs() {
     const url = `http://localhost:8080/api/v1/jobs/findAllJobsByUserEmail/${email}`;
@@ -164,7 +163,6 @@ export default function MyJobs() {
               handleCRUDSuccess={handleCRUDSuccess}
               handlePreview={handlePreview}
               setPreviewVisible={setPreviewVisible}
-              handleActiveField={handleActiveField}
               ad={ad}
               htmlCode={htmlCode}
               setHtmlCode={setHtmlCode}
