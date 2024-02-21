@@ -10,7 +10,7 @@ import Welcome from "./components/front/Welcome";
 
 // User pages
 import MyPage from "./components/userCRUD/MyPage";
-import GetAllMyJobs from "./components/userCRUD/GetMyJobs";
+import MyJobs from "./components/userCRUD/MyJobs";
 
 // Admin pages
 import GetAllUser from "./components/adminCRUD/GetAllUsers";
@@ -42,7 +42,7 @@ export default function App() {
         />
         {/* {Logged in User only links} */}
         <Route path="/myPage" element={<MyPage />} />
-        <Route path="/getAllMyJobs" element={<GetAllMyJobs />} />
+        <Route path="/MyJobs" element={<MyJobs />} />
         {/* {Admin only links} */}
         <Route path="/getAllUsers" element={<GetAllUser />} />
         <Route path="/getByEmailUser" element={<GetByEmailUser />} />

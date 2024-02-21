@@ -5,7 +5,7 @@ export default function UserNav() {
   return (
     <>
       <li>
-        <Link to="/getAllMyJobs">My Jobs</Link>
+        <Link to="/MyJobs">My Jobs</Link>
       </li>
     </>
   );

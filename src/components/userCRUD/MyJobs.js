@@ -31,7 +31,7 @@ import {
 } from "./styledComponents.js";
 import { S_Main } from "../utils/styledMain.js";
 
-export default function GetMyJobs() {
+export default function MyJobs() {
   const [activeId, setActiveId] = useState(null);
 
   const [ad, setAd] = useState({});
