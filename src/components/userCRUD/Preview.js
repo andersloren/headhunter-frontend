@@ -29,7 +29,7 @@ export default function Preview({
   handleDelete,
   setIsChange,
 }) {
-  const [active, setActive] = useState(4);
+  const [active, setActive] = useState(1);
   const [activeButton, setActiveButton] = useState("");
 
   const blob = new Blob([htmlCode], { type: "text/html" });

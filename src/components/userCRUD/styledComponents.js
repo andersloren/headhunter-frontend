@@ -84,9 +84,9 @@ export const S_FunctionalityButton_Preview = styled.button`
   height: 70px;
   width: 70px;
   border-radius: ${border_radius};
-  /* background: rgb(214, 143, 112); */
+  background-color: #fff0d9;
   &:hover {
-    background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
+    background-color: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
   }
 `;
 
