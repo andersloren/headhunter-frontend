@@ -65,7 +65,15 @@ export default function MyJobs() {
   }
 
   function handleGenerate(id, setPreviewVisible) {
-    generateJobAd(id, handleCRUDSuccess, handlePreview, setPreviewVisible);
+    if (
+      window.confirm(
+        "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
+      )
+    ) {
+      generateJobAd(id, handleCRUDSuccess, handlePreview, setPreviewVisible);
+    } else {
+      console.log("User cancelled generation");
+    }
   }
 
   function handleDelete(id) {
