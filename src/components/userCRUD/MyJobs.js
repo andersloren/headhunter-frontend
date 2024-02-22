@@ -97,6 +97,7 @@ export default function MyJobs() {
 
   function handlePreview(id) {
     if (activeId === null) {
+      setActiveId(id);
       getJobById(
         id,
         setAd,
@@ -107,6 +108,7 @@ export default function MyJobs() {
       );
       setPreviewVisible(true);
     } else if (activeId !== id) {
+      setActiveId(id);
       getJobById(
         id,
         setAd,
