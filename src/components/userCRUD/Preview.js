@@ -27,6 +27,7 @@ export default function Preview({
   handleUpdate,
   handleGenerate,
   handleDelete,
+  setIsChange,
 }) {
   const [active, setActive] = useState(4);
   const [activeButton, setActiveButton] = useState("");
@@ -83,15 +84,16 @@ export default function Preview({
                   : setDescription(e.target.value)
                 : setInstruction(e.target.value)
               : setHtmlCode(e.target.value);
+            setIsChange(true);
           }}
         ></S_TextArea_Preview>
         <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
       </S_PreviewBox_Preview>
       <S_FunctionalityButton_Box_Preview>
         <S_FunctionalityButton_Preview
-          onClick={() =>
-            handleUpdate(ad.id, title, description, instruction, htmlCode)
-          }
+          onClick={() => {
+            handleUpdate(ad.id, title, description, instruction, htmlCode);
+          }}
           onMouseOver={() => handleActiveButton("1")}
           onMouseLeave={() => handleActiveButton("")}
         >

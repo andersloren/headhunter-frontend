@@ -8,7 +8,8 @@ export async function updateJob(
   title,
   description,
   instruction,
-  htmlCode
+  htmlCode,
+  setIsChange
 ) {
   console.log(id);
   const email = extractEmailFromToken();
@@ -32,6 +33,7 @@ export async function updateJob(
     );
     console.log("Update Job Success");
     handleCRUDSuccess();
+    setIsChange(false);
   } catch (error) {
     console.error("Error updating job by id", error);
   }

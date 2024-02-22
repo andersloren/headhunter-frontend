@@ -33,6 +33,7 @@ export default function MyJobs() {
   const [jobList, setJobList] = useState([]);
   const [refreshTable, setRefreshTable] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [isChange, setIsChange] = useState(false);
 
   // Job states
   const [title, setTitle] = useState("");
@@ -42,7 +43,7 @@ export default function MyJobs() {
 
   const email = extractEmailFromToken();
 
-  console.log(htmlCode);
+  console.log("isChange:", isChange);
 
   useEffect(() => {
     getAllMyJobs();
@@ -57,11 +58,19 @@ export default function MyJobs() {
   }
 
   function handleAddJob() {
-    addJob(handleCRUDSuccess); // rename this and the file holding this function
+    addJob(handleCRUDSuccess);
   }
 
   function handleUpdate(id, title, description, instruction, htmlCode) {
-    updateJob(id, handleCRUDSuccess, title, description, instruction, htmlCode);
+    updateJob(
+      id,
+      handleCRUDSuccess,
+      title,
+      description,
+      instruction,
+      htmlCode,
+      setIsChange
+    );
   }
 
   function handleGenerate(id, setPreviewVisible) {
@@ -87,7 +96,6 @@ export default function MyJobs() {
   }
 
   function handlePreview(id) {
-    setActiveId(id);
     if (activeId === null) {
       getJobById(
         id,
@@ -120,6 +128,13 @@ export default function MyJobs() {
     }
   }
 
+  function handleUnsavedChanges(id) {
+    if (window.confirm("Click OK to leave without saving?")) {
+      setIsChange(false);
+      handlePreview(id);
+    }
+  }
+
   async function getAllMyJobs() {
     const url = `http://localhost:8080/api/v1/jobs/findAllJobsByUserEmail/${email}`;
 
@@ -147,7 +162,9 @@ export default function MyJobs() {
           {jobList.map((job) => (
             <S_JobList_Jobs_MyJobs
               key={job.id}
-              onClick={() => handlePreview(job.id)}
+              onClick={() => {
+                isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
+              }}
               $firstChild="false"
               $active={activeId === job.id ? "true" : "false"}
             >
@@ -183,6 +200,7 @@ export default function MyJobs() {
               handleUpdate={handleUpdate}
               handleGenerate={handleGenerate}
               handleDelete={handleDelete}
+              setIsChange={setIsChange}
             />
           )}
         </S_Preview_MyJobs>
