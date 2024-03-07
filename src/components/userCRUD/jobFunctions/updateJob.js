@@ -3,7 +3,7 @@ import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
 export async function updateJob(
-  id,
+  jobId,
   handleCRUDSuccess,
   title,
   description,
@@ -11,9 +11,9 @@ export async function updateJob(
   htmlCode,
   setIsChange
 ) {
-  console.log(id);
+  console.log(jobId);
   const email = extractEmailFromToken();
-  const url = `http://localhost:8080/api/v1/jobs/update/${id}`;
+  const url = `http://localhost:8080/api/v1/jobs/update/${jobId}`;
   try {
     const response = await axios.put(
       url,
@@ -35,6 +35,6 @@ export async function updateJob(
     handleCRUDSuccess();
     setIsChange(false);
   } catch (error) {
-    console.error("Error updating job by id", error);
+    console.error("Error updating job by jobId", error);
   }
 }

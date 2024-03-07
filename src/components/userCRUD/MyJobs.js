@@ -1,16 +1,10 @@
 // Libraries, functions, etc.
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.js";
-import { extractEmailFromToken } from "../security/token/extractEmailFromToken.js";
-import { getJobById } from "./jobFunctions/getJobById.js";
-
-import { deleteJob } from "./jobFunctions/deleteJob.js";
-import { updateJob } from "./jobFunctions/updateJob.js";
-import { generateJobAd } from "./jobFunctions/generateJobAd.js";
+import { getAllMyJobs } from "./jobFunctions/getAllMyJobs.js";
 
 // Custom components
-import Preview from "./Preview.js";
+import JobEdit from "./JobEdit.js";
 
 // CSS
 import "./userCrud.css";
@@ -28,29 +22,18 @@ import {
 import { S_Main } from "../utils/styledMain.js";
 
 export default function MyJobs() {
-  const [activeId, setActiveId] = useState(null);
-  const [ad, setAd] = useState({});
   const [jobList, setJobList] = useState([]);
+  const [jobId, setJobId] = useState(null);
   const [refreshTable, setRefreshTable] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [isChange, setIsChange] = useState(false);
 
-  // Job states
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [instruction, setInstruction] = useState("");
-  const [htmlCode, setHtmlCode] = useState("");
-
-  const email = extractEmailFromToken();
-
-  console.log("isChange:", isChange);
-
   useEffect(() => {
-    getAllMyJobs();
+    getAllMyJobs(setJobList);
   }, [refreshTable]);
 
   useEffect(() => {
-    getAllMyJobs();
+    getAllMyJobs(setJobList);
   }, []);
 
   function handleCRUDSuccess() {
@@ -61,97 +44,29 @@ export default function MyJobs() {
     addJob(handleCRUDSuccess);
   }
 
-  function handleUpdate(id, title, description, instruction, htmlCode) {
-    updateJob(
-      id,
-      handleCRUDSuccess,
-      title,
-      description,
-      instruction,
-      htmlCode,
-      setIsChange
-    );
-  }
-
-  function handleGenerate(id, setPreviewVisible) {
-    if (
-      window.confirm(
-        "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
-      )
-    ) {
-      generateJobAd(id, handleCRUDSuccess, handlePreview, setPreviewVisible);
-    } else {
-      console.log("User cancelled generation");
-    }
-  }
-
-  function handleDelete(id) {
-    if (window.confirm("Are you sure you want to delete this job?")) {
-      deleteJob(id, handleCRUDSuccess);
-      setPreviewVisible(false);
-      setAd({});
-    } else {
-      console.log("User cancelled delete");
+  function handleUnsavedChanges(id) {
+    if (window.confirm("Click OK to leave without saving?")) {
+      setIsChange(false);
+      // Do we want to be automatically transfered to the job we've just clicked???
     }
   }
 
   function handlePreview(id) {
-    if (activeId === null) {
-      setActiveId(id);
-      getJobById(
-        id,
-        setAd,
-        setTitle,
-        setDescription,
-        setInstruction,
-        setHtmlCode
-      );
+    if (jobId === null) {
+      setJobId(id);
+      // Remove getJobById once everything is working in the Job Component
+      // getJobById(id, setJob, setTitle, setDescription, setInstruction);
       setPreviewVisible(true);
-    } else if (activeId !== id) {
-      setActiveId(id);
-      getJobById(
-        id,
-        setAd,
-        setTitle,
-        setDescription,
-        setInstruction,
-        setHtmlCode
-      );
+    } else if (jobId !== id) {
+      setJobId(id);
+      // getJobById(id, setJob, setTitle, setDescription, setInstruction);
     } else {
       setPreviewVisible(true);
-      getJobById(
-        id,
-        setAd,
-        setTitle,
-        setDescription,
-        setInstruction,
-        setHtmlCode
-      );
+      // getJobById(id, setJob, setTitle, setDescription, setInstruction);
     }
   }
 
-  function handleUnsavedChanges(id) {
-    if (window.confirm("Click OK to leave without saving?")) {
-      setIsChange(false);
-      handlePreview(id);
-    }
-  }
-
-  async function getAllMyJobs() {
-    const url = `http://localhost:8080/api/v1/jobs/findAllJobsByUserEmail/${email}`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
-          "Content-Type": "application/json",
-        },
-      });
-      setJobList(response.data.data);
-    } catch (error) {
-      console.error("Error get all", error);
-    }
-  }
+  console.log("MyJobs, JobId:", jobId);
 
   return (
     <S_Main>
@@ -165,10 +80,11 @@ export default function MyJobs() {
             <S_JobList_Jobs_MyJobs
               key={job.id}
               onClick={() => {
+                // Solve this by looking over the handling of unsaved changes
                 isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
               }}
               $firstChild="false"
-              $active={activeId === job.id ? "true" : "false"}
+              $active={jobId === job.id ? "true" : "false"}
             >
               {job.title.length > 20
                 ? job.title.slice(0, 20) + "..."
@@ -185,24 +101,11 @@ export default function MyJobs() {
         </S_JobList_Box_MyJobs>
         <S_Preview_MyJobs>
           {previewVisible && (
-            <Preview
-              id={ad.id}
+            <JobEdit
               handleCRUDSuccess={handleCRUDSuccess}
-              handlePreview={handlePreview}
-              setPreviewVisible={setPreviewVisible}
-              ad={ad}
-              htmlCode={htmlCode}
-              setHtmlCode={setHtmlCode}
-              title={title}
-              setTitle={setTitle}
-              description={description}
-              setDescription={setDescription}
-              instruction={instruction}
-              setInstruction={setInstruction}
-              handleUpdate={handleUpdate}
-              handleGenerate={handleGenerate}
-              handleDelete={handleDelete}
+              jobId={jobId}
               setIsChange={setIsChange}
+              setPreviewVisible={setPreviewVisible}
             />
           )}
         </S_Preview_MyJobs>
