@@ -5,6 +5,7 @@ import { getAllMyJobs } from "./jobFunctions/getAllMyJobs.js";
 
 // Custom components
 import JobEdit from "./JobEdit.js";
+import Ad from "./Ad.js";
 
 // CSS
 import "./userCrud.css";
@@ -98,12 +99,15 @@ export default function MyJobs() {
         </S_JobList_Box_MyJobs>
         <S_Preview_MyJobs>
           {jobVisible && (
-            <JobEdit
-              handleCRUDSuccess={handleCRUDSuccess}
-              jobId={jobId}
-              setIsChange={setIsChange}
-              setJobVisible={setJobVisible}
-            />
+            <>
+              <JobEdit
+                handleCRUDSuccess={handleCRUDSuccess}
+                jobId={jobId}
+                setIsChange={setIsChange}
+                setJobVisible={setJobVisible}
+              />
+              <Ad jobId={jobId} />
+            </>
           )}
         </S_Preview_MyJobs>
       </S_WindowSplit_MyJobs>

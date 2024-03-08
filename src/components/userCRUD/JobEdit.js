@@ -16,6 +16,7 @@ import {
   S_FunctionalityButton_Box_Preview,
   S_FunctionalityButton_Preview,
   S_Tooltip_FunctionalityButton_Preview,
+  S_JobEdit_And_Ad_Box,
 } from "./styledComponents.js";
 
 export default function JobEdit({
@@ -100,71 +101,75 @@ export default function JobEdit({
 
   return (
     <S_Main>
-      <S_Buttons_Edit_Preview
-        onClick={() => setActive(1)}
-        $active={active === 1 ? "true" : "false"}
-      >
-        Title
-      </S_Buttons_Edit_Preview>
-      <S_Buttons_Edit_Preview
-        onClick={() => setActive(2)}
-        $active={active === 2 ? "true" : "false"}
-      >
-        Description
-      </S_Buttons_Edit_Preview>
-      <S_Buttons_Edit_Preview
-        onClick={() => setActive(3)}
-        $active={active === 3 ? "true" : "false"}
-      >
-        Instruction
-      </S_Buttons_Edit_Preview>
-      <S_PreviewBox_Preview>
-        <S_TextArea_Preview
-          value={active < 3 ? (active < 2 ? title : description) : instruction}
-          onChange={(e) => {
-            active < 3
-              ? active < 2
-                ? setTitle(e.target.value)
-                : setDescription(e.target.value)
-              : setInstruction(e.target.value);
-            setIsChange(true);
-          }}
-        ></S_TextArea_Preview>
-      </S_PreviewBox_Preview>
-      <S_FunctionalityButton_Box_Preview>
-        <S_FunctionalityButton_Preview
-          onClick={() => {
-            handleUpdate(title, description, instruction);
-          }}
-          onMouseOver={() => handleActiveButton("1")}
-          onMouseLeave={() => handleActiveButton("")}
+      <S_JobEdit_And_Ad_Box>
+        <S_Buttons_Edit_Preview
+          onClick={() => setActive(1)}
+          $active={active === 1 ? "true" : "false"}
         >
-          💾
-        </S_FunctionalityButton_Preview>
-        <S_FunctionalityButton_Preview
-          onClick={() => handleGenerate(documentType, jobId)}
-          onMouseOver={() => handleActiveButton("2")}
-          onMouseLeave={() => handleActiveButton("")}
+          Title
+        </S_Buttons_Edit_Preview>
+        <S_Buttons_Edit_Preview
+          onClick={() => setActive(2)}
+          $active={active === 2 ? "true" : "false"}
         >
-          ⚡
-        </S_FunctionalityButton_Preview>
-        <S_FunctionalityButton_Preview
-          onClick={() => handleDelete(jobId)}
-          onMouseOver={() => handleActiveButton("3")}
-          onMouseLeave={() => handleActiveButton("")}
+          Description
+        </S_Buttons_Edit_Preview>
+        <S_Buttons_Edit_Preview
+          onClick={() => setActive(3)}
+          $active={active === 3 ? "true" : "false"}
         >
-          ❌
-        </S_FunctionalityButton_Preview>
-        {activeButton && (
-          <S_Tooltip_FunctionalityButton_Preview $activeButton={activeButton}>
-            {activeButton !== "3"
-              ? activeButton !== "2"
-                ? "Save title, description and instruction"
-                : "Generate a new ad"
-              : "Delete job"}
-          </S_Tooltip_FunctionalityButton_Preview>
-        )}
-      </S_FunctionalityButton_Box_Preview>
+          Instruction
+        </S_Buttons_Edit_Preview>
+        <S_PreviewBox_Preview>
+          <S_TextArea_Preview
+            value={
+              active < 3 ? (active < 2 ? title : description) : instruction
+            }
+            onChange={(e) => {
+              active < 3
+                ? active < 2
+                  ? setTitle(e.target.value)
+                  : setDescription(e.target.value)
+                : setInstruction(e.target.value);
+              setIsChange(true);
+            }}
+          ></S_TextArea_Preview>
+        </S_PreviewBox_Preview>
+        <S_FunctionalityButton_Box_Preview>
+          <S_FunctionalityButton_Preview
+            onClick={() => {
+              handleUpdate(title, description, instruction);
+            }}
+            onMouseOver={() => handleActiveButton("1")}
+            onMouseLeave={() => handleActiveButton("")}
+          >
+            💾
+          </S_FunctionalityButton_Preview>
+          <S_FunctionalityButton_Preview
+            onClick={() => handleGenerate(documentType, jobId)}
+            onMouseOver={() => handleActiveButton("2")}
+            onMouseLeave={() => handleActiveButton("")}
+          >
+            ⚡
+          </S_FunctionalityButton_Preview>
+          <S_FunctionalityButton_Preview
+            onClick={() => handleDelete(jobId)}
+            onMouseOver={() => handleActiveButton("3")}
+            onMouseLeave={() => handleActiveButton("")}
+          >
+            ❌
+          </S_FunctionalityButton_Preview>
+          {activeButton && (
+            <S_Tooltip_FunctionalityButton_Preview $activeButton={activeButton}>
+              {activeButton !== "3"
+                ? activeButton !== "2"
+                  ? "Save title, description and instruction"
+                  : "Generate a new ad"
+                : "Delete job"}
+            </S_Tooltip_FunctionalityButton_Preview>
+          )}
+        </S_FunctionalityButton_Box_Preview>
+      </S_JobEdit_And_Ad_Box>
     </S_Main>
   );
 }

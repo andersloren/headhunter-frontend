@@ -72,8 +72,8 @@ export const S_Button_AddJob_MyJobs = styled.button`
 // All Preview
 export const S_Preview_MyJobs = styled.div`
   margin-top: 10px;
-  margin-left: ${margin_left_from_box};
-  width: 80%;
+  display: flex;
+  /* width: 80%; */
 `;
 
 export const S_FunctionalityButton_Box_Preview = styled.div``;
@@ -129,7 +129,6 @@ export const S_TextArea_Preview = styled.textarea`
   box-shadow: 10px 5px 5px #c0806580;
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
-  padding: 20px;
   width: 392px;
 `;
 
@@ -137,7 +136,10 @@ export const S_Iframe_Preview = styled.iframe`
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
   background-color: white;
-  margin-left: 20px;
   resize: both;
   box-shadow: 10px 5px 5px #c0806580;
+`;
+
+export const S_JobEdit_And_Ad_Box = styled.div`
+  margin-left: 20px;
 `;
