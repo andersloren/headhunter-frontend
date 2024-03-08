@@ -20,7 +20,7 @@ import {
 } from "./styledComponents.js";
 
 export default function JobEdit({
-  handleCRUDSuccess,
+  handleJobCRUDSuccess,
   jobId,
   setIsChange,
   setJobVisible,
@@ -49,7 +49,7 @@ export default function JobEdit({
 
   function handleDelete(id) {
     if (window.confirm("Are you sure you want to delete this job?")) {
-      deleteJob(id, handleCRUDSuccess);
+      deleteJob(id, handleJobCRUDSuccess);
       setJobVisible(false);
     } else {
       console.log("User cancelled delete");
@@ -62,7 +62,7 @@ export default function JobEdit({
         "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
       )
     ) {
-      generateJobAd(documentType, id, handleCRUDSuccess);
+      generateJobAd(documentType, id, handleJobCRUDSuccess);
     } else {
       console.log("User cancelled generation");
     }
@@ -75,7 +75,7 @@ export default function JobEdit({
   function handleUpdate(title, description, instruction) {
     updateJob(
       jobId,
-      handleCRUDSuccess,
+      handleJobCRUDSuccess,
       title,
       description,
       instruction,

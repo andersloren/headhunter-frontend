@@ -1,7 +1,7 @@
 // Libraries, functions, etc.
 import axios from "axios";
 
-export async function generateJobAd(documentType, id, handleCRUDSuccess) {
+export async function generateJobAd(documentType, id, handleJobCRUDSuccess) {
   const url = `http://localhost:8080/api/v1/jobs/generate/${documentType}/${id}`;
 
   console.log("Communication with OpenAI API initialized");
@@ -14,7 +14,7 @@ export async function generateJobAd(documentType, id, handleCRUDSuccess) {
       },
     });
     console.log("Job Generate Success");
-    handleCRUDSuccess();
+    handleJobCRUDSuccess();
   } catch (error) {
     console.error("Error generating job ad", error);
   }

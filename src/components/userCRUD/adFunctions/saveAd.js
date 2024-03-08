@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function saveAd(jobId, htmlCode) {
+export async function saveAd(jobId, htmlCode, handleAdCRUDSuccess) {
   console.log("Preparing saveAd:", jobId);
   const url = `http://localhost:8080/api/v1/ads/saveAd/${jobId}`;
 
@@ -18,6 +18,7 @@ export async function saveAd(jobId, htmlCode) {
       }
     );
     console.log("Save Ad Success");
+    handleAdCRUDSuccess();
   } catch (error) {
     console.error("Error saving ad by jobId and htmlCode", error);
   }

@@ -2,7 +2,7 @@
 import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
-export async function deleteJob(id, handleCRUDSuccess) {
+export async function deleteJob(id, handleJobCRUDSuccess) {
   console.log("Got to deleteJob");
 
   const email = extractEmailFromToken();
@@ -21,7 +21,7 @@ export async function deleteJob(id, handleCRUDSuccess) {
       },
     });
     console.log("Job Delete Success");
-    handleCRUDSuccess();
+    handleJobCRUDSuccess();
   } catch (error) {
     console.error("Error deleting job by id", error);
   }

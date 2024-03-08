@@ -7,59 +7,92 @@ import { useEffect, useState } from "react";
 import { S_Main } from "../utils/styledMain";
 import {
   S_FunctionalityButton_Box_Preview,
-  S_FunctionalityButton_Preview,
   S_Buttons_Edit_Preview,
   S_Iframe_Preview,
   S_PreviewBox_Preview,
   S_JobEdit_And_Ad_Box,
 } from "./styledComponents";
+import { deleteAd } from "./adFunctions/deleteAd";
 
 export default function Ad({ jobId }) {
   const [adList, setAdList] = useState([]);
-  const [activeAd, setActiveAd] = useState(null);
-  const [htmlCode, setHtmlCode] = useState("This is not HTML");
+  const [htmlCode, setHtmlCode] = useState("");
+  const [adId, setAdId] = useState(1);
+  const [refreshAdTabs, setRefreshAdTabs] = useState(false);
 
-  console.log("Ad jobId", jobId);
+  useEffect(() => {
+    findAllAdsByJobId(jobId, setAdList);
+  }, [refreshAdTabs, jobId]);
+
+  useEffect(() => {
+    setAdId(null);
+    setHtmlCode("");
+  }, [jobId]);
+
+  function handleSaveAd() {
+    saveAd(jobId, htmlCode, handleAdCRUDSuccess);
+  }
+
+  function handleDeleteAd() {
+    deleteAd(adId, handleAdCRUDSuccess);
+  }
+
+  function handleDisplayedAd(id) {
+    if (jobId === null) {
+      setAdId(id);
+    } else if (jobId !== id) {
+      setAdId(id);
+    } else {
+    }
+  }
+
+  function handleAdCRUDSuccess() {
+    setRefreshAdTabs((refresh) => !refresh);
+  }
 
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
+  console.log("Ad, adId", adId);
+
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
-        {adList.map((ad) => (
+        {adList.map((ad, index) => (
           <S_Buttons_Edit_Preview
             key={ad.id}
-            onClick={() => setActiveAd(1)}
-            $active={activeAd === 1 ? "true" : "false"}
+            onClick={() => {
+              handleDisplayedAd(ad.id);
+              setHtmlCode(ad.htmlCode);
+            }}
+            $active={adId === ad.id ? "true" : "false"}
           >
-            Ad
+            Ad {index}
           </S_Buttons_Edit_Preview>
         ))}
         <S_PreviewBox_Preview>
           <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
         </S_PreviewBox_Preview>
-        <S_FunctionalityButton_Box_Preview>
-          Save Ad:
-          <button
-            onClick={() => {
-              console.log("Save Ad was clicked");
-              saveAd(jobId, htmlCode);
-            }}
-          >
-            Save Ad
-          </button>
-          Delete Ad:
-          <S_FunctionalityButton_Preview
-          //   onClick={() => handleDelete(jobId)}
-          //   onMouseOver={() => handleActiveButton("101")}
-          //   onMouseLeave={() => handleActiveButton("")}
-          >
-            ❌
-          </S_FunctionalityButton_Preview>
-        </S_FunctionalityButton_Box_Preview>
+        <button onClick={() => findAllAdsByJobId(jobId, setAdList)}>
+          Find All Ads
+        </button>
+        <button
+          onClick={() => {
+            console.log("Save Ad was clicked");
+            handleSaveAd();
+          }}
+        >
+          Save Ad
+        </button>
+        <button
+          onClick={() => {
+            console.log("Delete Ad was clicked");
+            handleDeleteAd();
+          }}
+        >
+          Delete Ad
+        </button>
       </S_JobEdit_And_Ad_Box>
-      <button onClick={() => findAllAdsByJobId(jobId, setAdList)}></button>
     </S_Main>
   );
 }

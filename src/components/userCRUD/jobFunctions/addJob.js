@@ -2,7 +2,7 @@
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 import axios from "axios";
 
-export async function addJob(handleCRUDSuccess) {
+export async function addJob(handleJobCRUDSuccess) {
   const email = extractEmailFromToken();
   const url = "http://localhost:8080/api/v1/jobs/addJob";
 
@@ -23,7 +23,7 @@ export async function addJob(handleCRUDSuccess) {
       }
     );
     console.log("Job Add Success");
-    handleCRUDSuccess();
+    handleJobCRUDSuccess();
   } catch (error) {
     console.error("Error adding job", error);
   }

@@ -4,7 +4,7 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
 
 export async function updateJob(
   jobId,
-  handleCRUDSuccess,
+  handleJobCRUDSuccess,
   title,
   description,
   instruction,
@@ -30,7 +30,7 @@ export async function updateJob(
       }
     );
     console.log("Update Job Success");
-    handleCRUDSuccess();
+    handleJobCRUDSuccess();
     handleIsChange();
   } catch (error) {
     console.error("Error updating job by jobId", error);

@@ -37,12 +37,12 @@ export default function MyJobs() {
     getAllMyJobs(setJobList);
   }, []);
 
-  function handleCRUDSuccess() {
+  function handleJobCRUDSuccess() {
     setRefreshTable((refresh) => !refresh);
   }
 
   function handleAddJob() {
-    addJob(handleCRUDSuccess);
+    addJob(handleJobCRUDSuccess);
   }
 
   function handleUnsavedChanges(id) {
@@ -101,7 +101,7 @@ export default function MyJobs() {
           {jobVisible && (
             <>
               <JobEdit
-                handleCRUDSuccess={handleCRUDSuccess}
+                handleJobCRUDSuccess={handleJobCRUDSuccess}
                 jobId={jobId}
                 setIsChange={setIsChange}
                 setJobVisible={setJobVisible}
