@@ -1,4 +1,4 @@
-import { axios } from "axios";
+import axios from "axios";
 
 export async function saveAd(jobId, htmlCode) {
   console.log("Preparing saveAd:", jobId);

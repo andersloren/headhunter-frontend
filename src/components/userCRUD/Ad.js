@@ -1,5 +1,6 @@
 // Functions, libraries, etc.
 import { findAllAdsByJobId } from "./adFunctions/findAllAdsByJobId";
+import { saveAd } from "./adFunctions/saveAd";
 
 // Styled Components
 import { useEffect, useState } from "react";
@@ -16,13 +17,9 @@ import {
 export default function Ad({ jobId }) {
   const [adList, setAdList] = useState([]);
   const [activeAd, setActiveAd] = useState(null);
-  const [htmlCode, setHtmlCode] = useState("");
+  const [htmlCode, setHtmlCode] = useState("This is not HTML");
 
   console.log("Ad jobId", jobId);
-
-  // useEffect(() => {
-  //   console.log("Ad useEffect - Runs");
-  // }, [jobId]);
 
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
@@ -30,16 +27,15 @@ export default function Ad({ jobId }) {
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
-        {adList.map((ad) => {
-          setHtmlCode(ad.htmlCode);
+        {adList.map((ad) => (
           <S_Buttons_Edit_Preview
             key={ad.id}
             onClick={() => setActiveAd(1)}
             $active={activeAd === 1 ? "true" : "false"}
           >
             Ad
-          </S_Buttons_Edit_Preview>;
-        })}
+          </S_Buttons_Edit_Preview>
+        ))}
         <S_PreviewBox_Preview>
           <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
         </S_PreviewBox_Preview>
@@ -48,6 +44,7 @@ export default function Ad({ jobId }) {
           <button
             onClick={() => {
               console.log("Save Ad was clicked");
+              saveAd(jobId, htmlCode);
             }}
           >
             Save Ad
