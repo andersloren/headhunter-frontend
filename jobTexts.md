@@ -6,7 +6,7 @@
 
 ### 2. Description
 
-> En applikation för AI-genererade jobbannonser. Frontend är skriven i React, och tillhörande libraries är React Router, Styled Components, Bootstrap och DOMPurify. Backend är skriven i Java och Spring Boot, Spring Security samt kommunikation med ett AI API används. Databasen sköts av MySQL. Applikationen styrs genom molntjänsten Azure. GIT och GitHub används som versionshanterare. Alla inblandade behöver kontinuerligt vara beredda på att sätta sig in i nya libraries och frameworks. Målet är att applikationen ska sjösättas inom 1 år. Applikationen växer snabbt och de nuvarande två utvecklarna får allt svårare att hinna med allt som behöver göras. Ytterligare en utvecklare behövs nu.
+> Företaget Sprinta utvecklare en applikation för AI-genererade jobbannonser. Frontend är skriven i React, och tillhörande libraries är React Router, Styled Components, Bootstrap och DOMPurify. Backend är skriven i Java och Spring Boot, Spring Security samt kommunikation med ett AI API används. Databasen sköts av MySQL. Applikationen styrs genom molntjänsten Azure. GIT och GitHub används som versionshanterare. Alla inblandade behöver kontinuerligt vara beredda på att sätta sig in i nya libraries och frameworks. Målet är att applikationen ska sjösättas inom 1 år. Applikationen växer snabbt och de nuvarande två utvecklarna får allt svårare att hinna med allt som behöver göras. Ytterligare en utvecklare behövs nu.
 
 ### 3.Instruction
 
