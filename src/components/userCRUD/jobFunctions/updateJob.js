@@ -8,8 +8,7 @@ export async function updateJob(
   title,
   description,
   instruction,
-  htmlCode,
-  setIsChange
+  handleIsChange
 ) {
   console.log(jobId);
   const email = extractEmailFromToken();
@@ -22,7 +21,6 @@ export async function updateJob(
         title: title,
         description: description,
         instruction: instruction,
-        htmlCode: htmlCode,
       },
       {
         headers: {
@@ -33,7 +31,7 @@ export async function updateJob(
     );
     console.log("Update Job Success");
     handleCRUDSuccess();
-    setIsChange(false);
+    handleIsChange();
   } catch (error) {
     console.error("Error updating job by jobId", error);
   }

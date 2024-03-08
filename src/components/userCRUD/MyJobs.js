@@ -25,7 +25,7 @@ export default function MyJobs() {
   const [jobList, setJobList] = useState([]);
   const [jobId, setJobId] = useState(null);
   const [refreshTable, setRefreshTable] = useState(false);
-  const [previewVisible, setPreviewVisible] = useState(false);
+  const [jobVisible, setJobVisible] = useState(false);
   const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
@@ -52,21 +52,19 @@ export default function MyJobs() {
   }
 
   function handlePreview(id) {
+    console.log("id:", id);
+    console.log("jobId", jobId);
+
     if (jobId === null) {
       setJobId(id);
-      // Remove getJobById once everything is working in the Job Component
-      // getJobById(id, setJob, setTitle, setDescription, setInstruction);
-      setPreviewVisible(true);
+      setJobVisible(true);
     } else if (jobId !== id) {
       setJobId(id);
-      // getJobById(id, setJob, setTitle, setDescription, setInstruction);
+      setJobVisible(true);
     } else {
-      setPreviewVisible(true);
-      // getJobById(id, setJob, setTitle, setDescription, setInstruction);
+      setJobVisible(true);
     }
   }
-
-  console.log("MyJobs, JobId:", jobId);
 
   return (
     <S_Main>
@@ -83,7 +81,6 @@ export default function MyJobs() {
                 // Solve this by looking over the handling of unsaved changes
                 isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
               }}
-              $firstChild="false"
               $active={jobId === job.id ? "true" : "false"}
             >
               {job.title.length > 20
@@ -100,12 +97,12 @@ export default function MyJobs() {
           </S_Button_AddJob_MyJobs>
         </S_JobList_Box_MyJobs>
         <S_Preview_MyJobs>
-          {previewVisible && (
+          {jobVisible && (
             <JobEdit
               handleCRUDSuccess={handleCRUDSuccess}
               jobId={jobId}
               setIsChange={setIsChange}
-              setPreviewVisible={setPreviewVisible}
+              setJobVisible={setJobVisible}
             />
           )}
         </S_Preview_MyJobs>

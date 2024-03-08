@@ -4,6 +4,8 @@ import { deleteJob } from "./jobFunctions/deleteJob.js";
 import { updateJob } from "./jobFunctions/updateJob.js";
 import { getJobById } from "./jobFunctions/getJobById.js";
 import { generateJobAd } from "./jobFunctions/generateJobAd.js";
+import { getAllMyJobs } from "./jobFunctions/getAllMyJobs.js";
+import { extractEmailFromToken } from "../security/token/extractEmailFromToken.js";
 
 // Styled Components
 import { S_Main } from "../utils/styledMain.js";
@@ -20,7 +22,7 @@ export default function JobEdit({
   handleCRUDSuccess,
   jobId,
   setIsChange,
-  setPreviewVisible,
+  setJobVisible,
 }) {
   const [job, setJob] = useState({});
   const [active, setActive] = useState(1);
@@ -30,14 +32,16 @@ export default function JobEdit({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
-  const [adList, setAdList] = useState([]);
-  const [adId, setAdIt] = useState("");
+  // const [adList, setAdList] = useState([]);
+  // const [adId, setAdIt] = useState("");
   // Above are states that has been moved here from MyJobs
+
+  const documentType = "html";
 
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
-    console.log("JobEdit, useEffect is working");
     setActive(1);
+    console.log("JobEdit, jobId", jobId);
   }, [jobId]);
 
   // Functions that have been moved here from MyJobs
@@ -45,33 +49,36 @@ export default function JobEdit({
   function handleDelete(id) {
     if (window.confirm("Are you sure you want to delete this job?")) {
       deleteJob(id, handleCRUDSuccess);
-      setPreviewVisible(false);
-      setJob({});
+      setJobVisible(false);
     } else {
       console.log("User cancelled delete");
     }
   }
 
-  function handleGenerate(id, setPreviewVisible) {
+  function handleGenerate(documentType, id) {
     if (
       window.confirm(
         "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
       )
     ) {
-      generateJobAd(id, handleCRUDSuccess, setPreviewVisible);
+      generateJobAd(documentType, id, handleCRUDSuccess);
     } else {
       console.log("User cancelled generation");
     }
   }
 
-  function handleUpdate(jobId, title, description, instruction) {
+  function handleIsChange() {
+    setIsChange(false);
+  }
+
+  function handleUpdate(title, description, instruction) {
     updateJob(
       jobId,
       handleCRUDSuccess,
       title,
       description,
       instruction,
-      setIsChange
+      handleIsChange
     );
   }
   // Above are functions that have been moved here from MyJobs
@@ -127,7 +134,7 @@ export default function JobEdit({
       <S_FunctionalityButton_Box_Preview>
         <S_FunctionalityButton_Preview
           onClick={() => {
-            handleUpdate(jobId, title, description, instruction);
+            handleUpdate(title, description, instruction);
           }}
           onMouseOver={() => handleActiveButton("1")}
           onMouseLeave={() => handleActiveButton("")}
@@ -135,7 +142,7 @@ export default function JobEdit({
           💾
         </S_FunctionalityButton_Preview>
         <S_FunctionalityButton_Preview
-          onClick={() => handleGenerate(jobId, setPreviewVisible)}
+          onClick={() => handleGenerate(documentType, jobId)}
           onMouseOver={() => handleActiveButton("2")}
           onMouseLeave={() => handleActiveButton("")}
         >

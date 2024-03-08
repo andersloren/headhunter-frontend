@@ -7,7 +7,7 @@ export async function deleteJob(id, handleCRUDSuccess) {
 
   const email = extractEmailFromToken();
 
-  const url = "http://localhost:8080/api/v1/jobs/delete";
+  const url = `http://localhost:8080/api/v1/jobs/delete/${email}/${id}`;
 
   try {
     const response = await axios.delete(url, {
