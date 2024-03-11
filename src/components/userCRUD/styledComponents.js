@@ -6,6 +6,7 @@ const color = "#fff0d9";
 const margin_left_from_screen = "30px";
 const margin_left_from_box = margin_left_from_screen;
 const margin_left_from_table = "20px";
+const topButtonsHeight = "34px";
 
 const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
@@ -79,10 +80,10 @@ export const S_Preview_MyJobs = styled.div`
 export const S_FunctionalityButton_Box_Preview = styled.div``;
 
 export const S_FunctionalityButton_Preview = styled.button`
-  font-size: 40px;
+  font-size: 25px;
   color: ${color};
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
   border-radius: ${border_radius};
   background-color: #fff0d9;
   &:hover {
@@ -113,7 +114,12 @@ export const S_PreviewBox_Preview = styled.div`
   display: flex;
 `;
 
+export const S_TopButtons_Box_Preview = styled.div`
+  height: ${topButtonsHeight};
+`;
+
 export const S_Buttons_Edit_Preview = styled.button`
+  height: ${topButtonsHeight};
   font-size: ${font_size};
   width: auto;
   background-color: ${(props) =>

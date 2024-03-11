@@ -28,6 +28,7 @@ export default function MyJobs() {
   const [refreshTable, setRefreshTable] = useState(false);
   const [jobVisible, setJobVisible] = useState(false);
   const [isChange, setIsChange] = useState(false);
+  const [refreshAdTabs, setRefreshAdTabs] = useState(false);
 
   useEffect(() => {
     getAllMyJobs(setJobList);
@@ -65,6 +66,10 @@ export default function MyJobs() {
     } else {
       setJobVisible(true);
     }
+  }
+
+  function handleAdCRUDSuccess() {
+    setRefreshAdTabs((refresh) => !refresh);
   }
 
   return (
@@ -105,8 +110,14 @@ export default function MyJobs() {
                 jobId={jobId}
                 setIsChange={setIsChange}
                 setJobVisible={setJobVisible}
+                setRefreshAdTabs={setRefreshAdTabs}
+                handleAdCRUDSuccess={handleAdCRUDSuccess}
               />
-              <Ad jobId={jobId} />
+              <Ad
+                jobId={jobId}
+                refreshAdTabs={refreshAdTabs}
+                handleAdCRUDSuccess={handleAdCRUDSuccess}
+              />
             </>
           )}
         </S_Preview_MyJobs>

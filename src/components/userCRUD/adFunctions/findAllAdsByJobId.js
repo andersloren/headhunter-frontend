@@ -14,7 +14,11 @@ export async function findAllAdsByJobId(jobId, setAdList) {
       },
     });
     console.log("Find all ads by jobId success");
-    setAdList(response.data.data);
+    const returnedAdList = response.data.data;
+    returnedAdList.sort((a, b) =>
+      a.createdDateTime > b.createdDateTime ? 1 : -1
+    );
+    setAdList(returnedAdList);
   } catch (error) {
     console.error("Error get all ads", error);
   }

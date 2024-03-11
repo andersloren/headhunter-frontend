@@ -17,6 +17,7 @@ import {
   S_FunctionalityButton_Preview,
   S_Tooltip_FunctionalityButton_Preview,
   S_JobEdit_And_Ad_Box,
+  S_TopButtons_Box_Preview,
 } from "./styledComponents.js";
 
 export default function JobEdit({
@@ -24,6 +25,8 @@ export default function JobEdit({
   jobId,
   setIsChange,
   setJobVisible,
+  setRefreshAdTabs,
+  handleAdCRUDSuccess,
 }) {
   const [job, setJob] = useState({});
   const [active, setActive] = useState(1);
@@ -33,6 +36,7 @@ export default function JobEdit({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
+
   // const [adList, setAdList] = useState([]);
   // const [adId, setAdIt] = useState("");
   // Above are states that has been moved here from MyJobs
@@ -62,7 +66,7 @@ export default function JobEdit({
         "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
       )
     ) {
-      generateJobAd(documentType, id, handleJobCRUDSuccess);
+      generateJobAd(documentType, id, handleAdCRUDSuccess);
     } else {
       console.log("User cancelled generation");
     }
@@ -102,24 +106,26 @@ export default function JobEdit({
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
-        <S_Buttons_Edit_Preview
-          onClick={() => setActive(1)}
-          $active={active === 1 ? "true" : "false"}
-        >
-          Title
-        </S_Buttons_Edit_Preview>
-        <S_Buttons_Edit_Preview
-          onClick={() => setActive(2)}
-          $active={active === 2 ? "true" : "false"}
-        >
-          Description
-        </S_Buttons_Edit_Preview>
-        <S_Buttons_Edit_Preview
-          onClick={() => setActive(3)}
-          $active={active === 3 ? "true" : "false"}
-        >
-          Instruction
-        </S_Buttons_Edit_Preview>
+        <S_TopButtons_Box_Preview>
+          <S_Buttons_Edit_Preview
+            onClick={() => setActive(1)}
+            $active={active === 1 ? "true" : "false"}
+          >
+            Title
+          </S_Buttons_Edit_Preview>
+          <S_Buttons_Edit_Preview
+            onClick={() => setActive(2)}
+            $active={active === 2 ? "true" : "false"}
+          >
+            Description
+          </S_Buttons_Edit_Preview>
+          <S_Buttons_Edit_Preview
+            onClick={() => setActive(3)}
+            $active={active === 3 ? "true" : "false"}
+          >
+            Instruction
+          </S_Buttons_Edit_Preview>
+        </S_TopButtons_Box_Preview>
         <S_PreviewBox_Preview>
           <S_TextArea_Preview
             value={
