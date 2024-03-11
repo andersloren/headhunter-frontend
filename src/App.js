@@ -14,10 +14,6 @@ import MyJobs from "./components/userCRUD/MyJobs";
 
 // Admin pages
 import Admin from "./components/adminCRUD/Admin";
-import GetByEmailUser from "./components/adminCRUD/GetByEmailUser";
-import UpdateUser from "./components/adminCRUD/UpdateUser";
-import AddUser from "./components/adminCRUD/AddUser";
-import DeleteUser from "./components/adminCRUD/DeleteUser";
 
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -45,10 +41,6 @@ export default function App() {
         <Route path="/MyJobs" element={<MyJobs />} />
         {/* {Admin only links} */}
         <Route path="/admin" element={<Admin />} />
-        <Route path="/getByEmailUser" element={<GetByEmailUser />} />
-        <Route path="/updateUser" element={<UpdateUser />} />
-        <Route path="/addUser" element={<AddUser />} />
-        <Route path="/deleteUser" element={<DeleteUser />} />
       </Routes>
     </>
   );

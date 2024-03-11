@@ -23,10 +23,9 @@ export default function JobEdit({
   jobId,
   setIsChange,
   setJobVisible,
-  setRefreshAdTabs,
   handleAdCRUDSuccess,
 }) {
-  const [job, setJob] = useState({});
+  const [job, setJob] = useState({}); // Is this needed??
   const [active, setActive] = useState(1);
   const [activeButton, setActiveButton] = useState("");
 

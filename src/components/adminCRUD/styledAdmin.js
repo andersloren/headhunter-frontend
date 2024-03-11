@@ -9,13 +9,16 @@ const color = "#fff0d9";
 const margin_between_buttons = "20px";
 
 //
-export const S_Userlist_Box = styled.div`
-  margin-top: 10px;
+export const S_User_Box = styled.div`
+  position: relative;
+  margin-top: 50px;
+  left: 100px;
 `;
 
 // User Table
 export const S_Userlist_Table = styled.table`
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
+  left: 10%;
 `;
 
 export const S_th = styled.th`
@@ -41,16 +44,30 @@ export const S_Table_Button = styled.button`
   }
 `;
 
+// AdminForm
 export const S_Form_FloatingDiv = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: relative;
+  width: 20%;
   font-size: ${font_size};
   z-index: 1;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -20%);
   opacity: ${(props) => (props.$blur === "true" ? "1" : "0")};
+  padding: 20px;
+  border: 4px solid;
+  border-color: #f9d2b5;
+  border-radius: ${border_radius_form};
+`;
+
+export const S_Form_Header = styled.div`
+  font-size: 30px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff0d9;
 `;
 
 export const S_Form_Input = styled.input`
@@ -58,6 +75,7 @@ export const S_Form_Input = styled.input`
   background: #f0f0f0;
   border-radius: ${border_radius_form};
   font-weight: 500;
+  margin-top: 5px;
   margin-bottom: 12px;
 `;
 
