@@ -10,7 +10,7 @@ import {
   S_Button,
   S_Check,
   S_InputFlex,
-} from "./styledComponents.js";
+} from "./styledFront.js";
 
 export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   const [email, setEmail] = useState("");

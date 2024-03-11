@@ -12,21 +12,7 @@ const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
 const table_width = "290px";
 
-// All Heading
-export const S_HeadingBox_MyJobs = styled.h1`
-  font-family: "Merriweather", sans-serif;
-  margin-bottom: 40px;
-`;
-
-export const S_Title_MyJobs = styled.div`
-  font-size: 35px;
-  font-weight: 400;
-  margin-left: ${margin_left_from_screen};
-  letter-spacing: 4px;
-  color: ${color};
-`;
-
-export const S_WindowSplit_MyJobs = styled.div`
+export const S_WindowSplit = styled.div`
   display: flex;
 `;
 
@@ -87,7 +73,7 @@ export const S_FunctionalityButton_Preview = styled.button`
   border-radius: ${border_radius};
   background-color: #fff0d9;
   &:hover {
-    background-color: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
+    background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
   }
 `;
 

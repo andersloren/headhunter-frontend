@@ -8,8 +8,8 @@ import {
   S_Subtitle_Welcome,
   S_Button,
   S_ButtonBox_Welcome,
-} from "./styledComponents.js";
-import { S_Main } from "../utils/styledMain.js";
+} from "./styledFront.js";
+import { S_Main } from "../styledGlobal.js";
 
 // Components
 import SignUp from "./SignUp.js";
@@ -39,7 +39,7 @@ export default function Welcome({ setIsAuthorized }) {
       <S_ButtonBox_Welcome>
         <S_Button
           key={1}
-          $right={"20px"}
+          $right={"true"}
           onClick={() => handleSignUp()}
           $active={signUpVisible ? "true" : "false"}
         >
@@ -47,7 +47,7 @@ export default function Welcome({ setIsAuthorized }) {
         </S_Button>
         <S_Button
           key={2}
-          $left={"20px"}
+          $left={"true"}
           onClick={() => handleLogin()}
           $active={loginVisible ? "true" : "false"}
         >

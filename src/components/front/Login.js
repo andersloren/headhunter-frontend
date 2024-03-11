@@ -12,7 +12,7 @@ import {
   S_Button,
   S_InputFlex,
   S_Check,
-} from "./styledComponents.js";
+} from "./styledFront.js";
 
 export default function Login({ setIsAuthorized }) {
   const [email, setEmail] = useState("");

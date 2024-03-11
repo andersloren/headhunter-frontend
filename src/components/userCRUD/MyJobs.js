@@ -8,19 +8,15 @@ import JobEdit from "./JobEdit.js";
 import Ad from "./Ad.js";
 
 // CSS
-import "./userCrud.css";
-import "./table.css";
+import { S_Main, S_HeadingBox, S_Title } from "../styledGlobal.js";
 import {
-  S_WindowSplit_MyJobs,
-  S_Title_MyJobs,
-  S_HeadingBox_MyJobs,
   S_Preview_MyJobs,
   S_Button_AddJob_MyJobs,
   S_JobList_Box_MyJobs,
   S_JobList_Heading_MyJobs,
   S_JobList_Jobs_MyJobs,
-} from "./styledComponents.js";
-import { S_Main } from "../utils/styledMain.js";
+  S_WindowSplit,
+} from "./styledUser.js";
 
 export default function MyJobs() {
   const [jobList, setJobList] = useState([]);
@@ -74,10 +70,10 @@ export default function MyJobs() {
 
   return (
     <S_Main>
-      <S_HeadingBox_MyJobs>
-        <S_Title_MyJobs>My Jobs</S_Title_MyJobs>
-      </S_HeadingBox_MyJobs>
-      <S_WindowSplit_MyJobs>
+      <S_HeadingBox>
+        <S_Title>My Jobs</S_Title>
+      </S_HeadingBox>
+      <S_WindowSplit>
         <S_JobList_Box_MyJobs>
           <S_JobList_Heading_MyJobs>Job titles</S_JobList_Heading_MyJobs>
           {jobList.map((job) => (
@@ -121,7 +117,7 @@ export default function MyJobs() {
             </>
           )}
         </S_Preview_MyJobs>
-      </S_WindowSplit_MyJobs>
+      </S_WindowSplit>
     </S_Main>
   );
 }

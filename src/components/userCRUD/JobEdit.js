@@ -4,11 +4,9 @@ import { deleteJob } from "./jobFunctions/deleteJob.js";
 import { updateJob } from "./jobFunctions/updateJob.js";
 import { getJobById } from "./jobFunctions/getJobById.js";
 import { generateJobAd } from "./jobFunctions/generateJobAd.js";
-import { getAllMyJobs } from "./jobFunctions/getAllMyJobs.js";
-import { extractEmailFromToken } from "../security/token/extractEmailFromToken.js";
 
 // Styled Components
-import { S_Main } from "../utils/styledMain.js";
+import { S_Main } from "../styledGlobal.js";
 import {
   S_PreviewBox_Preview,
   S_TextArea_Preview,
@@ -18,7 +16,7 @@ import {
   S_Tooltip_FunctionalityButton_Preview,
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
-} from "./styledComponents.js";
+} from "./styledUser.js";
 
 export default function JobEdit({
   handleJobCRUDSuccess,

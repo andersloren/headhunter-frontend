@@ -13,7 +13,7 @@ import MyPage from "./components/userCRUD/MyPage";
 import MyJobs from "./components/userCRUD/MyJobs";
 
 // Admin pages
-import GetAllUser from "./components/adminCRUD/GetAllUsers";
+import Admin from "./components/adminCRUD/Admin";
 import GetByEmailUser from "./components/adminCRUD/GetByEmailUser";
 import UpdateUser from "./components/adminCRUD/UpdateUser";
 import AddUser from "./components/adminCRUD/AddUser";
@@ -44,7 +44,7 @@ export default function App() {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/MyJobs" element={<MyJobs />} />
         {/* {Admin only links} */}
-        <Route path="/getAllUsers" element={<GetAllUser />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/getByEmailUser" element={<GetByEmailUser />} />
         <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/addUser" element={<AddUser />} />

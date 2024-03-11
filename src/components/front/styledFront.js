@@ -4,6 +4,8 @@ const border_radius = "15px";
 const font_size = "20px";
 const color = "#fff0d9";
 
+const margin_between_buttons = "20px";
+
 export const S_HeadingBox_Welcome = styled.h1`
   justify-content: center;
   position: absolute;
@@ -52,8 +54,8 @@ export const S_ButtonBox_Submit = styled(S_ButtonBox)`
 `;
 
 export const S_Button = styled.button`
-  margin-left: ${(props) => (props.$left ? props.$left : "0px")};
-  margin-right: ${(props) => (props.$right ? props.$right : "0px")};
+  margin-left: ${(props) => (props.$left ? margin_between_buttons : "0px")};
+  margin-right: ${(props) => (props.$right ? margin_between_buttons : "0px")};
   background: ${(props) =>
     props.$active === "true"
       ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"

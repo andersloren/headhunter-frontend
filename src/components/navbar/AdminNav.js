@@ -4,9 +4,9 @@ export default function AdminNav() {
   return (
     <>
       <li>
-        <Link to="/getAllUsers">Get All</Link>
+        <Link to="/admin">Admin</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/getByEmailUser">Get User</Link>
       </li>
       <li>
@@ -17,7 +17,7 @@ export default function AdminNav() {
       </li>
       <li>
         <Link to="/deleteUser">Delete User</Link>
-      </li>
+      </li> */}
     </>
   );
 }

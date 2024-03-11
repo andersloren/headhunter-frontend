@@ -4,7 +4,7 @@ import { saveAd } from "./adFunctions/saveAd";
 
 // Styled Components
 import { useEffect, useState } from "react";
-import { S_Main } from "../utils/styledMain";
+import { S_Main } from "../styledGlobal";
 import {
   S_FunctionalityButton_Box_Preview,
   S_Buttons_Edit_Preview,
@@ -13,7 +13,7 @@ import {
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
   S_FunctionalityButton_Preview,
-} from "./styledComponents";
+} from "./styledUser";
 import { deleteAd } from "./adFunctions/deleteAd";
 
 export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
