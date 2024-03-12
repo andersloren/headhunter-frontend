@@ -6,17 +6,13 @@ const color = "#fff0d9";
 
 const margin_between_buttons = "20px";
 
-export const S_HeadingBox_Welcome = styled.h1`
-  justify-content: center;
-  position: absolute;
+export const S_HeadingBox_Welcome = styled.div`
+  margin-top: 150px;
   font-family: "Merriweather", sans-serif;
-  top: 200px;
-  left: 50%;
-  transform: translate(-50%);
   text-transform: uppercase;
 `;
 
-export const S_Title_Welcome = styled.div`
+export const S_Title_Welcome = styled.h1`
   font-size: 70px;
   font-weight: 700;
   letter-spacing: 20px;
@@ -24,9 +20,9 @@ export const S_Title_Welcome = styled.div`
   margin-bottom: 8px;
   color: ${color};
   text-align: justify;
+  text-align: center;
+  vertical-align: text-bottom;
 `;
-
-// const ratio =
 
 export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
   font-size: 35px;
@@ -35,25 +31,30 @@ export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
 `;
 
 export const S_ButtonBox = styled.div`
-  position: absolute;
-  display: flex;
+  position: relative;
+  /* display: flex; */
   justify-content: center;
-  left: 50%;
   color: ${color};
   font-size: ${font_size};
 `;
 
 export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
-  top: 400px;
-  transform: translateX(-56%);
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 60px;
+  width: 250px;
 `;
 
 export const S_ButtonBox_Submit = styled(S_ButtonBox)`
   margin-top: 25px;
-  transform: translateX(-50%);
+  left: 50%;
+  transform: translate(-25%);
+  width: 250px;
+  /* transform: translateX(50%); */
 `;
 
 export const S_Button = styled.button`
+  width: 100px;
   margin-left: ${(props) => (props.$left ? margin_between_buttons : "0px")};
   margin-right: ${(props) => (props.$right ? margin_between_buttons : "0px")};
   background: ${(props) =>

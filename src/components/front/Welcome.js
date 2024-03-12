@@ -9,7 +9,7 @@ import {
   S_Button,
   S_ButtonBox_Welcome,
 } from "./styledFront.js";
-import { S_Main } from "../styledGlobal.js";
+import { S_Main, S_OpenAI_Badge, S_OpenAI_Box } from "../styledGlobal.js";
 
 // Components
 import SignUp from "./SignUp.js";
@@ -34,6 +34,12 @@ export default function Welcome({ setIsAuthorized }) {
       <S_HeadingBox_Welcome>
         <S_Title_Welcome>Headhunter</S_Title_Welcome>
         <S_Subtitle_Welcome>Intelligent recruiting</S_Subtitle_Welcome>
+        <S_OpenAI_Box>
+          <S_OpenAI_Badge
+            src="../static/powered-by-openai-badge-outlined-on-dark.svg"
+            alt="Open AI Logo"
+          />
+        </S_OpenAI_Box>
       </S_HeadingBox_Welcome>
 
       <S_ButtonBox_Welcome>

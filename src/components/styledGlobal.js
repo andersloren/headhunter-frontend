@@ -21,3 +21,18 @@ export const S_Title = styled.div`
   letter-spacing: 4px;
   color: ${color};
 `;
+
+export const S_OpenAI_Box = styled.div`
+  width: auto;
+  vertical-align: middle;
+  left: 50%;
+`;
+
+export const S_OpenAI_Badge = styled.img`
+  display: block;
+  margin-top: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin: 32px; */
+  height: 32px;
+`;

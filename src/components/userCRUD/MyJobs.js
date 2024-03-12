@@ -8,7 +8,7 @@ import JobEdit from "./JobEdit.js";
 import Ad from "./Ad.js";
 
 // CSS
-import { S_Main, S_HeadingBox, S_Title, S_Animation } from "../styledGlobal.js";
+import { S_Main, S_HeadingBox, S_Title } from "../styledGlobal.js";
 import {
   S_Preview_MyJobs,
   S_Button_AddJob_MyJobs,
@@ -46,7 +46,6 @@ export default function MyJobs() {
   function handleUnsavedChanges(id) {
     if (window.confirm("Click OK to leave without saving?")) {
       setIsChange(false);
-      // Do we want to be automatically transfered to the job we've just clicked???
     }
   }
 
