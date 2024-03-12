@@ -50,9 +50,6 @@ export default function MyJobs() {
   }
 
   function handlePreview(id) {
-    console.log("id:", id);
-    console.log("jobId", jobId);
-
     if (jobId === null) {
       setJobId(id);
       setJobVisible(true);

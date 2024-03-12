@@ -17,7 +17,7 @@ export async function getJobById(
         "Content-Type": "application/json",
       },
     });
-    console.log("Get Job By Id Success");
+    // console.log("Get Job By Id Success");
     setJob(response.data.data);
     setTitle(response.data.data.title);
     setDescription(response.data.data.description);

@@ -2,8 +2,6 @@
 import axios from "axios";
 
 export async function findAllAdsByJobId(jobId, setAdList) {
-  console.log("findAllAdsByJobId jobId", jobId);
-
   const url = `http://localhost:8080/api/v1/ads/findAllAdsByJobId/${jobId}`;
 
   try {
@@ -13,7 +11,7 @@ export async function findAllAdsByJobId(jobId, setAdList) {
         "Content-Type": "application/json",
       },
     });
-    console.log("Find all ads by jobId success");
+    // console.log("Find all ads by jobId success");
     const returnedAdList = response.data.data;
     returnedAdList.sort((a, b) =>
       a.createdDateTime > b.createdDateTime ? 1 : -1

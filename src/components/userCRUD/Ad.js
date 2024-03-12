@@ -20,6 +20,7 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   const [adList, setAdList] = useState([]);
   const [htmlCode, setHtmlCode] = useState("");
   const [adId, setAdId] = useState(0);
+  const [activeAd, setActiveAd] = useState(null);
 
   useEffect(() => {
     findAllAdsByJobId(jobId, setAdList);
@@ -27,13 +28,12 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
 
   useEffect(() => {
     if (adList.length > 0) {
-      setHtmlCode(adList[0].htmlCode);
+      const lastElement = adList[adList.length - 1];
+      setAdId(lastElement.id);
+      setActiveAd(adList.length - 1);
+      setHtmlCode(lastElement.htmlCode);
     }
   }, [adList]);
-
-  useEffect(() => {
-    setAdId(0);
-  }, [jobId]);
 
   function handleSaveAd() {
     saveAd(jobId, htmlCode, handleAdCRUDSuccess);
@@ -43,19 +43,8 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
     deleteAd(adId, handleAdCRUDSuccess);
   }
 
-  function handleDisplayedAd(id) {
-    if (jobId === null) {
-      setAdId(id);
-    } else if (jobId !== id) {
-      setAdId(id);
-    } else {
-    }
-  }
-
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
-
-  console.log("Ad adId:", adId);
 
   return (
     <S_Main>
@@ -65,11 +54,11 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
             <S_Buttons_Edit_Preview
               key={ad.id}
               onClick={() => {
-                handleDisplayedAd(ad.id);
                 setHtmlCode(ad.htmlCode);
-                setAdId(index);
+                setActiveAd(index);
+                setAdId(ad.id);
               }}
-              $active={adId === index ? "true" : "false"}
+              $active={activeAd === index ? "true" : "false"}
             >
               Ad {index + 1}
             </S_Buttons_Edit_Preview>
@@ -81,7 +70,6 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
         <S_FunctionalityButton_Box_Preview>
           <S_FunctionalityButton_Preview
             onClick={() => {
-              console.log("Delete Ad was clicked");
               handleDeleteAd();
             }}
           >

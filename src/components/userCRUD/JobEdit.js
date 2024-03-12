@@ -16,7 +16,9 @@ import {
   S_Tooltip_FunctionalityButton_Preview,
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
-  S_Animation,
+  S_Animation_Text,
+  S_Animation_Strafe,
+  S_Animation_Rotate,
 } from "./styledUser.js";
 
 export default function JobEdit({
@@ -42,7 +44,6 @@ export default function JobEdit({
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
     setActive(1);
-    console.log("JobEdit, jobId", jobId);
   }, [jobId]);
 
   function handleDelete(id) {
@@ -168,9 +169,12 @@ export default function JobEdit({
           )}
         </S_FunctionalityButton_Box_Preview>
         {isGenerating && (
-          <S_Animation blur={isGenerating === true ? "true" : "false"}>
-            🤖
-          </S_Animation>
+          <>
+            <S_Animation_Rotate blur={isGenerating === true ? "true" : "false"}>
+              🤖
+            </S_Animation_Rotate>
+            <S_Animation_Text>Generating ad...</S_Animation_Text>
+          </>
         )}
       </S_JobEdit_And_Ad_Box>
     </S_Main>

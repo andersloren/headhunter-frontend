@@ -142,18 +142,57 @@ const rotate = keyframes`
   from {
     transform: rotate(0deg);
   }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
   to {
     transform: rotate(360deg);
   }
 `;
 
-export const S_Animation = styled.div`
+const strafe = keyframes`
+  from {
+    transform: translate(0%);
+  }
+25% {
+  transform: translate(30%);
+}
+  50% {
+    transform: translate(0%);
+  }
+  75% {
+    transform: translate(-30%);
+  }
+  to {
+    transform: translate(0%);
+  }
+`;
+
+export const S_Animation_Strafe = styled.div`
   position: relative;
-  font-size: 100px;
+  font-size: 90px;
   left: 50%;
   transform: translate(-50%);
-  display: inline-block;
-  animation: ${rotate} 3s linear infinite;
-  padding: 5px;
-  /* font-size: 1.2rem; */
+  animation: ${strafe} 5s linear infinite;
+`;
+
+export const S_Animation_Rotate = styled.div`
+  margin-top: 30px;
+  position: relative;
+  text-align: center;
+  font-size: 50px;
+  animation: ${rotate} 5s linear infinite;
+`;
+
+export const S_Animation_Text = styled.div`
+  position: relative;
+  text-align: center;
+  font-size: 35px;
+  color: #fff0d9;
 `;
