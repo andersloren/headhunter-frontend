@@ -25,6 +25,7 @@ export default function MyJobs() {
   const [jobVisible, setJobVisible] = useState(false);
   const [isChange, setIsChange] = useState(false);
   const [refreshAdTabs, setRefreshAdTabs] = useState(false);
+  const [adsExist, setAdsExist] = useState(false);
 
   useEffect(() => {
     getAllMyJobs(setJobList);
@@ -79,6 +80,7 @@ export default function MyJobs() {
               onClick={() => {
                 // Solve this by looking over the handling of unsaved changes
                 isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
+                setAdsExist(job.numberOfAds > 0);
               }}
               $active={jobId === job.id ? "true" : "false"}
             >
@@ -106,11 +108,13 @@ export default function MyJobs() {
                 setRefreshAdTabs={setRefreshAdTabs}
                 handleAdCRUDSuccess={handleAdCRUDSuccess}
               />
-              <Ad
-                jobId={jobId}
-                refreshAdTabs={refreshAdTabs}
-                handleAdCRUDSuccess={handleAdCRUDSuccess}
-              />
+              {adsExist && (
+                <Ad
+                  jobId={jobId}
+                  refreshAdTabs={refreshAdTabs}
+                  handleAdCRUDSuccess={handleAdCRUDSuccess}
+                />
+              )}
             </>
           )}
         </S_Preview_MyJobs>

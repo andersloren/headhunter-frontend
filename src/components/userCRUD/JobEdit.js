@@ -17,7 +17,6 @@ import {
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
   S_Animation_Text,
-  S_Animation_Strafe,
   S_Animation_Rotate,
 } from "./styledUser.js";
 

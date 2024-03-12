@@ -23,6 +23,12 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   const [activeAd, setActiveAd] = useState(null);
 
   useEffect(() => {
+    if (!adList.length) {
+      setHtmlCode("");
+    }
+  }, [setHtmlCode, adList.length]);
+
+  useEffect(() => {
     findAllAdsByJobId(jobId, setAdList);
   }, [refreshAdTabs, jobId]);
 
@@ -45,6 +51,8 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
 
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
+
+  console.log("Ad, adList length", adList.length);
 
   return (
     <S_Main>
