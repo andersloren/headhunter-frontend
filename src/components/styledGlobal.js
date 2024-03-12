@@ -5,12 +5,11 @@ const margin_left_from_screen = "30px";
 
 // Main
 export const S_Main = styled.div`
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
 `;
 
 // All Heading
 export const S_HeadingBox = styled.h1`
-  font-family: "Merriweather", sans-serif;
   margin-bottom: 40px;
 `;
 

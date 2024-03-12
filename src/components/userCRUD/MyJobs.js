@@ -67,9 +67,6 @@ export default function MyJobs() {
 
   return (
     <S_Main>
-      <S_HeadingBox>
-        <S_Title>My Jobs</S_Title>
-      </S_HeadingBox>
       <S_WindowSplit>
         <S_JobList_Box_MyJobs>
           <S_JobList_Heading_MyJobs>Job titles</S_JobList_Heading_MyJobs>

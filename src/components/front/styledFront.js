@@ -32,7 +32,6 @@ export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
 
 export const S_ButtonBox = styled.div`
   position: relative;
-  /* display: flex; */
   justify-content: center;
   color: ${color};
   font-size: ${font_size};
@@ -50,7 +49,6 @@ export const S_ButtonBox_Submit = styled(S_ButtonBox)`
   left: 50%;
   transform: translate(-25%);
   width: 250px;
-  /* transform: translateX(50%); */
 `;
 
 export const S_Button = styled.button`

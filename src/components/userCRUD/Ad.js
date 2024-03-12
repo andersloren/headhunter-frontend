@@ -52,8 +52,6 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
-  console.log("Ad, adList length", adList.length);
-
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>

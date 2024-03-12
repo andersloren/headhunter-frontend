@@ -18,6 +18,9 @@ import {
   S_TopButtons_Box_Preview,
   S_Animation_Text,
   S_Animation_Rotate,
+  S_Instruction_Headers,
+  S_Instruction_Input,
+  S_Instruction_DecisionButton,
 } from "./styledUser.js";
 
 export default function JobEdit({
@@ -37,13 +40,21 @@ export default function JobEdit({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
+  const [documentType, setDocumentType] = useState("html");
 
-  const documentType = "html";
+  // States related to instruction
+  const [activeFormat, setActiveFormat] = useState(1);
 
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
     setActive(1);
   }, [jobId]);
+  console.log(jobId);
+
+  useEffect(() => {
+    const documentTypeArr = ["html", "pdf", "docx"];
+    setDocumentType(documentTypeArr[activeFormat - 1]);
+  }, [activeFormat, setDocumentType]);
 
   function handleDelete(id) {
     if (window.confirm("Are you sure you want to delete this job?")) {
@@ -54,7 +65,17 @@ export default function JobEdit({
     }
   }
 
-  function handleGenerate(documentType, id) {
+  useEffect(() => {
+    setInstruction(
+      "Skapa en jobbannons i " +
+        documentType +
+        "-format. " +
+        defaultInstructions
+    );
+    setDescription(defaultDescription);
+  }, [documentType]);
+
+  function handleGenerate(id) {
     if (
       window.confirm(
         "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
@@ -89,21 +110,53 @@ export default function JobEdit({
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
+        <S_Instruction_Headers>Title</S_Instruction_Headers>
+        <S_Instruction_Input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        ></S_Instruction_Input>
+        <S_Instruction_Headers>Format</S_Instruction_Headers>
+
+        <S_Instruction_DecisionButton
+          onClick={() => setActiveFormat("1")}
+          $active={activeFormat === "1" ? "true" : "false"}
+        >
+          HTML
+        </S_Instruction_DecisionButton>
+        <S_Instruction_DecisionButton
+          onClick={() => setActiveFormat("2")}
+          $active={activeFormat === "2" ? "true" : "false"}
+        >
+          PDF
+        </S_Instruction_DecisionButton>
+        <S_Instruction_DecisionButton
+          onClick={() => setActiveFormat("3")}
+          $active={activeFormat === "3" ? "true" : "false"}
+        >
+          DOCX
+        </S_Instruction_DecisionButton>
+
         <S_TopButtons_Box_Preview>
           <S_Buttons_Edit_Preview
-            onClick={() => setActive(1)}
+            onClick={() => {
+              setActive(1);
+            }}
             $active={active === 1 ? "true" : "false"}
           >
             Title
           </S_Buttons_Edit_Preview>
           <S_Buttons_Edit_Preview
-            onClick={() => setActive(2)}
+            onClick={() => {
+              setActive(2);
+            }}
             $active={active === 2 ? "true" : "false"}
           >
             Description
           </S_Buttons_Edit_Preview>
           <S_Buttons_Edit_Preview
-            onClick={() => setActive(3)}
+            onClick={() => {
+              setActive(3);
+            }}
             $active={active === 3 ? "true" : "false"}
           >
             Instruction
@@ -138,7 +191,7 @@ export default function JobEdit({
             💾
           </S_FunctionalityButton_Preview>
           <S_FunctionalityButton_Preview
-            onClick={() => handleGenerate(documentType, jobId)}
+            onClick={() => handleGenerate(jobId)}
             onMouseOver={() =>
               isGenerating ? handleActiveButton("") : handleActiveButton("2")
             }
@@ -179,3 +232,9 @@ export default function JobEdit({
     </S_Main>
   );
 }
+
+const defaultInstructions =
+  "För att omarbeta en arbetsbeskrivning till en jobbannons, börja med att läsa igenom arbetsbeskrivningen noggrant för att förstå de huvudsakliga arbetsuppgifterna, nödvändiga kompetenser och kvalifikationer. Sedan, översätt denna information till en mer engagerande och tilltalande form som lockar potentiella kandidater. Det är viktigt att framhäva företagets kultur och de unika fördelarna med att arbeta där. Börja annonsen med en kort introduktion till företaget, följt av en översikt av jobbrollen. Använd en positiv och inkluderande ton, och undvik jargong. Gör klart vilka huvudsakliga ansvarsområden rollen innefattar och vilka färdigheter och erfarenheter som är önskvärda. Inkludera även information om eventuella förmåner eller möjligheter till personlig och professionell utveckling. Avsluta med hur man ansöker till tjänsten, inklusive viktiga datum och kontaktinformation. Kom ihåg att vara tydlig och koncis för att hålla potentiella kandidaters uppmärksamhet. En välformulerad jobbannons ska inte bara informera utan också inspirera och locka rätt talanger till att söka.";
+
+const defaultDescription =
+  "Företaget Sprinta utvecklare en applikation för AI-genererade jobbannonser. Frontend är skriven i React, och tillhörande libraries är React Router, Styled Components, Bootstrap och DOMPurify. Backend är skriven i Java och Spring Boot, Spring Security samt kommunikation med ett AI API används. Databasen sköts av MySQL. Applikationen styrs genom molntjänsten Azure. GIT och GitHub används som versionshanterare. Alla inblandade behöver kontinuerligt vara beredda på att sätta sig in i nya libraries och frameworks. Målet är att applikationen ska sjösättas inom 1 år. Applikationen växer snabbt och de nuvarande två utvecklarna får allt svårare att hinna med allt som behöver göras. Ytterligare en utvecklare behövs nu.";

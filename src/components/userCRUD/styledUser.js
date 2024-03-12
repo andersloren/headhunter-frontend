@@ -3,8 +3,6 @@ import styled, { keyframes } from "styled-components";
 const border_radius = "5px";
 const font_size = "20px";
 const color = "#fff0d9";
-const margin_left_from_screen = "30px";
-const margin_left_from_box = margin_left_from_screen;
 const margin_left_from_table = "20px";
 const topButtonsHeight = "34px";
 
@@ -123,6 +121,7 @@ export const S_TextArea_Preview = styled.textarea`
   border: ${border_preview_border};
   width: 392px;
   min-width: 100%;
+  background-color: #fff0d9;
 `;
 
 export const S_Iframe_Preview = styled.iframe`
@@ -195,4 +194,35 @@ export const S_Animation_Text = styled.div`
   text-align: center;
   font-size: 35px;
   color: #fff0d9;
+`;
+
+export const S_Instruction_Headers = styled.div`
+  font-size: 35px;
+  color: #fff0d9;
+`;
+
+export const S_Instruction_Input = styled.input`
+  border-radius: ${border_radius};
+  padding: 15px;
+  background: #f0f0f0;
+  background-color: #fff0d9;
+`;
+
+export const S_Instruction_DecisionButton = styled.button`
+  margin-right: 15px;
+  margin-bottom: 10px;
+  width: 100px;
+  background: ${(props) =>
+    props.$active === "true"
+      ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"
+      : "rgba(0, 0, 0, 0.1)"};
+  padding: 12px;
+  color: ${color};
+  border-color: rgb(223, 223, 223);
+  border: 2px solid;
+  border-radius: ${border_radius};
+  &:hover {
+    background: radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5);
+    cursor: pointer;
+  }
 `;
