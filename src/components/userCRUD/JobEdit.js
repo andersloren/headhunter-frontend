@@ -16,6 +16,7 @@ import {
   S_Tooltip_FunctionalityButton_Preview,
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
+  S_Animation,
 } from "./styledUser.js";
 
 export default function JobEdit({
@@ -25,18 +26,16 @@ export default function JobEdit({
   setJobVisible,
   handleAdCRUDSuccess,
 }) {
+  // States related to functionality
   const [job, setJob] = useState({}); // Is this needed??
   const [active, setActive] = useState(1);
   const [activeButton, setActiveButton] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  // States that have been moved here from MyJobs
+  // States related to the job
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
-
-  // const [adList, setAdList] = useState([]);
-  // const [adId, setAdIt] = useState("");
-  // Above are states that has been moved here from MyJobs
 
   const documentType = "html";
 
@@ -45,8 +44,6 @@ export default function JobEdit({
     setActive(1);
     console.log("JobEdit, jobId", jobId);
   }, [jobId]);
-
-  // Functions that have been moved here from MyJobs
 
   function handleDelete(id) {
     if (window.confirm("Are you sure you want to delete this job?")) {
@@ -63,7 +60,8 @@ export default function JobEdit({
         "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
       )
     ) {
-      generateJobAd(documentType, id, handleAdCRUDSuccess);
+      setIsGenerating(true);
+      generateJobAd(documentType, id, handleAdCRUDSuccess, setIsGenerating);
     } else {
       console.log("User cancelled generation");
     }
@@ -83,22 +81,10 @@ export default function JobEdit({
       handleIsChange
     );
   }
-  // Above are functions that have been moved here from MyJobs
 
   function handleActiveButton(buttonId) {
     setActiveButton(buttonId);
   }
-
-  // Button for saving Ad
-  // function handleSaveAd(jobId, htmlCode) {
-  //   console.log("Preview, handleSaveAd", jobId);
-  //   saveAd(jobId, htmlCode);
-  // }
-
-  // Functionality for setting which ad is to be active
-  // function handleActiveAd(ad.id) {
-  //   setActiveAd
-  // }
 
   return (
     <S_Main>
@@ -143,22 +129,31 @@ export default function JobEdit({
             onClick={() => {
               handleUpdate(title, description, instruction);
             }}
-            onMouseOver={() => handleActiveButton("1")}
+            onMouseOver={() =>
+              isGenerating ? handleActiveButton("") : handleActiveButton("1")
+            }
             onMouseLeave={() => handleActiveButton("")}
+            $blur={isGenerating === true ? "true" : "false"}
           >
             💾
           </S_FunctionalityButton_Preview>
           <S_FunctionalityButton_Preview
             onClick={() => handleGenerate(documentType, jobId)}
-            onMouseOver={() => handleActiveButton("2")}
+            onMouseOver={() =>
+              isGenerating ? handleActiveButton("") : handleActiveButton("2")
+            }
             onMouseLeave={() => handleActiveButton("")}
+            $blur={isGenerating === true ? "true" : "false"}
           >
             ⚡
           </S_FunctionalityButton_Preview>
           <S_FunctionalityButton_Preview
             onClick={() => handleDelete(jobId)}
-            onMouseOver={() => handleActiveButton("3")}
+            onMouseOver={() =>
+              isGenerating ? handleActiveButton("") : handleActiveButton("3")
+            }
             onMouseLeave={() => handleActiveButton("")}
+            $blur={isGenerating === true ? "true" : "false"}
           >
             ❌
           </S_FunctionalityButton_Preview>
@@ -172,6 +167,11 @@ export default function JobEdit({
             </S_Tooltip_FunctionalityButton_Preview>
           )}
         </S_FunctionalityButton_Box_Preview>
+        {isGenerating && (
+          <S_Animation blur={isGenerating === true ? "true" : "false"}>
+            🤖
+          </S_Animation>
+        )}
       </S_JobEdit_And_Ad_Box>
     </S_Main>
   );

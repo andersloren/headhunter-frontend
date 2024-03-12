@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const border_radius = "5px";
 const font_size = "20px";
@@ -75,11 +75,11 @@ export const S_FunctionalityButton_Preview = styled.button`
   &:hover {
     background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
   }
+  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
 
 export const S_Tooltip_FunctionalityButton_Preview = styled.div`
   margin-left: ${(props) =>
-    // (props.$activeButton === "1" ? "70px" : "0px")};
     props.$activeButton !== "3"
       ? props.$activeButton !== "2"
         ? "0px"
@@ -122,6 +122,7 @@ export const S_TextArea_Preview = styled.textarea`
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
   width: 392px;
+  min-width: 100%;
 `;
 
 export const S_Iframe_Preview = styled.iframe`
@@ -134,4 +135,25 @@ export const S_Iframe_Preview = styled.iframe`
 
 export const S_JobEdit_And_Ad_Box = styled.div`
   margin-left: 20px;
+`;
+
+// Animation that runs while generating a new ad
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const S_Animation = styled.div`
+  position: relative;
+  font-size: 100px;
+  left: 50%;
+  transform: translate(-50%);
+  display: inline-block;
+  animation: ${rotate} 3s linear infinite;
+  padding: 5px;
+  /* font-size: 1.2rem; */
 `;

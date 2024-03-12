@@ -21,12 +21,14 @@ export const S_Userlist_Table = styled.table`
   left: 10%;
 `;
 
-export const S_th = styled.th`
-  width: auto;
-  padding-right: 40px;
+export const S_UserList_Row = styled.tr`
+  margin-top: 30px;
 `;
 
-export const S_UserList_Row = styled.tr``;
+export const S_th = styled.th`
+  width: auto;
+  padding-right: 100px;
+`;
 
 export const S_Userlist_Data = styled.td``;
 
