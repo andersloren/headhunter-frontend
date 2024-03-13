@@ -18,7 +18,7 @@ export async function generateJobAd(
         "Content-Type": "application/json",
       },
     });
-    console.log("Job Generate Success");
+    console.log("Generate Ad Success");
     handleAdCRUDSuccess();
     setIsGenerating(false);
   } catch (error) {

@@ -49,21 +49,10 @@ export default function JobEdit({
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
     setActive(1);
   }, [jobId]);
-  console.log(jobId);
-
   useEffect(() => {
     const documentTypeArr = ["html", "pdf", "docx"];
     setDocumentType(documentTypeArr[activeFormat - 1]);
   }, [activeFormat, setDocumentType]);
-
-  function handleDelete(id) {
-    if (window.confirm("Are you sure you want to delete this job?")) {
-      deleteJob(id, handleJobCRUDSuccess);
-      setJobVisible(false);
-    } else {
-      console.log("User cancelled delete");
-    }
-  }
 
   useEffect(() => {
     setInstruction(
@@ -75,24 +64,20 @@ export default function JobEdit({
     setDescription(defaultDescription);
   }, [documentType]);
 
-  function handleGenerate(id) {
+  function handleGenerate() {
     if (
       window.confirm(
         "Are you sure you want to generate a new ad? Remember, the generation will take a short moment and consume credits."
       )
     ) {
       setIsGenerating(true);
-      generateJobAd(documentType, id, handleAdCRUDSuccess, setIsGenerating);
+      generateJobAd(documentType, jobId, handleAdCRUDSuccess, setIsGenerating);
     } else {
       console.log("User cancelled generation");
     }
   }
 
-  function handleIsChange() {
-    setIsChange(false);
-  }
-
-  function handleUpdate(title, description, instruction) {
+  function handleUpdate() {
     updateJob(
       jobId,
       handleJobCRUDSuccess,
@@ -101,6 +86,19 @@ export default function JobEdit({
       instruction,
       handleIsChange
     );
+  }
+
+  function handleDelete(id) {
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      deleteJob(id, handleJobCRUDSuccess);
+      setJobVisible(false);
+    } else {
+      console.log("User cancelled delete");
+    }
+  }
+
+  function handleIsChange() {
+    setIsChange(false);
   }
 
   function handleActiveButton(buttonId) {
@@ -180,7 +178,7 @@ export default function JobEdit({
         <S_FunctionalityButton_Box_Preview>
           <S_FunctionalityButton_Preview
             onClick={() => {
-              handleUpdate(title, description, instruction);
+              handleUpdate();
             }}
             onMouseOver={() =>
               isGenerating ? handleActiveButton("") : handleActiveButton("1")
@@ -191,7 +189,10 @@ export default function JobEdit({
             💾
           </S_FunctionalityButton_Preview>
           <S_FunctionalityButton_Preview
-            onClick={() => handleGenerate(jobId)}
+            onClick={() => {
+              handleUpdate();
+              handleGenerate(jobId);
+            }}
             onMouseOver={() =>
               isGenerating ? handleActiveButton("") : handleActiveButton("2")
             }
@@ -222,7 +223,9 @@ export default function JobEdit({
         </S_FunctionalityButton_Box_Preview>
         {isGenerating && (
           <>
-            <S_Animation_Rotate blur={isGenerating === true ? "true" : "false"}>
+            <S_Animation_Rotate
+              $blur={isGenerating === true ? "true" : "false"}
+            >
               🤖
             </S_Animation_Rotate>
             <S_Animation_Text>Generating ad...</S_Animation_Text>
