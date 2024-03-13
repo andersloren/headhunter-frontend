@@ -64,6 +64,7 @@ export const S_Preview_MyJobs = styled.div`
 export const S_FunctionalityButton_Box_Preview = styled.div``;
 
 export const S_FunctionalityButton_Preview = styled.button`
+  margin-top: 15px;
   font-size: 25px;
   color: ${color};
   height: 50px;
@@ -196,7 +197,9 @@ export const S_Animation_Text = styled.div`
   color: #fff0d9;
 `;
 
-export const S_Instruction_Headers = styled.div`
+export const S_Header = styled.div`
+  margin-top: 15px;
+  margin-bottom: 15px;
   font-size: 35px;
   color: #fff0d9;
 `;
@@ -210,7 +213,6 @@ export const S_Instruction_Input = styled.input`
 
 export const S_Instruction_DecisionButton = styled.button`
   margin-right: 15px;
-  margin-bottom: 10px;
   width: 100px;
   background: ${(props) =>
     props.$active === "true"

@@ -10,15 +10,13 @@ import { S_Main } from "../styledGlobal.js";
 import {
   S_PreviewBox_Preview,
   S_TextArea_Preview,
-  S_Buttons_Edit_Preview,
   S_FunctionalityButton_Box_Preview,
   S_FunctionalityButton_Preview,
   S_Tooltip_FunctionalityButton_Preview,
   S_JobEdit_And_Ad_Box,
-  S_TopButtons_Box_Preview,
   S_Animation_Text,
   S_Animation_Rotate,
-  S_Instruction_Headers,
+  S_Header,
   S_Instruction_Input,
   S_Instruction_DecisionButton,
 } from "./styledUser.js";
@@ -108,13 +106,21 @@ export default function JobEdit({
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
-        <S_Instruction_Headers>Title</S_Instruction_Headers>
+        {
+          // Title input field
+        }
+
+        <S_Header>Title</S_Header>
         <S_Instruction_Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></S_Instruction_Input>
-        <S_Instruction_Headers>Format</S_Instruction_Headers>
 
+        {
+          // Format decision buttons
+        }
+
+        <S_Header>Format</S_Header>
         <S_Instruction_DecisionButton
           onClick={() => setActiveFormat("1")}
           $active={activeFormat === "1" ? "true" : "false"}
@@ -134,24 +140,11 @@ export default function JobEdit({
           DOCX
         </S_Instruction_DecisionButton>
 
-        <S_TopButtons_Box_Preview>
-          <S_Buttons_Edit_Preview
-            onClick={() => {
-              setActive(1);
-            }}
-            $active={active === 1 ? "true" : "false"}
-          >
-            Description
-          </S_Buttons_Edit_Preview>
-          <S_Buttons_Edit_Preview
-            onClick={() => {
-              setActive(2);
-            }}
-            $active={active === 2 ? "true" : "false"}
-          >
-            Instruction
-          </S_Buttons_Edit_Preview>
-        </S_TopButtons_Box_Preview>
+        {
+          // Description text area
+        }
+
+        <S_Header>Description</S_Header>
         <S_PreviewBox_Preview>
           <S_TextArea_Preview
             value={active < 2 ? description : instruction}
@@ -163,7 +156,15 @@ export default function JobEdit({
             }}
           ></S_TextArea_Preview>
         </S_PreviewBox_Preview>
+
+        {
+          // Functionality buttons
+        }
+
         <S_FunctionalityButton_Box_Preview>
+          {
+            // Save Ad button
+          }
           <S_FunctionalityButton_Preview
             onClick={() => {
               handleUpdate();
@@ -176,6 +177,9 @@ export default function JobEdit({
           >
             💾
           </S_FunctionalityButton_Preview>
+          {
+            // Generate Ad button
+          }
           <S_FunctionalityButton_Preview
             onClick={() => {
               handleUpdate();
@@ -189,6 +193,9 @@ export default function JobEdit({
           >
             ⚡
           </S_FunctionalityButton_Preview>
+          {
+            // Delete Ad button
+          }
           <S_FunctionalityButton_Preview
             onClick={() => handleDelete(jobId)}
             onMouseOver={() =>
@@ -199,6 +206,11 @@ export default function JobEdit({
           >
             ❌
           </S_FunctionalityButton_Preview>
+
+          {
+            // Tooltip
+          }
+
           {activeButton && (
             <S_Tooltip_FunctionalityButton_Preview $activeButton={activeButton}>
               {activeButton !== "3"
@@ -209,6 +221,11 @@ export default function JobEdit({
             </S_Tooltip_FunctionalityButton_Preview>
           )}
         </S_FunctionalityButton_Box_Preview>
+
+        {
+          // Generate loader animation
+        }
+
         {isGenerating && (
           <>
             <S_Animation_Rotate
@@ -219,6 +236,23 @@ export default function JobEdit({
             <S_Animation_Text>Generating ad...</S_Animation_Text>
           </>
         )}
+
+        {
+          // Instructions (for developing purposese)
+        }
+
+        <S_Header>Instructions</S_Header>
+        <S_PreviewBox_Preview>
+          <S_TextArea_Preview
+            value={active < 2 ? description : instruction}
+            onChange={(e) => {
+              active < 2
+                ? setDescription(e.target.value)
+                : setInstruction(e.target.value);
+              setIsChange(true);
+            }}
+          ></S_TextArea_Preview>
+        </S_PreviewBox_Preview>
       </S_JobEdit_And_Ad_Box>
     </S_Main>
   );

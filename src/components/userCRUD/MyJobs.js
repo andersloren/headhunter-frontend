@@ -13,7 +13,7 @@ import {
   S_Preview_MyJobs,
   S_Button_AddJob_MyJobs,
   S_JobList_Box_MyJobs,
-  S_JobList_Heading_MyJobs,
+  S_Header,
   S_JobList_Jobs_MyJobs,
   S_WindowSplit,
 } from "./styledUser.js";
@@ -67,9 +67,17 @@ export default function MyJobs() {
 
   return (
     <S_Main>
+      {
+        // Big split for Joblist, Job and Ad
+      }
+
       <S_WindowSplit>
         <S_JobList_Box_MyJobs>
-          <S_JobList_Heading_MyJobs>Job titles</S_JobList_Heading_MyJobs>
+          {
+            // Joblist
+          }
+
+          <S_Header>Jobs</S_Header>
           {jobList.map((job) => (
             <S_JobList_Jobs_MyJobs
               key={job.id}
@@ -86,6 +94,10 @@ export default function MyJobs() {
             </S_JobList_Jobs_MyJobs>
           ))}
 
+          {
+            // Add New Job button
+          }
+
           <S_Button_AddJob_MyJobs
             $firstChild="true"
             onClick={() => handleAddJob()}
@@ -93,6 +105,11 @@ export default function MyJobs() {
             ➕ Add New Job
           </S_Button_AddJob_MyJobs>
         </S_JobList_Box_MyJobs>
+
+        {
+          // Job and Ad components
+        }
+
         <S_Preview_MyJobs>
           {jobVisible && (
             <>

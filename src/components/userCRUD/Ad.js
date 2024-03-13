@@ -1,6 +1,5 @@
 // Functions, libraries, etc.
 import { findAllAdsByJobId } from "./adFunctions/findAllAdsByJobId";
-import { saveAd } from "./adFunctions/saveAd";
 
 // Styled Components
 import { useEffect, useState } from "react";
@@ -13,7 +12,7 @@ import {
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
   S_FunctionalityButton_Preview,
-  S_Instruction_Headers,
+  S_Header,
 } from "./styledUser";
 import { deleteAd } from "./adFunctions/deleteAd";
 
@@ -42,10 +41,6 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
     }
   }, [adList]);
 
-  function handleSaveAd() {
-    saveAd(jobId, htmlCode, handleAdCRUDSuccess);
-  }
-
   function handleDeleteAd() {
     deleteAd(adId, handleAdCRUDSuccess);
   }
@@ -56,7 +51,12 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
-        <S_Instruction_Headers>Ad</S_Instruction_Headers>
+        <S_Header>Ad</S_Header>
+
+        {
+          // Ad list tabs
+        }
+
         <S_TopButtons_Box_Preview>
           {adList.map((ad, index) => (
             <S_Buttons_Edit_Preview
@@ -72,6 +72,11 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
             </S_Buttons_Edit_Preview>
           ))}
         </S_TopButtons_Box_Preview>
+
+        {
+          // Iframe for Ad
+        }
+
         <S_PreviewBox_Preview>
           <S_Iframe_Preview src={url} title={"Ad Content"}></S_Iframe_Preview>
         </S_PreviewBox_Preview>
