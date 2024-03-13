@@ -114,6 +114,7 @@ export default function MyJobs() {
           {jobVisible && (
             <>
               <JobEdit
+                key={jobId}
                 handleJobCRUDSuccess={handleJobCRUDSuccess}
                 jobId={jobId}
                 setIsChange={setIsChange}

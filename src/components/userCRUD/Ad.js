@@ -1,5 +1,6 @@
 // Functions, libraries, etc.
 import { findAllAdsByJobId } from "./adFunctions/findAllAdsByJobId";
+import { deleteAd } from "./adFunctions/deleteAd";
 
 // Styled Components
 import { useEffect, useState } from "react";
@@ -14,7 +15,6 @@ import {
   S_FunctionalityButton_Preview,
   S_Header,
 } from "./styledUser";
-import { deleteAd } from "./adFunctions/deleteAd";
 
 export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   const [adList, setAdList] = useState([]);
@@ -41,12 +41,16 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
     }
   }, [adList]);
 
-  function handleDeleteAd() {
-    deleteAd(adId, handleAdCRUDSuccess);
-  }
-
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
+
+  function handleDeleteAd(adId) {
+    if (window.confirm("Are you sure you want to delete this ad ?")) {
+      deleteAd(adId, handleAdCRUDSuccess);
+    } else {
+      console.log("User cancelled delete");
+    }
+  }
 
   return (
     <S_Main>
@@ -83,7 +87,7 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
         <S_FunctionalityButton_Box_Preview>
           <S_FunctionalityButton_Preview
             onClick={() => {
-              handleDeleteAd();
+              handleDeleteAd(adId);
             }}
           >
             ❌

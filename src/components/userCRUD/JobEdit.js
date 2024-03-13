@@ -41,12 +41,13 @@ export default function JobEdit({
   const [documentType, setDocumentType] = useState("html");
 
   // States related to instruction
-  const [activeFormat, setActiveFormat] = useState(1);
+  const [activeFormat, setActiveFormat] = useState("1");
 
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
-    setActive(1);
+    setActiveFormat("1");
   }, [jobId]);
+
   useEffect(() => {
     const documentTypeArr = ["html", "pdf", "docx"];
     setDocumentType(documentTypeArr[activeFormat - 1]);
@@ -86,9 +87,9 @@ export default function JobEdit({
     );
   }
 
-  function handleDelete(id) {
-    if (window.confirm("Are you sure you want to delete this job?")) {
-      deleteJob(id, handleJobCRUDSuccess);
+  function handleDeleteJob(jobId) {
+    if (window.confirm("Are you sure you want to delete this job ?")) {
+      deleteJob(jobId, handleJobCRUDSuccess);
       setJobVisible(false);
     } else {
       console.log("User cancelled delete");
@@ -197,7 +198,7 @@ export default function JobEdit({
             // Delete Ad button
           }
           <S_FunctionalityButton_Preview
-            onClick={() => handleDelete(jobId)}
+            onClick={() => handleDeleteJob(jobId)}
             onMouseOver={() =>
               isGenerating ? handleActiveButton("") : handleActiveButton("3")
             }
@@ -244,13 +245,8 @@ export default function JobEdit({
         <S_Header>Instructions</S_Header>
         <S_PreviewBox_Preview>
           <S_TextArea_Preview
-            value={active < 2 ? description : instruction}
-            onChange={(e) => {
-              active < 2
-                ? setDescription(e.target.value)
-                : setInstruction(e.target.value);
-              setIsChange(true);
-            }}
+            value={instruction}
+            onChange={(e) => setInstruction(e.target.value)}
           ></S_TextArea_Preview>
         </S_PreviewBox_Preview>
       </S_JobEdit_And_Ad_Box>

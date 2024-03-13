@@ -46,7 +46,7 @@ export const S_Button_AddJob_MyJobs = styled.button`
   font-weight: bold;
   background-color: #fff0d9;
   &:hover {
-    background-color: #78ff86;
+    background-color: #f9d2b5;
   }
   margin-top: 10px;
   height: 40px;
@@ -70,7 +70,7 @@ export const S_FunctionalityButton_Preview = styled.button`
   height: 50px;
   width: 50px;
   border-radius: ${border_radius};
-  background-color: #fff0d9;
+  background-color: #f9d2b5;
   &:hover {
     background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
   }
@@ -120,9 +120,8 @@ export const S_TextArea_Preview = styled.textarea`
   box-shadow: 10px 5px 5px #c0806580;
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
-  width: 392px;
-  min-width: 100%;
-  background-color: #fff0d9;
+  min-width: 400px;
+  background-color: #f9d2b5;
 `;
 
 export const S_Iframe_Preview = styled.iframe`
@@ -130,6 +129,7 @@ export const S_Iframe_Preview = styled.iframe`
   border: ${border_preview_border};
   background-color: white;
   resize: both;
+  min-width: 600px;
   box-shadow: 10px 5px 5px #c0806580;
 `;
 
@@ -208,7 +208,7 @@ export const S_Instruction_Input = styled.input`
   border-radius: ${border_radius};
   padding: 15px;
   background: #f0f0f0;
-  background-color: #fff0d9;
+  background-color: #f9d2b5;
 `;
 
 export const S_Instruction_DecisionButton = styled.button`
