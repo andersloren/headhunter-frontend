@@ -10,7 +10,6 @@ export async function updateJob(
   instruction,
   handleIsChange
 ) {
-  console.log(jobId);
   const email = extractEmailFromToken();
   const url = `http://localhost:8080/api/v1/jobs/update/${jobId}`;
   try {
