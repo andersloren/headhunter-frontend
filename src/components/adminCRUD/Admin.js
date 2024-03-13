@@ -31,7 +31,6 @@ export default function Admin() {
   }, [refreshUserTable]);
 
   function handleDelete(email) {
-    console.log("User deleted");
     deleteUser(email);
   }
 
@@ -56,8 +55,8 @@ export default function Admin() {
               </S_UserList_Row>
             </thead>
             <tbody>
-              {userList.map((user) => (
-                <S_UserList_Row key={user.id}>
+              {userList.map((user, index) => (
+                <S_UserList_Row key={index}>
                   <S_Userlist_Data>
                     <S_Table_Button
                       onClick={() => {
@@ -82,12 +81,14 @@ export default function Admin() {
               ))}
             </tbody>
           </S_Userlist_Table>
-          <AdminForm
-            email={userEmail}
-            isBlur={isBlur}
-            setIsBlur={setIsBlur}
-            handleUserCRUDSuccess={handleUserCRUDSuccess}
-          />
+          {isBlur && (
+            <AdminForm
+              email={userEmail}
+              isBlur={isBlur}
+              setIsBlur={setIsBlur}
+              handleUserCRUDSuccess={handleUserCRUDSuccess}
+            />
+          )}
         </S_User_Box>
       </S_Main>
     </>

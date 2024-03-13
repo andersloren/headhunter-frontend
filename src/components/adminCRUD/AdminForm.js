@@ -30,10 +30,6 @@ export default function AdminForm({
     updateUser(email, username, roles, handleUserCRUDSuccess, setIsBlur);
   }
 
-  console.log("email", email);
-  console.log("Username", username);
-  console.log("roles", roles);
-
   return (
     <>
       <S_Form_FloatingDiv
