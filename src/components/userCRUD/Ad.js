@@ -13,6 +13,7 @@ import {
   S_JobEdit_And_Ad_Box,
   S_TopButtons_Box_Preview,
   S_FunctionalityButton_Preview,
+  S_Instruction_Headers,
 } from "./styledUser";
 import { deleteAd } from "./adFunctions/deleteAd";
 
@@ -55,6 +56,7 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   return (
     <S_Main>
       <S_JobEdit_And_Ad_Box>
+        <S_Instruction_Headers>Ad</S_Instruction_Headers>
         <S_TopButtons_Box_Preview>
           {adList.map((ad, index) => (
             <S_Buttons_Edit_Preview
