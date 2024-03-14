@@ -16,6 +16,7 @@ import {
   S_Header,
 } from "./styledUser";
 
+
 export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   const [adList, setAdList] = useState([]);
   const [htmlCode, setHtmlCode] = useState("");
@@ -47,6 +48,7 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
   function handleDeleteAd(adId) {
     if (window.confirm("Are you sure you want to delete this ad ?")) {
       deleteAd(adId, handleAdCRUDSuccess);
+      // deleteItem(adId, "ad");
     } else {
       console.log("User cancelled delete");
     }
