@@ -1,6 +1,6 @@
 # Headhunter
 
-This is the frontend part of the internship project Headhunter created by Anders Lorén and Mikael Engvall.
+This is the frontend part of the internship project Headhunter created by [Anders Lorén](https://github.com/andersloren) and [Mikael Engvall](https://github.com/mikaelengvall).
 
 The backend can be found [here](https://github.com/andersloren/headhunter).
 
