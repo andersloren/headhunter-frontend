@@ -55,10 +55,8 @@ export default function JobEdit({
 
   useEffect(() => {
     setInstruction(
-      "Skapa en jobbannons i " +
-        documentType +
-        "-format. " +
-        defaultInstructions
+      "Skapa en jobbannons i HTML-format. " +
+      defaultInstructions
     );
     setDescription(defaultDescription);
   }, [documentType]);
