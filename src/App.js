@@ -4,6 +4,7 @@ import NavBar from "./components/navbar/NavBar";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { authorize } from "./components/security/authorize";
+// import "../src/styles/main.scss";
 
 // Front page
 import Welcome from "./components/front/Welcome";
@@ -14,6 +15,7 @@ import MyJobs from "./components/userCRUD/MyJobs";
 
 // Admin pages
 import Admin from "./components/adminCRUD/Admin";
+// import Sidebar from "./components/Sidebar";
 
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
