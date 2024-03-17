@@ -1,7 +1,6 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
 import { deleteUser } from "./adminFunctions/deleteUser";
-
 import { findAllUsers } from "./adminFunctions/findAllUsers";
 
 // Styled components
