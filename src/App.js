@@ -14,6 +14,7 @@ import MyJobs from "./components/userCRUD/MyJobs";
 
 // Admin pages
 import Admin from "./components/adminCRUD/Admin";
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
