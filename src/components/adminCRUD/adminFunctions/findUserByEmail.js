@@ -1,7 +1,25 @@
 // Functions, libraries, etc.
 import axios from "axios";
 
-export async function findUserByEmail(email, setUsername, setRoles) {
+/**
+ * Retrieves one user object based on its email. This operation is intended for
+ * use by admin users, as dictated by server-side authorization.
+ *
+ * On success: Updates the application state with the username of the user
+ * On failure: Logs an error to the console
+ *
+ * @function
+ * @async
+ * @param {String} email - The email of the user to be found.
+ */
+
+/**
+ * =======================================================
+ * Right now, this component is not being used in the code
+ * =======================================================
+ */
+
+export async function findUserByEmail(email) {
   const url = `http://localhost:8080/api/v1/users/findUser/${email}`;
 
   try {
@@ -12,8 +30,6 @@ export async function findUserByEmail(email, setUsername, setRoles) {
       },
     });
     console.log("User Found Success");
-    setUsername(response.data.data.username);
-    setRoles(response.data.data.roles);
   } catch (error) {
     console.error("Error get user by email", error);
   }

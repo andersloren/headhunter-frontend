@@ -2,17 +2,30 @@
 import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
-export async function deleteJob(id, handleJobCRUDSuccess) {
+/**
+ * Deletes a job by its id. If successful, the user will no longer see the deleted job in the UI.
+ *
+ * On success: Logs success message in console.
+ * On failure: Logs failure message in console.
+ *
+ * @function
+ * @async
+ * @param {string} adId - The unique identifier for the job to be deleted.
+ * @param {function} handleJobCRUDSuccess - Callback function that is invoked upon successful deletion to refresh the UI.
+ * @return {Promise<void>} A promise that resolves when the operation has completed.
+ */
+
+export async function deleteJob(jobId, handleJobCRUDSuccess) {
   console.log("Got to deleteJob");
 
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/jobs/delete/${email}/${id}`;
+  const url = `http://localhost:8080/api/v1/jobs/delete/${email}/${jobId}`;
 
   try {
     const response = await axios.delete(url, {
       data: {
-        id: id,
+        id: jobId,
         email: email,
       },
       headers: {

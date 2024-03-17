@@ -15,8 +15,19 @@ import MyJobs from "./components/userCRUD/MyJobs";
 // Admin pages
 import Admin from "./components/adminCRUD/Admin";
 
+/**
+ * App deals with the router setup and prevents the navbar from loading in without their being a JWT stored locally.
+ *
+ * States:
+ * - 'isAuthorized': Sets to true if there is a JWT, and that JWT has not expired.
+ */
+
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
+
+  /**
+   * If isAuthorized changes, and if the value is false, it's being checked. If there is a JWT stored in the browser and it hasn't expired, isAuthorized is set to true. Otherwise, it remains false.
+   */
 
   useEffect(() => {
     if (!isAuthorized) setIsAuthorized(authorize());
@@ -26,6 +37,9 @@ export default function App() {
 
   return (
     <>
+      {/**
+       * To prevent the functions within the navbar from running functions that checks for a JWT, and throw an error if there is not JWT, the navbar doesn't even load if there is no JWT stored locally.
+       */}
       {isAuthorized && (
         <NavBar isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized}>
           Headhunter
@@ -36,10 +50,14 @@ export default function App() {
           path="/"
           element={<Welcome setIsAuthorized={setIsAuthorized} />}
         />
-        {/* {Logged in User only links} */}
+        {/**
+         * These links can only be routed to if the user is authenticated.
+         */}
         <Route path="/myPage" element={<MyPage />} />
-        <Route path="/MyJobs" element={<MyJobs />} />
-        {/* {Admin only links} */}
+        <Route path="/myJobs" element={<MyJobs />} />
+        {/**
+         * These links can only be routed to if the user is authenticated and its roles include admin.
+         */}
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </>

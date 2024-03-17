@@ -2,6 +2,12 @@ import useState from "react";
 import DecisionButton from "./DecisionButton";
 import Prompt from "./prompt/Prompt";
 
+/* 
+  This component is unused legacy code and is not being called in the code.
+
+  TODO - Either use this component or remove it.
+*/
+
 export default function Decision({ theme, children }) {
   const [activeButton, setActiveButton] = useState(null);
 

@@ -1,52 +1,17 @@
 import { styled } from "styled-components";
 
+// Border radius for input fields.
 const border_radius_form = "15px";
-
+const margin_between_buttons = "20px";
 const border_radius_functionality = "5px";
 const font_size = "20px";
 const color = "#fff0d9";
 
-const margin_between_buttons = "20px";
-
-//
-export const S_User_Box = styled.div`
-  position: relative;
-  margin-top: 50px;
-  left: 100px;
-`;
-
-// User Table
-export const S_Userlist_Table = styled.table`
-  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
-  left: 10%;
-`;
-
-export const S_UserList_Row = styled.tr`
-  margin-top: 30px;
-`;
-
-export const S_th = styled.th`
-  width: auto;
-  padding-right: 100px;
-`;
-
-export const S_Userlist_Data = styled.td``;
-
-export const S_Button_Box = styled.div``;
-
-export const S_Table_Button = styled.button`
-  font-size: 15px;
-  color: ${color};
-  height: 35px;
-  width: 35px;
-  border-radius: ${border_radius_functionality};
-  background-color: #fff0d9;
-  &:hover {
-    background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
-  }
-`;
-
-// AdminForm
+/**
+ * Box that centers puts itself cenetered horizontally when the update button is clicked in the parent component.
+ *
+ * This box is not showing unless the update button in the parent component is clicked, due to its opacity value.
+ */
 export const S_Form_FloatingDiv = styled.div`
   display: flex;
   flex-direction: column;

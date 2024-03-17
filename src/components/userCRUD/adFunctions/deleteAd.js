@@ -1,9 +1,20 @@
 // Libraries, functions, etc
 import axios from "axios";
 
-export async function deleteAd(adId, handleAdCRUDSuccess) {
-  console.log("Got to deleteAd");
+/**
+ * Asynchronuously deletes an ad by its id. If successful, the user will no longer see the deleted ad in the UI.
+ *
+ * On success: Logs success message in console.
+ * On failure: Logs failure message in console.
+ *
+ * @function
+ * @async
+ * @param {string} adId - The unique identifier for the ad to be deleted.
+ * @param {function} handleAdCRUDSuccess - Callback function that is invoked upon successful deletion to refresh the UI.
+ * @return {Promise<void>} A promise that resolves when the operation has completed.
+ */
 
+export async function deleteAd(adId, handleAdCRUDSuccess) {
   const url = `http://localhost:8080/api/v1/ads/deleteAd/${adId}`;
 
   try {

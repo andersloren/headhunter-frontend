@@ -1,6 +1,12 @@
 // Libraries, functions, etc.
 import { Link } from "react-router-dom";
 
+/* 
+  This component is unused legacy code and is not being called in the code.
+
+  TODO - Either use this component or remove it.
+*/
+
 export default function LoggedOutNav() {
   return (
     <>

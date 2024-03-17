@@ -1,3 +1,9 @@
+/* 
+  This component is unused legacy code and is not being called in the code.
+  
+  TODO - Either use this component or remove it.
+*/
+
 const promptArr = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum ante et justo semper vehicula. Sed blandit nibh non semper aliquet. Etiam mattis vehicula arcu, eget fringilla nisi. Nam consectetur arcu ut orci laoreet ultricies. Fusce porttitor libero non massa rhoncus semper. Phasellus a ullamcorper felis. Sed elit orci, porta pharetra odio id, maximus suscipit nunc. Sed eu libero semper, sollicitudin ex eget, posuere augue. Sed aliquet volutpat pretium. Proin at ipsum sem. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
   "Ut eget tincidunt ex. Suspendisse potenti. Vestibulum faucibus ante lectus, dignissim condimentum justo mattis eu. Sed finibus, ligula ut pretium tincidunt, magna mi lobortis sem, in interdum eros felis a arcu. Quisque id dapibus eros. Proin finibus turpis et quam aliquet auctor. Mauris facilisis finibus est, ut ornare sem elementum ut. Sed sed malesuada nisl, nec condimentum diam. Aenean sem massa, accumsan non egestas quis, auctor et diam.",

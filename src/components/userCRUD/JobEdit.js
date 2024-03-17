@@ -8,18 +8,36 @@ import { generateJobAd } from "./jobFunctions/generateJobAd.js";
 // Styled Components
 import { S_Main } from "../styledGlobal.js";
 import {
-  S_PreviewBox_Preview,
-  S_TextArea_Preview,
-  S_FunctionalityButton_Box_Preview,
-  S_FunctionalityButton_Preview,
-  S_Tooltip_FunctionalityButton_Preview,
   S_JobEdit_And_Ad_Box,
+  S_Header,
+  S_PreviewBox,
+  S_FunctionalityButton_Box,
+  S_FunctionalityButton,
+} from "./styledComponents/styledUserGlobal.js";
+import {
+  S_TextArea,
+  S_Tooltip_FunctionalityButton,
   S_Animation_Text,
   S_Animation_Rotate,
-  S_Header,
   S_Instruction_Input,
   S_Instruction_DecisionButton,
-} from "./styledUser.js";
+} from "./styledComponents/styledJobEdit.js";
+
+/**
+ * The UI for showing, updating and deleting jobs. Different decisions creates hidden instructions for the AI API. It is also here that ads are being generated.
+ *
+ * States:
+ * - 'job': When a job is being fetched from the database, it is being set as a state.
+ * - 'active': Being active means that the current Job object being handled is highlighted in the parent component UI.
+ * - 'activeButton': Functionality buttons in this components shows tooltips when the mouse hovers above them. ActiveButton tells which button is being hovered over, and triggers a tooltip to show below it.
+ * - 'isGenerating': Turns to true when the user clicks the generate button, causing all functionality buttons will blur during the communication with the backend and the AI API.
+ *
+ * @param {function} handleJobCRUDSuccess - Callback function that is invoked upon successful deletion to refresh the UI.
+ * @param {number} jobId - The id of the Job object currently being selected by the user.
+ * @param {function} setIsChange - When the user makes any changes in the job text area, this state sets to true. If the user clicks on a new job when isChange is true, a window confirm alert shows up asking the user if it wants to proceed before saving.
+ * @param {function} handleAdCRUDSuccess - When the user makes any changes in the job text area, this state sets to true. If the user clicks on a new job when isChange is true, a window confirm alert shows up asking the user if it wants to proceed before saving.
+ * @param {Function} handleAdCRUDSuccess - Callback function invoked to refresh the list of job ads in the UI upon successful ad generation.
+ */
 
 export default function JobEdit({
   handleJobCRUDSuccess,
@@ -29,12 +47,12 @@ export default function JobEdit({
   handleAdCRUDSuccess,
 }) {
   // States related to functionality
-  const [job, setJob] = useState({}); // Is this needed??
+  const [job, setJob] = useState({}); // TODO - Either use it or remove it.
   const [active, setActive] = useState(1);
   const [activeButton, setActiveButton] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // States related to the job
+  // States related to job
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
@@ -43,25 +61,49 @@ export default function JobEdit({
   // States related to instruction
   const [activeFormat, setActiveFormat] = useState("1");
 
+  /**
+   * If jobId changes, that new job is being fetched from the backend.
+   *
+   * Instruction is also set to 1, meaning that the file format that will be asked from the AI API is set to HTML. To change this, the user has to make an active decision on what file type it wants.
+   */
+
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
     setActiveFormat("1");
   }, [jobId]);
+
+  /**
+   * If activeFormat is being changes, the corresponding file format present in the documenTypeArr-array will be chosen.
+   *
+   * The -1 is due to the button decision that sets documenType starts at 1, but the documentTypeArr-array starts indexation at 0.
+   *
+   * Example: If the user choses the second decision button (PDF), the number 2 is stored in activeFormat. Subtract 1 from 2, and we get 1. Position 1 in documentTypArr is "pdf", which is exactly what the user wanted.
+   */
 
   useEffect(() => {
     const documentTypeArr = ["html", "pdf", "docx"];
     setDocumentType(documentTypeArr[activeFormat - 1]);
   }, [activeFormat, setDocumentType]);
 
+  /**
+   * When documentType changes, the instruction also has to change so that the user can get the file format it wants.
+   */
+
   useEffect(() => {
     setInstruction(
       "Skapa en jobbannons i " +
         documentType +
-        "-format. " +
+        "-format med professionell och relevant CSS. " +
         defaultInstructions
     );
     setDescription(defaultDescription);
   }, [documentType]);
+
+  /**
+   * When clicking the button for generating an ad, a window confirm alert will show to prevent unwanted credit usage and time consuming events.
+   *
+   * If the user clicks OK, the HTTP request is being sent to the backend and isGenerating is set to true. This means that a loading animation will show on the screen and the user won't be able to interact with the functionality buttons until the response from the backend comes.
+   */
 
   function handleGenerate() {
     if (
@@ -76,6 +118,12 @@ export default function JobEdit({
     }
   }
 
+  /**
+   * At the end of the process of updating a job, the isChange state is being reset by handleIsChange.
+   *
+   * Since the job is already being saved when the job is updated, there is no need for a window confirm alert to show unless the user changes the text areas again.
+   */
+
   function handleUpdate() {
     updateJob(
       jobId,
@@ -87,6 +135,14 @@ export default function JobEdit({
     );
   }
 
+  /**
+   * When clicking the delete button, a window confirm alert is being shown to the user.
+   *
+   * If the user clicks ok, and the deletion is successful, the job component will be invisible until a new job has been selected from the job list in the parent component.
+   *
+   * @param {number} jobId - This is the identifier for the current Job being handled by the user.
+   */
+
   function handleDeleteJob(jobId) {
     if (window.confirm("Are you sure you want to delete this job ?")) {
       deleteJob(jobId, handleJobCRUDSuccess);
@@ -96,10 +152,12 @@ export default function JobEdit({
     }
   }
 
+  // TODO - Maybe just put setIsChange where it is supposed to happen instead of pointing to this function.
   function handleIsChange() {
     setIsChange(false);
   }
 
+  // TODO - Maybe just put setActiveButton at the buttons instead of handling it here.
   function handleActiveButton(buttonId) {
     setActiveButton(buttonId);
   }
@@ -146,8 +204,8 @@ export default function JobEdit({
         }
 
         <S_Header>Description</S_Header>
-        <S_PreviewBox_Preview>
-          <S_TextArea_Preview
+        <S_PreviewBox>
+          <S_TextArea
             value={active < 2 ? description : instruction}
             onChange={(e) => {
               active < 2
@@ -155,18 +213,18 @@ export default function JobEdit({
                 : setInstruction(e.target.value);
               setIsChange(true);
             }}
-          ></S_TextArea_Preview>
-        </S_PreviewBox_Preview>
+          ></S_TextArea>
+        </S_PreviewBox>
 
         {
           // Functionality buttons
         }
 
-        <S_FunctionalityButton_Box_Preview>
+        <S_FunctionalityButton_Box>
           {
             // Save Ad button
           }
-          <S_FunctionalityButton_Preview
+          <S_FunctionalityButton
             onClick={() => {
               handleUpdate();
             }}
@@ -177,11 +235,11 @@ export default function JobEdit({
             $blur={isGenerating === true ? "true" : "false"}
           >
             💾
-          </S_FunctionalityButton_Preview>
+          </S_FunctionalityButton>
           {
             // Generate Ad button
           }
-          <S_FunctionalityButton_Preview
+          <S_FunctionalityButton
             onClick={() => {
               handleUpdate();
               handleGenerate(jobId);
@@ -193,11 +251,11 @@ export default function JobEdit({
             $blur={isGenerating === true ? "true" : "false"}
           >
             ⚡
-          </S_FunctionalityButton_Preview>
+          </S_FunctionalityButton>
           {
             // Delete Ad button
           }
-          <S_FunctionalityButton_Preview
+          <S_FunctionalityButton
             onClick={() => handleDeleteJob(jobId)}
             onMouseOver={() =>
               isGenerating ? handleActiveButton("") : handleActiveButton("3")
@@ -206,22 +264,22 @@ export default function JobEdit({
             $blur={isGenerating === true ? "true" : "false"}
           >
             ❌
-          </S_FunctionalityButton_Preview>
+          </S_FunctionalityButton>
 
           {
             // Tooltip
           }
 
           {activeButton && (
-            <S_Tooltip_FunctionalityButton_Preview $activeButton={activeButton}>
+            <S_Tooltip_FunctionalityButton $activeButton={activeButton}>
               {activeButton !== "3"
                 ? activeButton !== "2"
                   ? "Save description"
                   : "Save description and Generate a new ad"
                 : "Delete job"}
-            </S_Tooltip_FunctionalityButton_Preview>
+            </S_Tooltip_FunctionalityButton>
           )}
-        </S_FunctionalityButton_Box_Preview>
+        </S_FunctionalityButton_Box>
 
         {
           // Generate loader animation
@@ -241,14 +299,15 @@ export default function JobEdit({
         {
           // Instructions (for developing purposese)
         }
-
+        {/*
         <S_Header>Instructions</S_Header>
-        <S_PreviewBox_Preview>
-          <S_TextArea_Preview
+        <S_PreviewBox>
+          <S_TextArea
             value={instruction}
             onChange={(e) => setInstruction(e.target.value)}
-          ></S_TextArea_Preview>
-        </S_PreviewBox_Preview>
+          ></S_TextArea>
+        </S_PreviewBox>
+*/}
       </S_JobEdit_And_Ad_Box>
     </S_Main>
   );

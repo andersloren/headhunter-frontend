@@ -2,6 +2,18 @@
 import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
+/**
+ * Sets all jobs that belongs to the user.
+ * The list of jobs that the user can see in the UI will then be updated.
+ *
+ * On success: Logs success message in console. (currently commented out!)
+ * On failure: Logs failure message in console.
+ *
+ * @function
+ * @async
+ * @param {Function} setJobList - Sets the list of jobs returned from the backend.
+ */
+
 export async function getAllMyJobs(setJobList) {
   const email = extractEmailFromToken();
 
