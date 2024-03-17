@@ -14,7 +14,6 @@ import MyJobs from "./components/userCRUD/MyJobs";
 
 // Admin pages
 import Admin from "./components/adminCRUD/Admin";
-import { Routes, Route } from "react-router-dom";
 
 /**
  * App deals with the router setup and prevents the navbar from loading in without their being a JWT stored locally.
