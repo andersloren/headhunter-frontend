@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 const border_radius = "5px";
 const color = "#fff0d9";

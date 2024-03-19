@@ -1,9 +1,7 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 const border_radius = "5px";
 const font_size = "20px";
-const color = "#fff0d9";
-const margin_left_from_table = "20px";
 const topButtonsHeight = "34px";
 
 const border_preview_border = "2px solid";
