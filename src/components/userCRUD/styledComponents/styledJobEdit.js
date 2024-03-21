@@ -1,15 +1,23 @@
 import { styled, keyframes } from "styled-components";
 
+import {
+  brightest,
+  brighter,
+  bright,
+  neutral,
+  dark,
+  darker,
+  darkest,
+} from "../../utils/colors/styledComponentsConstants";
+
 const border_radius = "5px";
-const color = "#fff0d9";
 const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
 
 export const S_Instruction_Input = styled.input`
   border-radius: ${border_radius};
   padding: 15px;
-  background: #f0f0f0;
-  background-color: #f9d2b5;
+  background-color: ${neutral};
 `;
 
 export const S_Instruction_DecisionButton = styled.button`
@@ -17,25 +25,25 @@ export const S_Instruction_DecisionButton = styled.button`
   width: 100px;
   background: ${(props) =>
     props.$active === "true"
-      ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"
+      ? `radial-gradient(at 50% 50%, ${dark}, ${neutral})`
       : "rgba(0, 0, 0, 0.1)"};
   padding: 12px;
-  color: ${color};
-  border-color: rgb(223, 223, 223);
+  color: ${bright};
+  border-color: ${brighter};
   border: 2px solid;
   border-radius: ${border_radius};
   &:hover {
-    background: radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5);
+    background: radial-gradient(at 50% 50%, ${dark}, ${neutral});
     cursor: pointer;
   }
 `;
 
 export const S_TextArea = styled.textarea`
-  box-shadow: 10px 5px 5px #c0806580;
+  box-shadow: 10px 5px 5px ${darker}80;
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
   min-width: 400px;
-  background-color: #f9d2b5;
+  background-color: ${neutral};
 `;
 
 export const S_Tooltip_FunctionalityButton = styled.div`
@@ -53,14 +61,14 @@ export const S_Tooltip_FunctionalityButton = styled.div`
   align-items: center;
   border-radius: ${border_radius};
   border: 2px solid;
-  background-color: #fff0d9;
+  background-color: ${bright};
 `;
 
 export const S_Animation_Text = styled.div`
   position: relative;
   text-align: center;
   font-size: 35px;
-  color: #fff0d9;
+  color: ${bright};
 `;
 
 const rotate = keyframes`

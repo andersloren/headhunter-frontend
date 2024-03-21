@@ -1,8 +1,17 @@
 import { styled } from "styled-components";
 
+import {
+  brightest,
+  brighter,
+  bright,
+  neutral,
+  dark,
+  darker,
+  darkest,
+} from "../../utils/colors/styledComponentsConstants";
+
 const border_radius = "5px";
 const font_size = "20px";
-const color = "#fff0d9";
 const margin_left_from_table = "20px";
 const topButtonsHeight = "34px";
 
@@ -18,11 +27,12 @@ export const S_Buttons_Edit = styled.button`
   font-size: ${font_size};
   width: auto;
   background-color: ${(props) =>
-    props.$active === "true" ? "#fff0d9" : "rgb(214, 143, 112)"};
+    // props.$active === "true" ? `${bright}` : `${dark}`};
+    props.$active === "true" ? `${brighter}` : `${neutral}`};
   line-height: ${(props) => (props.$active === "true" ? "3rem" : "")};
   border-radius: ${border_radius};
   &:hover {
-    background: radial-gradient(at 50% 50%, #fff0d9, #c08065);
+    background: radial-gradient(at 50% 50%, ${bright}, ${darker});
   }
 `;
 
@@ -32,5 +42,4 @@ export const S_Iframe = styled.iframe`
   background-color: white;
   resize: both;
   min-width: 600px;
-  box-shadow: 10px 5px 5px #c0806580;
 `;

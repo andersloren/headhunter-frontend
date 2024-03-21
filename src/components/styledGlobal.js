@@ -1,11 +1,22 @@
 import styled from "styled-components";
 
-const color = "#fff0d9";
+import {
+  brightest,
+  brighter,
+  bright,
+  neutral,
+  dark,
+  darker,
+  darkest,
+} from "./utils/colors/styledComponentsConstants";
+
 const margin_left_from_screen = "30px";
 
 // Main
 export const S_Main = styled.div`
   /* font-family: "Montserrat", sans-serif; */
+  height: 100vh;
+  background-color: ${neutral};
 `;
 
 // All Heading
@@ -18,7 +29,7 @@ export const S_Title = styled.div`
   font-weight: 400;
   margin-left: ${margin_left_from_screen};
   letter-spacing: 4px;
-  color: ${color};
+  color: ${bright};
 `;
 
 export const S_OpenAI_Box = styled.div`

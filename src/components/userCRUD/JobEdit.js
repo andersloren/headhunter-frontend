@@ -135,23 +135,6 @@ export default function JobEdit({
     );
   }
 
-  /**
-   * When clicking the delete button, a window confirm alert is being shown to the user.
-   *
-   * If the user clicks ok, and the deletion is successful, the job component will be invisible until a new job has been selected from the job list in the parent component.
-   *
-   * @param {number} jobId - This is the identifier for the current Job being handled by the user.
-   */
-
-  function handleDeleteJob(jobId) {
-    if (window.confirm("Are you sure you want to delete this job ?")) {
-      deleteJob(jobId, handleJobCRUDSuccess);
-      setJobVisible(false);
-    } else {
-      console.log("User cancelled delete");
-    }
-  }
-
   // TODO - Maybe just put setIsChange where it is supposed to happen instead of pointing to this function.
   function handleIsChange() {
     setIsChange(false);
@@ -222,7 +205,7 @@ export default function JobEdit({
 
         <S_FunctionalityButton_Box>
           {
-            // Save Ad button
+            // Save Job button
           }
           <S_FunctionalityButton
             onClick={() => {
@@ -253,18 +236,8 @@ export default function JobEdit({
             ⚡
           </S_FunctionalityButton>
           {
-            // Delete Ad button
+            // Delete Job button
           }
-          <S_FunctionalityButton
-            onClick={() => handleDeleteJob(jobId)}
-            onMouseOver={() =>
-              isGenerating ? handleActiveButton("") : handleActiveButton("3")
-            }
-            onMouseLeave={() => handleActiveButton("")}
-            $blur={isGenerating === true ? "true" : "false"}
-          >
-            ❌
-          </S_FunctionalityButton>
 
           {
             // Tooltip

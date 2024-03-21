@@ -9,6 +9,8 @@ import Welcome from "./components/front/Welcome";
 // Sidebar
 import Sidebar from "./components/sidebar/Sidebar";
 
+import { S_Main } from "./components/styledGlobal.js";
+
 /**
  * App deals with the router setup and prevents the navbar from loading in without their being a JWT stored locally.
  *
@@ -41,16 +43,17 @@ export default function App() {
   if (isAuthorized)
     return (
       <>
-        {
-          // Div with flex styling to split ut sidebar and MyJobs
-        }
-        <Sidebar roles={roles} />
+        <S_Main>
+          <Sidebar roles={roles} setIsAuthorized={setIsAuthorized} />
+        </S_Main>
       </>
     );
 
   return (
     <>
-      <Welcome setIsAuthorized={setIsAuthorized} />
+      <S_Main>
+        <Welcome setIsAuthorized={setIsAuthorized} />
+      </S_Main>
     </>
   );
 }

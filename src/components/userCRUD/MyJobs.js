@@ -2,21 +2,26 @@
 import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.js";
 import { getAllMyJobs } from "./jobFunctions/getAllMyJobs.js";
+import { deleteJob } from "./jobFunctions/deleteJob.js";
 
 // Custom components
 import JobEdit from "./JobEdit.js";
 import Ad from "./Ad.js";
 
 // CSS
-import { S_Main } from "../styledGlobal.js";
-import { S_Header } from "./styledComponents/styledUserGlobal.js";
+import {
+  S_FunctionalityButton,
+  S_FunctionalityButton_Box,
+  S_Header,
+  S_AddSvg,
+  S_DeleteSvg,
+} from "./styledComponents/styledUserGlobal.js";
 import {
   S_Preview,
-  S_Button_AddJob,
   S_JobList_Box,
   S_JobList,
 } from "./styledComponents/styledMyJobs.js";
-import { S_WindowSplit } from "../sidebar/styledSidebar.js";
+import { S_WindowSplit } from "../sidebar/styledComponents/styledSidebar.js";
 
 /**
  *
@@ -59,6 +64,23 @@ export default function MyJobs() {
   // TODO - Skip the handle-part and just put addJob() where the function should be invoked?
   function handleAddJob() {
     addJob(handleJobCRUDSuccess);
+  }
+
+  /**
+   * When clicking the delete button, a window confirm alert is being shown to the user.
+   *
+   * If the user clicks ok, and the deletion is successful, the job component will be invisible until a new job has been selected from the job list in the parent component.
+   *
+   * @param {number} jobId - This is the identifier for the current Job being handled by the user.
+   */
+
+  function handleDeleteJob(jobId) {
+    if (window.confirm("Are you sure you want to delete this job ?")) {
+      deleteJob(jobId, handleJobCRUDSuccess);
+      setJobVisible(false);
+    } else {
+      console.log("User cancelled delete");
+    }
   }
 
   // TODO - Remove 'id', also check where this function is being invoked
@@ -105,81 +127,84 @@ export default function MyJobs() {
 
   return (
     <>
-      <S_Main>
-        <S_WindowSplit>
-          <S_JobList_Box>
-            {
-              // Joblist
-            }
+      <S_WindowSplit>
+        <S_JobList_Box>
+          {
+            // Joblist
+          }
 
-            <S_Header>Jobs</S_Header>
-            {jobList.map((job) => (
-              <S_JobList
-                key={job.id}
-                onClick={() => {
-                  isChange
-                    ? handleUnsavedChanges(job.id)
-                    : handlePreview(job.id);
-                  setAdsExist(job.numberOfAds > 0);
-                }}
-                /**
-                 * The selected job is highlighted in the list of jobs in the job UI.
-                 */
-                $active={jobId === job.id ? "true" : "false"}
-              >
-                {/**
-                 * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
-                 */}
-                {job.title.length > 20
-                  ? job.title.slice(0, 20) + "..."
-                  : job.title}
-              </S_JobList>
-            ))}
+          <S_Header>Jobs</S_Header>
+          {jobList.map((job) => (
+            <S_JobList
+              key={job.id}
+              onClick={() => {
+                isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
+                setAdsExist(job.numberOfAds > 0);
+              }}
+              /**
+               * The selected job is highlighted in the list of jobs in the job UI.
+               */
+              $active={jobId === job.id ? "true" : "false"}
+            >
+              {/**
+               * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
+               */}
+              {job.title.length > 20
+                ? job.title.slice(0, 20) + "..."
+                : job.title}
+            </S_JobList>
+          ))}
 
+          <S_FunctionalityButton_Box>
             {
               // Add New Job button
             }
-
-            <S_Button_AddJob $firstChild="true" onClick={() => handleAddJob()}>
-              ➕ Add New Job
-            </S_Button_AddJob>
-          </S_JobList_Box>
-          {
-            // Job and Ad components
-          }
-          <>
-            {/* TODO - See if it's possible to remove S_Preview */}
-            <S_Preview>
-              {/**
-               * Only if a job is selected will the job UI show.
-               */}
-              {jobVisible && (
-                <>
-                  <JobEdit
-                    key={jobId}
-                    handleJobCRUDSuccess={handleJobCRUDSuccess}
+            <S_FunctionalityButton onClick={() => handleAddJob()}>
+              <S_AddSvg src="/google-icons/add.svg" alt="add" />
+            </S_FunctionalityButton>
+            {
+              // Delete Job button
+            }
+            <S_FunctionalityButton onClick={() => handleDeleteJob(jobId)}>
+              <S_DeleteSvg src="/google-icons/delete.svg" alt="delete" />
+            </S_FunctionalityButton>
+          </S_FunctionalityButton_Box>
+        </S_JobList_Box>
+        {
+          // Job and Ad components
+        }
+        <>
+          {/* TODO - See if it's possible to remove S_Preview */}
+          <S_Preview>
+            {/**
+             * Only if a job is selected will the job UI show.
+             */}
+            {jobVisible && (
+              <>
+                <JobEdit
+                  key={jobId}
+                  handleJobCRUDSuccess={handleJobCRUDSuccess}
+                  jobId={jobId}
+                  setIsChange={setIsChange}
+                  setJobVisible={setJobVisible}
+                  setRefreshAdTabs={setRefreshAdTabs}
+                  handleAdCRUDSuccess={handleAdCRUDSuccess}
+                />
+                {/**
+                 * Only if the selected job has one or more ads will the ad UI show.
+                 */}
+                {adsExist && (
+                  <Ad
                     jobId={jobId}
-                    setIsChange={setIsChange}
-                    setJobVisible={setJobVisible}
-                    setRefreshAdTabs={setRefreshAdTabs}
+                    refreshAdTabs={refreshAdTabs}
                     handleAdCRUDSuccess={handleAdCRUDSuccess}
                   />
-                  {/**
-                   * Only if the selected job has one or more ads will the ad UI show.
-                   */}
-                  {adsExist && (
-                    <Ad
-                      jobId={jobId}
-                      refreshAdTabs={refreshAdTabs}
-                      handleAdCRUDSuccess={handleAdCRUDSuccess}
-                    />
-                  )}
-                </>
-              )}
-            </S_Preview>
-          </>
-        </S_WindowSplit>
-      </S_Main>
+                )}
+              </>
+            )}
+          </S_Preview>
+        </>
+      </S_WindowSplit>
     </>
   );
 }
