@@ -8,7 +8,7 @@ const margin_between_buttons = "20px";
 
 export const S_HeadingBox_Welcome = styled.div`
   margin-top: 150px;
-  font-family: ;
+  /* font-family: ; */
   text-transform: uppercase;
 `;
 

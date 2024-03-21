@@ -15,7 +15,6 @@ import {
   S_Button_AddJob,
   S_JobList_Box,
   S_JobList,
-  S_WindowSplit,
 } from "./styledComponents/styledMyJobs.js";
 
 /**
@@ -104,13 +103,12 @@ export default function MyJobs() {
   }
 
   return (
-    <S_Main>
-      {
-        // Big split for Joblist, Job and Ad
-      }
-
-      <S_WindowSplit>
+    <>
+      <S_Main>
         <S_JobList_Box>
+          <div>username</div>
+          <div>Logout</div>
+
           {
             // Joblist
           }
@@ -145,11 +143,9 @@ export default function MyJobs() {
             ➕ Add New Job
           </S_Button_AddJob>
         </S_JobList_Box>
-
         {
           // Job and Ad components
         }
-
         <>
           {/* TODO - See if it's possible to remove S_Preview */}
           <S_Preview>
@@ -181,7 +177,7 @@ export default function MyJobs() {
             )}
           </S_Preview>
         </>
-      </S_WindowSplit>
-    </S_Main>
+      </S_Main>
+    </>
   );
 }

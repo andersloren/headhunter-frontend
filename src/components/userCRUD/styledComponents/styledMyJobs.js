@@ -5,10 +5,6 @@ const font_size = "20px";
 const margin_left_from_table = "20px";
 const table_width = "290px";
 
-export const S_WindowSplit = styled.div`
-  display: flex;
-`;
-
 export const S_JobList_Box = styled.div`
   margin-left: ${margin_left_from_table};
   margin-top: 10px;
