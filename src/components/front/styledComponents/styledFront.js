@@ -1,31 +1,44 @@
 import styled from "styled-components";
 
+import {
+  brightest,
+  brighter,
+  bright,
+  neutral,
+  dark,
+  darker,
+  darkest,
+  biggest,
+  bigger,
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
+
 const border_radius = "15px";
-const font_size = "20px";
-const color = "#fff0d9";
 
 const margin_between_buttons = "20px";
 
 export const S_HeadingBox_Welcome = styled.div`
-  margin-top: 150px;
-  font-family: ;
+  padding-top: 150px;
+  /* font-family: ; */
   text-transform: uppercase;
 `;
 
 export const S_Title_Welcome = styled.h1`
-  font-size: 70px;
+  font-size: ${biggest};
   font-weight: 700;
   letter-spacing: 20px;
   margin-right: -20px;
   margin-bottom: 8px;
-  color: ${color};
+  color: ${bright};
   text-align: justify;
   text-align: center;
   vertical-align: text-bottom;
 `;
 
 export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
-  font-size: 35px;
+  font-size: ${bigger};
   font-weight: 400;
   letter-spacing: 10.5px;
 `;
@@ -33,8 +46,8 @@ export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
 export const S_ButtonBox = styled.div`
   position: relative;
   justify-content: center;
-  color: ${color};
-  font-size: ${font_size};
+  color: ${bright};
+  font-size: ${medium};
 `;
 
 export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
@@ -57,15 +70,15 @@ export const S_Button = styled.button`
   margin-right: ${(props) => (props.$right ? margin_between_buttons : "0px")};
   background: ${(props) =>
     props.$active === "true"
-      ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"
+      ? `radial-gradient(at 50% 50%, ${dark}, ${neutral})`
       : "rgba(0, 0, 0, 0.1)"};
   padding: 12px;
-  color: ${color};
-  border-color: rgb(223, 223, 223);
+  color: ${bright};
+  border-color: ${brighter};
   border: 2px solid;
   border-radius: ${border_radius};
   &:hover {
-    background: radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5);
+    background: radial-gradient(at 50% 50%, ${dark}, ${neutral});
     cursor: pointer;
   }
 `;
@@ -74,7 +87,7 @@ export const S_FormBox = styled.div`
   display: inline-block;
   position: absolute;
   width: 30%;
-  font-size: ${font_size};
+  font-size: ${medium};
   top: 510px;
   left: 50%;
   transform: translateX(-50%);
@@ -86,9 +99,9 @@ export const S_InputFlex = styled.div`
 `;
 
 export const S_Input = styled.input`
-  color: ${(props) => (props.$color === "true" ? "#156429" : "#bc6640")};
+  color: ${(props) => (props.$color === "true" ? "#156429" : `${darker}`)};
   padding: 15px;
-  background: #f0f0f0;
+  background: ${brighter};
   border-radius: ${border_radius};
   border: 0;
   font-weight: 500;
@@ -99,8 +112,7 @@ export const S_Check = styled.div`
   transform: translateY(10%);
   margin-left: 10px;
   font-size: 40px;
-  color: ${(props) =>
-    props.$approved === "true" ? "#156429" : "rgb(214, 143, 112)"};
+  color: ${(props) => (props.$approved === "true" ? "#156429" : `${dark}`)};
 `;
 
 export const S_FormatConfirm = styled.div`

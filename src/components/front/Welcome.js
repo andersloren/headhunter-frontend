@@ -8,8 +8,8 @@ import {
   S_Subtitle_Welcome,
   S_Button,
   S_ButtonBox_Welcome,
-} from "./styledFront.js";
-import { S_Main, S_OpenAI_Badge, S_OpenAI_Box } from "../styledGlobal.js";
+} from "./styledComponents/styledFront";
+import { S_OpenAI_Badge, S_OpenAI_Box } from "../styledGlobal.js";
 
 // Components
 import SignUp from "./SignUp.js";
@@ -51,7 +51,7 @@ export default function Welcome({ setIsAuthorized }) {
   }
 
   return (
-    <S_Main>
+    <>
       {/**
        * App title
        */}
@@ -103,6 +103,6 @@ export default function Welcome({ setIsAuthorized }) {
        * Login component
        */}
       {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
-    </S_Main>
+    </>
   );
 }

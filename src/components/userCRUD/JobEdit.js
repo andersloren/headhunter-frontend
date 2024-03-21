@@ -13,6 +13,11 @@ import {
   S_PreviewBox,
   S_FunctionalityButton_Box,
   S_FunctionalityButton,
+  S_HtmlSvg,
+  S_PdfSvg,
+  S_DocxSvg,
+  S_UpdateSvg,
+  S_GenerateSvg,
 } from "./styledComponents/styledUserGlobal.js";
 import {
   S_TextArea,
@@ -135,23 +140,6 @@ export default function JobEdit({
     );
   }
 
-  /**
-   * When clicking the delete button, a window confirm alert is being shown to the user.
-   *
-   * If the user clicks ok, and the deletion is successful, the job component will be invisible until a new job has been selected from the job list in the parent component.
-   *
-   * @param {number} jobId - This is the identifier for the current Job being handled by the user.
-   */
-
-  function handleDeleteJob(jobId) {
-    if (window.confirm("Are you sure you want to delete this job ?")) {
-      deleteJob(jobId, handleJobCRUDSuccess);
-      setJobVisible(false);
-    } else {
-      console.log("User cancelled delete");
-    }
-  }
-
   // TODO - Maybe just put setIsChange where it is supposed to happen instead of pointing to this function.
   function handleIsChange() {
     setIsChange(false);
@@ -184,19 +172,31 @@ export default function JobEdit({
           onClick={() => setActiveFormat("1")}
           $active={activeFormat === "1" ? "true" : "false"}
         >
-          HTML
+          <S_HtmlSvg
+            $active={activeFormat === "1" ? "true" : "false"}
+            src="/google-icons/html.svg"
+            alt="html"
+          />
         </S_Instruction_DecisionButton>
         <S_Instruction_DecisionButton
           onClick={() => setActiveFormat("2")}
           $active={activeFormat === "2" ? "true" : "false"}
         >
-          PDF
+          <S_PdfSvg
+            $active={activeFormat === "2" ? "true" : "false"}
+            src="/google-icons/pdf.svg"
+            alt="pdf"
+          />
         </S_Instruction_DecisionButton>
         <S_Instruction_DecisionButton
           onClick={() => setActiveFormat("3")}
           $active={activeFormat === "3" ? "true" : "false"}
         >
-          DOCX
+          <S_DocxSvg
+            $active={activeFormat === "3" ? "true" : "false"}
+            src="/google-icons/docx.svg"
+            alt="docx"
+          />
         </S_Instruction_DecisionButton>
 
         {
@@ -222,7 +222,7 @@ export default function JobEdit({
 
         <S_FunctionalityButton_Box>
           {
-            // Save Ad button
+            // Save Job button
           }
           <S_FunctionalityButton
             onClick={() => {
@@ -234,7 +234,7 @@ export default function JobEdit({
             onMouseLeave={() => handleActiveButton("")}
             $blur={isGenerating === true ? "true" : "false"}
           >
-            💾
+            <S_UpdateSvg src="/google-icons/update.svg" alt="save job" />
           </S_FunctionalityButton>
           {
             // Generate Ad button
@@ -250,21 +250,11 @@ export default function JobEdit({
             onMouseLeave={() => handleActiveButton("")}
             $blur={isGenerating === true ? "true" : "false"}
           >
-            ⚡
+            <S_GenerateSvg src="/google-icons/generate.svg" alt="generate ad" />
           </S_FunctionalityButton>
           {
-            // Delete Ad button
+            // Delete Job button
           }
-          <S_FunctionalityButton
-            onClick={() => handleDeleteJob(jobId)}
-            onMouseOver={() =>
-              isGenerating ? handleActiveButton("") : handleActiveButton("3")
-            }
-            onMouseLeave={() => handleActiveButton("")}
-            $blur={isGenerating === true ? "true" : "false"}
-          >
-            ❌
-          </S_FunctionalityButton>
 
           {
             // Tooltip

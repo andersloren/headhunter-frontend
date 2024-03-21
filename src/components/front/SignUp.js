@@ -10,7 +10,7 @@ import {
   S_Button,
   S_Check,
   S_InputFlex,
-} from "./styledFront.js";
+} from "./styledComponents/styledFront";
 
 /**
  * When a user tries to sign up, it has to enter a valid email, a username, and a valid password.

@@ -12,7 +12,7 @@ import {
   S_Button,
   S_InputFlex,
   S_Check,
-} from "./styledFront.js";
+} from "./styledComponents/styledFront.js";
 
 /**
  * When the user tries to log in, it has to enter its email and password. The user can also chose to go back to the parent component.

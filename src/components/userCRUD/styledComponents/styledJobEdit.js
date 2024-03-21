@@ -1,41 +1,54 @@
 import { styled, keyframes } from "styled-components";
 
+import {
+  brightest,
+  brighter,
+  bright,
+  neutral,
+  dark,
+  darker,
+  darkest,
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
+
 const border_radius = "5px";
-const color = "#fff0d9";
 const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
 
 export const S_Instruction_Input = styled.input`
   border-radius: ${border_radius};
-  padding: 15px;
-  background: #f0f0f0;
-  background-color: #f9d2b5;
+  padding: 9px;
+  width: 100%;
+  background-color: ${brightest};
+  font-size: ${medium};
 `;
 
 export const S_Instruction_DecisionButton = styled.button`
-  margin-right: 15px;
-  width: 100px;
+  margin-right: 30px;
+  width: 70px;
+  background-color: ${neutral};
   background: ${(props) =>
-    props.$active === "true"
-      ? "radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5)"
-      : "rgba(0, 0, 0, 0.1)"};
+    props.$active === "true" ? `${brighter}` : `${neutral}`};
   padding: 12px;
-  color: ${color};
-  border-color: rgb(223, 223, 223);
+  color: ${bright};
+  border-color: ${brighter};
   border: 2px solid;
   border-radius: ${border_radius};
   &:hover {
-    background: radial-gradient(at 50% 50%, rgb(214, 143, 112), #f9d2b5);
+    background: ${dark};
     cursor: pointer;
   }
 `;
 
 export const S_TextArea = styled.textarea`
-  box-shadow: 10px 5px 5px #c0806580;
+  background-color: ${brightest};
+  color: ${darkest};
+  font-size: ${medium};
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
   min-width: 400px;
-  background-color: #f9d2b5;
 `;
 
 export const S_Tooltip_FunctionalityButton = styled.div`
@@ -53,14 +66,14 @@ export const S_Tooltip_FunctionalityButton = styled.div`
   align-items: center;
   border-radius: ${border_radius};
   border: 2px solid;
-  background-color: #fff0d9;
+  background-color: ${bright};
 `;
 
 export const S_Animation_Text = styled.div`
   position: relative;
   text-align: center;
-  font-size: 35px;
-  color: #fff0d9;
+  font-size: ${big};
+  color: ${bright};
 `;
 
 const rotate = keyframes`
@@ -81,37 +94,10 @@ const rotate = keyframes`
   }
 `;
 
-const strafe = keyframes`
-  from {
-    transform: translate(0%);
-  }
-25% {
-  transform: translate(30%);
-}
-  50% {
-    transform: translate(0%);
-  }
-  75% {
-    transform: translate(-30%);
-  }
-  to {
-    transform: translate(0%);
-  }
-`;
-
 export const S_Animation_Rotate = styled.div`
   margin-top: 30px;
   position: relative;
   text-align: center;
   font-size: 50px;
   animation: ${rotate} 5s linear infinite;
-`;
-
-// TODO - Remove this since it is not being used?
-export const S_Animation_Strafe = styled.div`
-  position: relative;
-  font-size: 90px;
-  left: 50%;
-  transform: translate(-50%);
-  animation: ${strafe} 5s linear infinite;
 `;

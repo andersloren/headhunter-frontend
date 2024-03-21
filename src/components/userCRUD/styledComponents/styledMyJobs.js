@@ -1,17 +1,27 @@
 import styled from "styled-components";
 
+import {
+  brightest,
+  brighter,
+  bright,
+  neutral,
+  dark,
+  darker,
+  darkest,
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
+
 const border_radius = "5px";
-const font_size = "20px";
+// TODO - Remove margin left, doesn't used anymore?
 const margin_left_from_table = "20px";
 const table_width = "290px";
-
-export const S_WindowSplit = styled.div`
-  display: flex;
-`;
 
 export const S_JobList_Box = styled.div`
   margin-left: ${margin_left_from_table};
   margin-top: 10px;
+  min-width: 200px;
 `;
 
 // export const S_JobList_Heading_MyJobs = styled.div`
@@ -21,26 +31,34 @@ export const S_JobList_Box = styled.div`
 // `;
 
 export const S_JobList = styled.div`
-  font-size: ${font_size};
+  font-size: ${medium};
   &:hover {
     cursor: pointer;
-    background: #fff0d9;
+    background: ${brighter};
   }
   padding: 10px;
   background-color: ${(props) =>
-    props.$active === "true" ? "#fff0d9" : "rgb(214, 143, 112)"};
+    props.$active === "true" ? `${brighter}` : `${neutral}`};
+  /* &:hover {
+    background: radial-gradient(at 50% 50%, ${darker}, ${darker});
+  } */
   &:hover {
-    background: radial-gradient(at 50% 50%, #fff0d9, rgb(214, 143, 112));
+    background: ${dark};
+    color: ${brightest};
   }
   border-radius: ${border_radius};
+  color: ${(props) =>
+    props.$active === "true" ? `${darkest}` : `${brightest}`};
 `;
 
 export const S_Button_AddJob = styled.button`
-  font-size: ${font_size};
+  font-size: ${medium};
   font-weight: bold;
-  background-color: #fff0d9;
+  background-color: ${bright};
+  color: ${darkest};
   &:hover {
-    background-color: #f9d2b5;
+    background-color: ${brightest};
+    color: ${darkest};
   }
   margin-top: 10px;
   height: 40px;
