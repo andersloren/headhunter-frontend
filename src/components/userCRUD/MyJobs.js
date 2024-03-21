@@ -16,6 +16,7 @@ import {
   S_JobList_Box,
   S_JobList,
 } from "./styledComponents/styledMyJobs.js";
+import { S_WindowSplit } from "../sidebar/styledSidebar.js";
 
 /**
  *
@@ -105,78 +106,79 @@ export default function MyJobs() {
   return (
     <>
       <S_Main>
-        <S_JobList_Box>
-          <div>username</div>
-          <div>Logout</div>
+        <S_WindowSplit>
+          <S_JobList_Box>
+            {
+              // Joblist
+            }
 
-          {
-            // Joblist
-          }
-
-          <S_Header>Jobs</S_Header>
-          {jobList.map((job) => (
-            <S_JobList
-              key={job.id}
-              onClick={() => {
-                isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
-                setAdsExist(job.numberOfAds > 0);
-              }}
-              /**
-               * The selected job is highlighted in the list of jobs in the job UI.
-               */
-              $active={jobId === job.id ? "true" : "false"}
-            >
-              {/**
-               * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
-               */}
-              {job.title.length > 20
-                ? job.title.slice(0, 20) + "..."
-                : job.title}
-            </S_JobList>
-          ))}
-
-          {
-            // Add New Job button
-          }
-
-          <S_Button_AddJob $firstChild="true" onClick={() => handleAddJob()}>
-            ➕ Add New Job
-          </S_Button_AddJob>
-        </S_JobList_Box>
-        {
-          // Job and Ad components
-        }
-        <>
-          {/* TODO - See if it's possible to remove S_Preview */}
-          <S_Preview>
-            {/**
-             * Only if a job is selected will the job UI show.
-             */}
-            {jobVisible && (
-              <>
-                <JobEdit
-                  key={jobId}
-                  handleJobCRUDSuccess={handleJobCRUDSuccess}
-                  jobId={jobId}
-                  setIsChange={setIsChange}
-                  setJobVisible={setJobVisible}
-                  setRefreshAdTabs={setRefreshAdTabs}
-                  handleAdCRUDSuccess={handleAdCRUDSuccess}
-                />
+            <S_Header>Jobs</S_Header>
+            {jobList.map((job) => (
+              <S_JobList
+                key={job.id}
+                onClick={() => {
+                  isChange
+                    ? handleUnsavedChanges(job.id)
+                    : handlePreview(job.id);
+                  setAdsExist(job.numberOfAds > 0);
+                }}
+                /**
+                 * The selected job is highlighted in the list of jobs in the job UI.
+                 */
+                $active={jobId === job.id ? "true" : "false"}
+              >
                 {/**
-                 * Only if the selected job has one or more ads will the ad UI show.
+                 * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
                  */}
-                {adsExist && (
-                  <Ad
+                {job.title.length > 20
+                  ? job.title.slice(0, 20) + "..."
+                  : job.title}
+              </S_JobList>
+            ))}
+
+            {
+              // Add New Job button
+            }
+
+            <S_Button_AddJob $firstChild="true" onClick={() => handleAddJob()}>
+              ➕ Add New Job
+            </S_Button_AddJob>
+          </S_JobList_Box>
+          {
+            // Job and Ad components
+          }
+          <>
+            {/* TODO - See if it's possible to remove S_Preview */}
+            <S_Preview>
+              {/**
+               * Only if a job is selected will the job UI show.
+               */}
+              {jobVisible && (
+                <>
+                  <JobEdit
+                    key={jobId}
+                    handleJobCRUDSuccess={handleJobCRUDSuccess}
                     jobId={jobId}
-                    refreshAdTabs={refreshAdTabs}
+                    setIsChange={setIsChange}
+                    setJobVisible={setJobVisible}
+                    setRefreshAdTabs={setRefreshAdTabs}
                     handleAdCRUDSuccess={handleAdCRUDSuccess}
                   />
-                )}
-              </>
-            )}
-          </S_Preview>
-        </>
+                  {/**
+                   * Only if the selected job has one or more ads will the ad UI show.
+                   */}
+                  {adsExist && (
+                    <Ad
+                      jobId={jobId}
+                      refreshAdTabs={refreshAdTabs}
+                      handleAdCRUDSuccess={handleAdCRUDSuccess}
+                    />
+                  )}
+                </>
+              )}
+            </S_Preview>
+          </>
+        </S_WindowSplit>
       </S_Main>
     </>
   );
