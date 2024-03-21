@@ -1,4 +1,5 @@
-import { lighten, darken } from "./colorPalette";
+import { styled } from "styled-components";
+import { lighten, darken } from "./colors/colorPalette";
 
 const baseColor = "hsl(210, 50%, 50%)"; // Example: a shade of blue
 
@@ -11,8 +12,8 @@ export const dark = darken(baseColor, 0.25); // 25% darker
 export const darker = darken(baseColor, 0.5); // 50% darker
 export const darkest = darken(baseColor, 0.75); // 75% darker
 
-// export const brighter = "#fff7eb";
-// export const bright = "#fff0d9";
-// export const neutral = "#f9d2b5";
-// export const dark = "#d68f70";
-// export const darker = "#c08065";
+export const biggest = "70px";
+export const bigger = "35px"; // Used for subtitle on Welcome, be cautious
+export const big = "35px";
+export const medium = "20px";
+export const small = "12px";

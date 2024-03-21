@@ -8,13 +8,15 @@ import {
   dark,
   darker,
   darkest,
-} from "../../utils/colors/styledComponentsConstants";
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
 
 // Border radius for input fields.
 const border_radius_form = "15px";
 const margin_between_buttons = "20px";
 const border_radius_functionality = "5px";
-const font_size = "20px";
 
 /**
  * Box that centers puts itself cenetered horizontally when the update button is clicked in the parent component.
@@ -26,7 +28,7 @@ export const S_Form_FloatingDiv = styled.div`
   flex-direction: column;
   position: relative;
   width: 20%;
-  font-size: ${font_size};
+  font-size: ${medium};
   z-index: 1;
   top: 50%;
   left: 50%;
@@ -39,7 +41,7 @@ export const S_Form_FloatingDiv = styled.div`
 `;
 
 export const S_Form_Header = styled.div`
-  font-size: 30px;
+  font-size: ${big};
   padding-bottom: 10px;
   font-weight: bold;
   text-align: center;

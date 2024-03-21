@@ -8,7 +8,10 @@ import {
   dark,
   darker,
   darkest,
-} from "../../utils/colors/styledComponentsConstants";
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
 
 // Border radius for small buttons.
 const border_radius_functionality = "5px";
@@ -46,7 +49,7 @@ export const S_Button_Box = styled.div``;
  * Update and Delete buttons for the user table
  */
 export const S_Table_Button = styled.button`
-  font-size: 15px;
+  font-size: ${small};
   color: ${bright};
   height: 35px;
   width: 35px;

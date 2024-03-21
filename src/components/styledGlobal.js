@@ -8,7 +8,7 @@ import {
   dark,
   darker,
   darkest,
-} from "./utils/colors/styledComponentsConstants";
+} from "./utils/styledComponentsConstants";
 
 const margin_left_from_screen = "30px";
 

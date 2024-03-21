@@ -8,23 +8,23 @@ import {
   dark,
   darker,
   darkest,
-} from "../../utils/colors/styledComponentsConstants";
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
 
 const border_radius = "5px";
-const font_size = "20px";
-const margin_left_from_table = "20px";
 const topButtonsHeight = "34px";
 
 const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
-const table_width = "290px";
 
 export const S_TopButtons_Box = styled.div`
   height: ${topButtonsHeight};
 `;
 export const S_Buttons_Edit = styled.button`
   height: ${topButtonsHeight};
-  font-size: ${font_size};
+  font-size: ${medium};
   width: auto;
   background-color: ${(props) =>
     // props.$active === "true" ? `${bright}` : `${dark}`};

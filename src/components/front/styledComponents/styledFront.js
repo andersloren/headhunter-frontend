@@ -8,10 +8,14 @@ import {
   dark,
   darker,
   darkest,
-} from "../../utils/colors/styledComponentsConstants";
+  biggest,
+  bigger,
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
-const font_size = "20px";
 
 const margin_between_buttons = "20px";
 
@@ -22,7 +26,7 @@ export const S_HeadingBox_Welcome = styled.div`
 `;
 
 export const S_Title_Welcome = styled.h1`
-  font-size: 70px;
+  font-size: ${biggest};
   font-weight: 700;
   letter-spacing: 20px;
   margin-right: -20px;
@@ -34,7 +38,7 @@ export const S_Title_Welcome = styled.h1`
 `;
 
 export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
-  font-size: 35px;
+  font-size: ${bigger};
   font-weight: 400;
   letter-spacing: 10.5px;
 `;
@@ -43,7 +47,7 @@ export const S_ButtonBox = styled.div`
   position: relative;
   justify-content: center;
   color: ${bright};
-  font-size: ${font_size};
+  font-size: ${medium};
 `;
 
 export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
@@ -83,7 +87,7 @@ export const S_FormBox = styled.div`
   display: inline-block;
   position: absolute;
   width: 30%;
-  font-size: ${font_size};
+  font-size: ${medium};
   top: 510px;
   left: 50%;
   transform: translateX(-50%);

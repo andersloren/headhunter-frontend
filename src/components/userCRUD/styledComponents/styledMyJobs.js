@@ -8,10 +8,13 @@ import {
   dark,
   darker,
   darkest,
-} from "../../utils/colors/styledComponentsConstants";
+  big,
+  medium,
+  small,
+} from "../../utils/styledComponentsConstants";
 
 const border_radius = "5px";
-const font_size = "20px";
+// TODO - Remove margin left, doesn't used anymore?
 const margin_left_from_table = "20px";
 const table_width = "290px";
 
@@ -28,7 +31,7 @@ export const S_JobList_Box = styled.div`
 // `;
 
 export const S_JobList = styled.div`
-  font-size: ${font_size};
+  font-size: ${medium};
   &:hover {
     cursor: pointer;
     background: ${brighter};
@@ -49,9 +52,8 @@ export const S_JobList = styled.div`
 `;
 
 export const S_Button_AddJob = styled.button`
-  font-size: ${font_size};
+  font-size: ${medium};
   font-weight: bold;
-
   background-color: ${bright};
   color: ${darkest};
   &:hover {
