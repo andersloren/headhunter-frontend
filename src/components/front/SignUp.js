@@ -3,16 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { findUserByEmail } from "./functions/findUserByEmail";
 
-// Custom components
+// Styled Components
 import {
   S_FormBox,
   S_Input,
   S_ButtonBox_Submit,
-  S_Button,
   S_Check,
-  S_InputFlex,
   S_EmailIsNotAvailable,
-} from "./styledComponents/styledFront";
+} from "./styledComponents/styledLoginSignup.js";
+import { S_Button } from "./styledComponents/styledFront.js";
 
 /**
  * When a user tries to sign up, it has to enter a valid email, a username, and a valid password.
@@ -142,61 +141,55 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
     <>
       <S_FormBox>
         <form onSubmit={handleClick}>
-          <S_InputFlex>
-            {/**
-             * Input field for email
-             */}
-            <S_Input
-              type="email"
-              placeholder="Enter Email"
-              value={email}
-              onChange={(e) => handleEmailChange(e.target.value)}
-            />
-            {/**
-             * Green check sign that appears if isEmailok is true, which it will be only if the email meets the regex criteria.
-             */}
-            {emailStatus < 1 ? (
-              emailStatus < 0 ? (
-                <S_EmailIsNotAvailable>
-                  Email is already registered
-                </S_EmailIsNotAvailable>
-              ) : (
-                ""
-              )
+          {/**
+           * Input field for email
+           */}
+          <S_Input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => handleEmailChange(e.target.value)}
+          />
+          {/**
+           * Green check sign that appears if isEmailok is true, which it will be only if the email meets the regex criteria.
+           */}
+          {emailStatus < 1 ? (
+            emailStatus < 0 ? (
+              <S_EmailIsNotAvailable>
+                Email is already registered
+              </S_EmailIsNotAvailable>
             ) : (
-              <S_Check>✔</S_Check>
-            )}
-          </S_InputFlex>
-          <S_InputFlex>
-            {/**
-             * Input field for username
-             */}
-            <S_Input
-              type="text"
-              placeholder="Enter Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            {/**
-             * Green check sign that appears username is anything but an empty string.
-             */}
-            {username !== "" && <S_Check>✔</S_Check>}
-          </S_InputFlex>
-          <S_InputFlex>
-            {/**
-             * Input field for password
-             */}
-            <S_Input
-              type="password"
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => handlePasswordChange(e.target.value)}
-            />
-            {/**
-             * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
-             */}
-            {isPasswordOk && <S_Check>✔</S_Check>}
-          </S_InputFlex>
+              ""
+            )
+          ) : (
+            <S_Check>✔</S_Check>
+          )}
+          {/**
+           * Input field for username
+           */}
+          <S_Input
+            type="text"
+            placeholder="Enter Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {/**
+           * Green check sign that appears username is anything but an empty string.
+           */}
+          {username !== "" && <S_Check>✔</S_Check>}
+          {/**
+           * Input field for password
+           */}
+          <S_Input
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => handlePasswordChange(e.target.value)}
+          />
+          {/**
+           * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
+           */}
+          {isPasswordOk && <S_Check>✔</S_Check>}
 
           {/**
            * If both email and password meets the regex criteria, a button for submitting the registration turns visible.

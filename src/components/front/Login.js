@@ -4,15 +4,14 @@ import { authorize } from "../security/authorize.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// Syled Components
+// Styled Components
 import {
   S_FormBox,
   S_Input,
+  S_LoginError,
   S_ButtonBox_Submit,
-  S_Button,
-  S_InputFlex,
-  S_Check,
-} from "./styledComponents/styledFront.js";
+} from "./styledComponents/styledLoginSignup.js";
+import { S_Button } from "./styledComponents/styledFront.js";
 
 /**
  * When the user tries to log in, it has to enter its email and password. The user can also chose to go back to the parent component.
@@ -26,6 +25,7 @@ import {
 export default function Login({ setIsAuthorized }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -70,6 +70,7 @@ export default function Login({ setIsAuthorized }) {
       setIsAuthorized(authorize());
     } catch (error) {
       console.error("Error logging in", error);
+      setLoginError(true);
     }
   }
 
@@ -93,9 +94,9 @@ export default function Login({ setIsAuthorized }) {
   }
 
   return (
-    <S_FormBox>
-      <form onSubmit={handleClick}>
-        <S_InputFlex>
+    <div style={{ display: "flex" }}>
+      <S_FormBox>
+        <form onSubmit={handleClick}>
           {/**
            * Input field for the user's email.
            */}
@@ -105,11 +106,7 @@ export default function Login({ setIsAuthorized }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {/* TODO - remove this check component */}
-          <S_Check $approved="false">✔</S_Check>
-        </S_InputFlex>
 
-        <S_InputFlex>
           {/**
            * Input field for the user's password
            */}
@@ -119,19 +116,18 @@ export default function Login({ setIsAuthorized }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* TODO - remove this check component */}
-          <S_Check $approved="false">✔</S_Check>
-        </S_InputFlex>
 
-        {/**
-         * If the user has entered non-empty values to email and password, the submit button appears.
-         */}
-        {email !== "" && password !== "" && (
-          <S_ButtonBox_Submit>
-            <S_Button onClick={(e) => handleClick(e)}>Submit</S_Button>
-          </S_ButtonBox_Submit>
-        )}
-      </form>
-    </S_FormBox>
+          {/**
+           * If the user has entered non-empty values to email and password, the submit button appears.
+           */}
+          {email !== "" && password !== "" && (
+            <S_ButtonBox_Submit>
+              <S_Button onClick={(e) => handleClick(e)}>Submit</S_Button>
+            </S_ButtonBox_Submit>
+          )}
+        </form>
+      </S_FormBox>
+      {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
+    </div>
   );
 }

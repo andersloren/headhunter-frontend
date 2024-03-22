@@ -35,7 +35,6 @@ export const S_Title = styled.div`
 export const S_OpenAI_Box = styled.div`
   width: auto;
   vertical-align: middle;
-  left: 50%;
 `;
 
 export const S_OpenAI_Badge = styled.img`

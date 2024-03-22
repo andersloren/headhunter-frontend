@@ -75,7 +75,6 @@ export default function Welcome({ setIsAuthorized }) {
       <S_ButtonBox_Welcome>
         <S_Button
           key={1}
-          $right={"true"}
           onClick={() => handleSignUp()}
           $active={signUpVisible ? "true" : "false"}
         >
@@ -83,7 +82,6 @@ export default function Welcome({ setIsAuthorized }) {
         </S_Button>
         <S_Button
           key={2}
-          $left={"true"}
           onClick={() => handleLogin()}
           $active={loginVisible ? "true" : "false"}
         >
