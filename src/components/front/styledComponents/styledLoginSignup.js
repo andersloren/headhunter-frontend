@@ -24,14 +24,14 @@ export const S_LoginError = styled.div`
 `;
 
 export const S_FormBox = styled.div`
-  position: flex;
-  margin-top: 20px;
+  display: flex;
   position: absolute;
+  margin-top: 20px;
   font-size: ${medium};
   top: 510px;
   left: 50%;
-  /* transform: translateX(${inputfield_translateX}px); */
   transform: translateX(-50%);
+  /* transform: translateX(${inputfield_translateX}px); */
 `;
 
 export const S_Input = styled.input`
@@ -49,18 +49,29 @@ export const S_Input = styled.input`
   width: ${inputfield_width} "px";
 `;
 
-export const S_Check = styled.div`
-  position: static;
-  transform: translateY(10%);
-  margin-left: 10px;
-  font-size: 40px;
-  color: ${brightest};
+export const S_SignUpFeedbackBox = styled.div`
+  display: flex;
 `;
 
 export const S_EmailIsNotAvailable = styled.div`
+  display: flex;
+  align-items: center;
+  height: 50px;
+  position: absolute;
+  width: 400px;
   transform: translateY(10%);
   margin-left: 10px;
   font-size: ${medium};
+  color: ${brightest};
+`;
+
+export const S_Check = styled.div`
+  display: flex;
+  /* position: absolute; */
+  /* align-items: center; */
+  transform: translateY(10%);
+  margin-left: 10px;
+  font-size: 40px;
   color: ${brightest};
 `;
 

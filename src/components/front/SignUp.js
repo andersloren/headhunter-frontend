@@ -10,6 +10,7 @@ import {
   S_ButtonBox_Submit,
   S_Check,
   S_EmailIsNotAvailable,
+  S_SignUpFeedbackBox,
 } from "./styledComponents/styledLoginSignup.js";
 import { S_Button } from "./styledComponents/styledFront.js";
 
@@ -151,20 +152,6 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             onChange={(e) => handleEmailChange(e.target.value)}
           />
           {/**
-           * Green check sign that appears if isEmailok is true, which it will be only if the email meets the regex criteria.
-           */}
-          {emailStatus < 1 ? (
-            emailStatus < 0 ? (
-              <S_EmailIsNotAvailable>
-                Email is already registered
-              </S_EmailIsNotAvailable>
-            ) : (
-              ""
-            )
-          ) : (
-            <S_Check>✔</S_Check>
-          )}
-          {/**
            * Input field for username
            */}
           <S_Input
@@ -173,10 +160,6 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          {/**
-           * Green check sign that appears username is anything but an empty string.
-           */}
-          {username !== "" && <S_Check>✔</S_Check>}
           {/**
            * Input field for password
            */}
@@ -208,6 +191,26 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             </S_ButtonBox_Submit>
           )}
         </form>
+        <S_SignUpFeedbackBox>
+          {emailStatus < 1 ? (
+            emailStatus < 0 ? (
+              <S_EmailIsNotAvailable>
+                Email is already registered
+              </S_EmailIsNotAvailable>
+            ) : (
+              ""
+            )
+          ) : (
+            /**
+             * Green check sign that appears if isEmailok is true, which it will be only if the email meets the regex criteria.
+             */
+            <S_Check>✔</S_Check>
+          )}
+          {/**
+           * Green check sign that appears username is anything but an empty string.
+           */}
+          {username !== "" && <S_Check>✔</S_Check>}
+        </S_SignUpFeedbackBox>
       </S_FormBox>
     </>
   );
