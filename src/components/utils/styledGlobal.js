@@ -8,6 +8,9 @@ import {
   dark,
   darker,
   darkest,
+  big,
+  medium,
+  small,
 } from "./styledComponentsConstants";
 
 const margin_left_from_screen = "30px";
