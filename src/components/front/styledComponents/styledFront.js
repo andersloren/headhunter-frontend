@@ -21,7 +21,7 @@ const margin_between_buttons = "20px";
 
 export const S_HeadingBox_Welcome = styled.div`
   padding-top: 150px;
-  /* font-family: ; */
+  font-family: Merriweather, sans-serif;
   text-transform: uppercase;
 `;
 
@@ -31,7 +31,7 @@ export const S_Title_Welcome = styled.h1`
   letter-spacing: 20px;
   margin-right: -20px;
   margin-bottom: 8px;
-  color: ${bright};
+  color: ${brightest};
   text-align: justify;
   text-align: center;
   vertical-align: text-bottom;
@@ -46,8 +46,6 @@ export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
 export const S_ButtonBox = styled.div`
   position: relative;
   justify-content: center;
-  color: ${bright};
-  font-size: ${medium};
 `;
 
 export const S_ButtonBox_Welcome = styled(S_ButtonBox)`
@@ -65,21 +63,31 @@ export const S_ButtonBox_Submit = styled(S_ButtonBox)`
 `;
 
 export const S_Button = styled.button`
+  font-size: ${medium};
   width: 100px;
+  padding: 12px;
   margin-left: ${(props) => (props.$left ? margin_between_buttons : "0px")};
   margin-right: ${(props) => (props.$right ? margin_between_buttons : "0px")};
-  background: ${(props) =>
+
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
+  color: ${(props) =>
+    props.$active === "true" ? `${darkest}` : `${brightest}`};
+
+  border-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${brightest}`};
+  /* border: 2px ${bright} solid; */
+  border: ${(props) =>
     props.$active === "true"
-      ? `radial-gradient(at 50% 50%, ${dark}, ${neutral})`
-      : "rgba(0, 0, 0, 0.1)"};
-  padding: 12px;
-  color: ${bright};
-  border-color: ${brighter};
-  border: 2px solid;
+      ? `2px ${darkest} solid`
+      : `2px ${brightest} solid`};
   border-radius: ${border_radius};
+
   &:hover {
-    background: radial-gradient(at 50% 50%, ${dark}, ${neutral});
+    background: ${brighter};
     cursor: pointer;
+    color: ${darkest};
+    border: 2px ${darkest} solid;
   }
 `;
 
@@ -99,9 +107,12 @@ export const S_InputFlex = styled.div`
 `;
 
 export const S_Input = styled.input`
-  color: ${(props) => (props.$color === "true" ? "#156429" : `${darker}`)};
+  &::placeholder {
+    color: ${dark};
+  }
+  color: ${(props) => (props.$color === "true" ? "#156429" : `${darkest}`)};
   padding: 15px;
-  background: ${brighter};
+  background: ${brightest};
   border-radius: ${border_radius};
   border: 0;
   font-weight: 500;
@@ -112,13 +123,14 @@ export const S_Check = styled.div`
   transform: translateY(10%);
   margin-left: 10px;
   font-size: 40px;
-  color: ${(props) => (props.$approved === "true" ? "#156429" : `${dark}`)};
+  color: ${(props) =>
+    props.$approved === "true" ? `${brightest}` : `${neutral}`};
 `;
 
 export const S_FormatConfirm = styled.div`
   color: #156429;
   font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
+  font-size: ${medium};
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;

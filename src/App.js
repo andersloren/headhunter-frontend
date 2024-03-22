@@ -10,6 +10,7 @@ import Welcome from "./components/front/Welcome";
 import Sidebar from "./components/sidebar/Sidebar";
 
 import { S_Main } from "./components/styledGlobal.js";
+import ColorDashboard from "./components/utils/colors/ColorDashboard.js";
 
 /**
  * App deals with the router setup and prevents the navbar from loading in without their being a JWT stored locally.
@@ -43,6 +44,7 @@ export default function App() {
   if (isAuthorized)
     return (
       <>
+        <ColorDashboard />
         <S_Main>
           <Sidebar roles={roles} setIsAuthorized={setIsAuthorized} />
         </S_Main>
