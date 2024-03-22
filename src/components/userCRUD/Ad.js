@@ -4,7 +4,7 @@ import { findAllAdsByJobId } from "./adFunctions/findAllAdsByJobId";
 import { deleteAd } from "./adFunctions/deleteAd";
 
 // Styled Components
-import { S_Main } from "../styledGlobal";
+import { S_Main } from "../utils/styledGlobal";
 import {
   S_FunctionalityButton,
   S_FunctionalityButton_Box,

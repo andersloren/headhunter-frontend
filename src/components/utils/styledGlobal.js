@@ -8,14 +8,13 @@ import {
   dark,
   darker,
   darkest,
-} from "./utils/styledComponentsConstants";
+} from "./styledComponentsConstants";
 
 const margin_left_from_screen = "30px";
 
 // Main
 export const S_Main = styled.div`
-  /* font-family: "Montserrat", sans-serif; */
-  height: 100vh;
+  min-height: 100vh;
   background-color: ${neutral};
 `;
 

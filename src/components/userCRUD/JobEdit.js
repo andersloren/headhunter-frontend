@@ -6,7 +6,7 @@ import { getJobById } from "./jobFunctions/getJobById.js";
 import { generateJobAd } from "./jobFunctions/generateJobAd.js";
 
 // Styled Components
-import { S_Main } from "../styledGlobal.js";
+import { S_Main } from "../utils/styledGlobal.js";
 import {
   S_JobEdit_And_Ad_Box,
   S_Header,

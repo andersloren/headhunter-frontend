@@ -9,7 +9,7 @@ import {
   S_Button,
   S_ButtonBox_Welcome,
 } from "./styledComponents/styledFront";
-import { S_OpenAI_Badge, S_OpenAI_Box } from "../styledGlobal.js";
+import { S_OpenAI_Badge, S_OpenAI_Box } from "../utils/styledGlobal.js";
 
 // Components
 import SignUp from "./SignUp.js";

@@ -4,7 +4,7 @@ import { deleteUser } from "./adminFunctions/deleteUser";
 import { findAllUsers } from "./adminFunctions/findAllUsers";
 
 // Styled components
-import { S_Main, S_HeadingBox, S_Title } from "../styledGlobal";
+import { S_Main, S_HeadingBox, S_Title } from "../utils/styledGlobal";
 import {
   S_Userlist_Table,
   S_UserList_Row,
