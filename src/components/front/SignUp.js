@@ -9,8 +9,11 @@ import {
   S_Input,
   S_ButtonBox_Submit,
   S_Check,
-  S_EmailIsNotAvailable,
-  S_SignUpFeedbackBox,
+  // S_EmailIsNotAvailable,
+  // S_SignUpFeedbackBox,
+  S_InputFeedbackBox,
+  S_InputFeedback,
+  S_CheckSvg,
 } from "./styledComponents/styledLoginSignup.js";
 import { S_Button } from "./styledComponents/styledFront.js";
 
@@ -141,6 +144,29 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   return (
     <>
       <S_FormBox>
+        <S_InputFeedbackBox>
+          <S_InputFeedback>
+            {emailStatus < 1 ? (
+              emailStatus < 0 ? (
+                "Email is already registered"
+              ) : (
+                ""
+              )
+            ) : (
+              <S_CheckSvg src="/google-icons/check.svg" alt="check" />
+            )}
+          </S_InputFeedback>
+          <S_InputFeedback>
+            {username && (
+              <S_CheckSvg src="/google-icons/check.svg" alt="check" />
+            )}
+          </S_InputFeedback>
+          <S_InputFeedback>
+            {isPasswordOk && (
+              <S_CheckSvg src="/google-icons/check.svg" alt="check" />
+            )}
+          </S_InputFeedback>
+        </S_InputFeedbackBox>
         <form onSubmit={handleClick}>
           {/**
            * Input field for email
@@ -169,11 +195,11 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             value={password}
             onChange={(e) => handlePasswordChange(e.target.value)}
           />
+
           {/**
            * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
            */}
           {isPasswordOk && <S_Check>✔</S_Check>}
-
           {/**
            * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
            */}
@@ -191,7 +217,7 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             </S_ButtonBox_Submit>
           )}
         </form>
-        <S_SignUpFeedbackBox>
+        {/* <S_SignUpFeedbackBox>
           {emailStatus < 1 ? (
             emailStatus < 0 ? (
               <S_EmailIsNotAvailable>
@@ -201,16 +227,10 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
               ""
             )
           ) : (
-            /**
-             * Green check sign that appears if isEmailok is true, which it will be only if the email meets the regex criteria.
-             */
             <S_Check>✔</S_Check>
           )}
-          {/**
-           * Green check sign that appears username is anything but an empty string.
-           */}
           {username !== "" && <S_Check>✔</S_Check>}
-        </S_SignUpFeedbackBox>
+        </S_SignUpFeedbackBox> */}
       </S_FormBox>
     </>
   );

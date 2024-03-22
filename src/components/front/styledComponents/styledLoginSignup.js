@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as CheckSvg } from "../../utils/icons/check.svg";
 
 import {
   brightest,
@@ -31,7 +32,26 @@ export const S_FormBox = styled.div`
   top: 510px;
   left: 50%;
   transform: translateX(-50%);
-  /* transform: translateX(${inputfield_translateX}px); */
+`;
+
+export const S_InputFeedbackBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: -250px;
+`;
+
+export const S_InputFeedback = styled.div`
+  height: 58px;
+  margin: 0px auto 15px 0px;
+  color: ${brightest};
+`;
+
+export const S_CheckSvg = styled(CheckSvg)`
+  width: 100%;
+  height: 100%;
+  margin: 0px auto 15px 0px;
+  fill: ${brightest};
 `;
 
 export const S_Input = styled.input`
@@ -47,32 +67,6 @@ export const S_Input = styled.input`
   font-weight: 500;
   margin: 0px 0px 15px 0px;
   width: ${inputfield_width} "px";
-`;
-
-export const S_SignUpFeedbackBox = styled.div`
-  display: flex;
-`;
-
-export const S_EmailIsNotAvailable = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  position: absolute;
-  width: 400px;
-  transform: translateY(10%);
-  margin-left: 10px;
-  font-size: ${medium};
-  color: ${brightest};
-`;
-
-export const S_Check = styled.div`
-  display: flex;
-  /* position: absolute; */
-  /* align-items: center; */
-  transform: translateY(10%);
-  margin-left: 10px;
-  font-size: 40px;
-  color: ${brightest};
 `;
 
 export const S_FormatConfirm = styled.div`
@@ -95,4 +89,26 @@ export const S_ButtonBox_Submit = styled.div`
   left: 50%;
   transform: translate(-50%);
   width: 250px;
+`;
+
+export const S_EmailIsNotAvailable = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 50px;
+  width: 400px;
+  transform: translateY(10%);
+  margin-left: 10px;
+  font-size: ${medium};
+  color: ${brightest};
+`;
+
+export const S_Check = styled.div`
+  display: flex;
+  position: absolute;
+  align-self: center;
+  transform: translateY(10%);
+  margin-left: 10px;
+  font-size: 40px;
+  color: ${brightest};
 `;
