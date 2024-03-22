@@ -1,6 +1,7 @@
 // Libraris, functions, etc
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { findUserByEmail } from "./functions/findUserByEmail";
 
 // Custom components
 import {
@@ -10,6 +11,7 @@ import {
   S_Button,
   S_Check,
   S_InputFlex,
+  S_EmailIsNotAvailable,
 } from "./styledComponents/styledFront";
 
 /**
@@ -30,6 +32,13 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailOk, setIsEmailOk] = useState(false);
+  /**
+   * emailStatus can take three values:
+   *    1) show check
+   *    0) show nothing
+   *   -1) show message
+   */
+  const [emailStatus, setIsEmailStatus] = useState(0);
   const [isPasswordOk, setIsPasswordOk] = useState(false);
 
   /**
@@ -85,6 +94,18 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
     setIsEmailOk(boolean);
   }
 
+  console.log("SignUp email:", email);
+  console.log("SignUp isEmailOk:", isEmailOk);
+  console.log("SignUp emailStatus:", emailStatus);
+
+  useEffect(() => {
+    if (isEmailOk) {
+      findUserByEmail(email, setIsEmailStatus);
+    } else {
+      setIsEmailStatus(0);
+    }
+  }, [email, isEmailOk]);
+
   /**
    * When the user enters a password in the input field, the value will be checked if it passes the regex criteria in this function.
    *
@@ -134,7 +155,17 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             {/**
              * Green check sign that appears if isEmailok is true, which it will be only if the email meets the regex criteria.
              */}
-            <S_Check $approved={isEmailOk ? "true" : "false"}>✔</S_Check>
+            {emailStatus < 1 ? (
+              emailStatus < 0 ? (
+                <S_EmailIsNotAvailable>
+                  Email is already registered
+                </S_EmailIsNotAvailable>
+              ) : (
+                ""
+              )
+            ) : (
+              <S_Check>✔</S_Check>
+            )}
           </S_InputFlex>
           <S_InputFlex>
             {/**
@@ -149,7 +180,7 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             {/**
              * Green check sign that appears username is anything but an empty string.
              */}
-            <S_Check $approved={username !== "" ? "true" : "false"}>✔</S_Check>
+            {username !== "" && <S_Check>✔</S_Check>}
           </S_InputFlex>
           <S_InputFlex>
             {/**
@@ -164,13 +195,13 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             {/**
              * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
              */}
-            <S_Check $approved={isPasswordOk ? "true" : "false"}>✔</S_Check>
+            {isPasswordOk && <S_Check>✔</S_Check>}
           </S_InputFlex>
 
           {/**
            * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
            */}
-          {isEmailOk != null && username !== "" && isPasswordOk && (
+          {emailStatus === 1 && username !== "" && isPasswordOk && (
             <S_ButtonBox_Submit>
               <S_Button
                 type="submit"

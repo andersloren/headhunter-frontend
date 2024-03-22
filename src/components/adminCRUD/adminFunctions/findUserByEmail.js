@@ -5,8 +5,8 @@ import axios from "axios";
  * Retrieves one user object based on its email. This operation is intended for
  * use by admin users, as dictated by server-side authorization.
  *
- * On success: Updates the application state with the username of the user
- * On failure: Logs an error to the console
+ * On success: Logs a success message to the console
+ * On failure: Logs an error message to the console
  *
  * @function
  * @async

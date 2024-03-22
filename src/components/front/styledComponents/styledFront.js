@@ -16,8 +16,9 @@ import {
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
-
 const margin_between_buttons = "20px";
+const inputfield_width = 300;
+const inputfield_translateX = (inputfield_width / 2) * -1;
 
 export const S_HeadingBox_Welcome = styled.div`
   padding-top: 150px;
@@ -92,18 +93,18 @@ export const S_Button = styled.button`
 `;
 
 export const S_FormBox = styled.div`
-  display: inline-block;
+  /* display: inline-block; */
   position: absolute;
-  width: 30%;
   font-size: ${medium};
+  /* width: 30%; */
   top: 510px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(${inputfield_translateX}px);
 `;
 
 export const S_InputFlex = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: flex-start; */
 `;
 
 export const S_Input = styled.input`
@@ -116,15 +117,23 @@ export const S_Input = styled.input`
   border-radius: ${border_radius};
   border: 0;
   font-weight: 500;
-  margin: 0px 0px 15px 15px;
+  margin: 0px 0px 15px 0px;
+  width: ${inputfield_width} "px";
 `;
 
 export const S_Check = styled.div`
+  position: static;
   transform: translateY(10%);
   margin-left: 10px;
   font-size: 40px;
-  color: ${(props) =>
-    props.$approved === "true" ? `${brightest}` : `${neutral}`};
+  color: ${brightest};
+`;
+
+export const S_EmailIsNotAvailable = styled.div`
+  transform: translateY(10%);
+  margin-left: 10px;
+  font-size: ${medium};
+  color: ${brightest};
 `;
 
 export const S_FormatConfirm = styled.div`
