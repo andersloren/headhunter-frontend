@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
+import { extractRolesFromToken } from "../security/token/extractRolesFromToken";
 import {
   S_WindowSplit,
   S_SidebarBox,
@@ -15,11 +16,12 @@ import MyJobs from "../userCRUD/MyJobs";
 
 import Admin from "../adminCRUD/Admin";
 
-export default function Sidebar({ roles, setIsAuthorized }) {
+export default function Sidebar({ setIsAuthorized }) {
   const [isMyJobsVisible, setIsMyJobsVisible] = useState(false);
   const [isAdminVisible, setAdminVisible] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
   const [username, setUsername] = useState("");
+  const [roles, setRoles] = useState([""]);
 
   function handleLogout() {
     localStorage.removeItem("headhunter-token");
@@ -28,6 +30,14 @@ export default function Sidebar({ roles, setIsAuthorized }) {
 
   useEffect(() => {
     setUsername(extractUsernameFromToken());
+  }, []);
+
+  useEffect(() => {
+    setUsername(extractUsernameFromToken());
+  }, [username]);
+
+  useEffect(() => {
+    setRoles(extractRolesFromToken());
   }, []);
 
   console.log(isPinned);
@@ -71,7 +81,7 @@ export default function Sidebar({ roles, setIsAuthorized }) {
           <p></p>
           <button onClick={() => handleLogout()}>Logout</button>
         </S_SidebarBox>
-        {isMyJobsVisible && <MyJobs />}
+        {roles.includes("user") && <MyJobs />}
         {isAdminVisible && <Admin />}
       </S_WindowSplit>
     </>

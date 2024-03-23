@@ -16,8 +16,8 @@ import {
   small,
 } from "../../utils/styledComponentsConstants";
 
-const compact_sidebar = "100px";
-const expanded_sidebar = "300px";
+const compact_sidebar = "150px";
+const expanded_sidebar = "150px";
 
 export const S_WindowSplit = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const S_SidebarBox = styled.div`
   width: ${(props) =>
     props.$active === "true" ? `${expanded_sidebar}` : `${compact_sidebar}`};
   background-color: ${bright};
-  &:hover {
+  * &:hover {
     width: ${expanded_sidebar};
   }
 `;
@@ -40,16 +40,19 @@ export const S_HeadhunterLogoBox = styled.div`
 `;
 
 export const S_OptionBox = styled.div`
+  margin: 10px;
   display: flex;
   flex-direction: column;
 `;
 
 export const S_Option = styled.div`
+  margin-bottom: 10px;
   background-color: ${bright};
   font-size: ${medium};
   color: ${brightest};
   &:hover {
     background-color: ${brighter};
+    color: ${dark};
   }
 `;
 
