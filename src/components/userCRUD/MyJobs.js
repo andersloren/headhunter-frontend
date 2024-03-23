@@ -15,6 +15,8 @@ import {
   S_Header,
   S_AddSvg,
   S_DeleteSvg,
+  S_PinSvg,
+  S_UnpinSvg,
 } from "./styledComponents/styledUserGlobal.js";
 import {
   S_Preview,
@@ -44,6 +46,9 @@ export default function MyJobs() {
   const [isChange, setIsChange] = useState(false);
   const [refreshAdTabs, setRefreshAdTabs] = useState(false);
   const [adsExist, setAdsExist] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+
+  console.log(isPinned);
 
   /**
    * If a job is being successfully added, updated, or deleted, refreshTable triggers the fetching of an updated array of jobs.
@@ -128,6 +133,19 @@ export default function MyJobs() {
   return (
     <>
       <S_WindowSplit>
+        {/* {isPinned ? (
+          <S_UnpinSvg
+            src="/google-icons/unpin.svg"
+            alt="unpin"
+            onClick={() => setIsPinned((pin) => !pin)}
+          />
+        ) : (
+          <S_PinSvg
+            src="/google-icons/pin.svg"
+            alt="pin"
+            onClick={() => setIsPinned((pin) => !pin)}
+          />
+        )} */}
         <S_JobList_Box>
           {
             // Joblist

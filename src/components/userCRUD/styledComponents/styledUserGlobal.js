@@ -5,6 +5,8 @@ import { ReactComponent as GenerateSvg } from "../../utils/icons/generate.svg";
 import { ReactComponent as HtmlSvg } from "../../utils/icons/html.svg";
 import { ReactComponent as PdfSvg } from "../../utils/icons/pdf.svg";
 import { ReactComponent as DocxSvg } from "../../utils/icons/docx.svg";
+import { ReactComponent as PinSvg } from "../../utils/icons/pin.svg";
+import { ReactComponent as UnpinSvg } from "../../utils/icons/unpin.svg";
 import { styled } from "styled-components";
 
 import {
@@ -94,4 +96,26 @@ export const S_DocxSvg = styled(DocxSvg)`
   height: 100%;
   fill: ${(props) =>
     props.$active === "true" ? `${darkest}` : `${brightest}`};
+`;
+
+export const S_PinSvg = styled(PinSvg)`
+  fill: ${brighter};
+  width: 30px;
+  height: 25px;
+  fill: ${brightest};
+  &:hover {
+    cursor: pointer;
+    fill: ${brightest};
+  }
+`;
+
+export const S_UnpinSvg = styled(UnpinSvg)`
+  fill: ${brighter};
+  width: 30px;
+  height: 25px;
+  fill: ${brightest};
+  &:hover {
+    cursor: pointer;
+    fill: ${brightest};
+  }
 `;

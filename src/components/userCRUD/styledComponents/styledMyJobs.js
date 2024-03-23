@@ -18,6 +18,9 @@ const border_radius = "5px";
 const margin_left_from_table = "20px";
 const table_width = "290px";
 
+const compact_joblist = "150px";
+const expanded_joblist = "auto";
+
 export const S_JobList_Box = styled.div`
   margin-left: ${margin_left_from_table};
   margin-top: 10px;
@@ -49,6 +52,8 @@ export const S_JobList = styled.div`
   border-radius: ${border_radius};
   color: ${(props) =>
     props.$active === "true" ? `${darkest}` : `${brightest}`};
+  width: ${(props) =>
+    props.$active === "true" ? `${expanded_joblist}` : `${compact_joblist}`};
 `;
 
 export const S_Button_AddJob = styled.button`
