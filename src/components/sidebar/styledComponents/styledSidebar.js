@@ -39,6 +39,20 @@ export const S_HeadhunterLogoBox = styled.div`
   margin: 20px;
 `;
 
+export const S_OptionBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const S_Option = styled.div`
+  background-color: ${bright};
+  font-size: ${medium};
+  color: ${brightest};
+  &:hover {
+    background-color: ${brighter};
+  }
+`;
+
 export const S_HeadhunterLogo = styled.img`
   width: 60px;
 `;

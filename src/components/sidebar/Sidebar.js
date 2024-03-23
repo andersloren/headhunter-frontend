@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
 import {
   S_WindowSplit,
   S_SidebarBox,
@@ -6,6 +7,8 @@ import {
   S_UnpinSvg,
   S_HeadhunterLogoBox,
   S_HeadhunterLogo,
+  S_OptionBox,
+  S_Option,
 } from "./styledComponents/styledSidebar";
 
 import MyJobs from "../userCRUD/MyJobs";
@@ -16,11 +19,16 @@ export default function Sidebar({ roles, setIsAuthorized }) {
   const [isMyJobsVisible, setIsMyJobsVisible] = useState(false);
   const [isAdminVisible, setAdminVisible] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
+  const [username, setUsername] = useState("");
 
   function handleLogout() {
     localStorage.removeItem("headhunter-token");
     setIsAuthorized(false);
   }
+
+  useEffect(() => {
+    setUsername(extractUsernameFromToken());
+  }, []);
 
   console.log(isPinned);
 
@@ -44,9 +52,10 @@ export default function Sidebar({ roles, setIsAuthorized }) {
               />
             )}
           </S_HeadhunterLogoBox>
-          <div>Sidebar</div>
-          <div>username</div>
-          <div>Logout</div>
+          <S_OptionBox>
+            <S_Option>{username}</S_Option>
+            <S_Option>Logout</S_Option>
+          </S_OptionBox>
           <p></p>
           {roles.includes("user") && (
             <button onClick={() => setIsMyJobsVisible((vis) => !vis)}>
