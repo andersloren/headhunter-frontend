@@ -16,9 +16,16 @@ import {
 const margin_left_from_screen = "30px";
 
 // Main
+export const S_MainBase = styled.div`
+  min-height: 100vh;
+  /* background-color: ${neutral}; */
+  background: linear-gradient(to right, ${bright}, ${brighter});
+`;
+
 export const S_Main = styled.div`
   min-height: 100vh;
-  background-color: ${neutral};
+  /* background-color: ${neutral}; */
+  background: ${neutral};
 `;
 
 // All Heading

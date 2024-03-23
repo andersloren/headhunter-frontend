@@ -32,5 +32,6 @@ export function extractRolesFromToken() {
      * */
     return role.slice(indexOfUnderscore + 1);
   });
+
   return rolesArr;
 }

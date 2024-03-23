@@ -33,7 +33,7 @@ export const S_FunctionalityButton = styled.button`
   border-radius: ${border_radius};
   background-color: ${neutral};
   &:hover {
-    background-color: ${dark};
+    background-color: ${neutral};
   }
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
@@ -54,24 +54,42 @@ export const S_Header = styled.div`
 `;
 
 export const S_AddSvg = styled(AddSvg)`
-  width: 100%;
-  height: 100%;
+  margin-right: 10px;
+  border: 1px solid ${brighter};
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
   fill: ${brightest};
+  &:hover {
+    background-color: ${brightest};
+    fill: ${darker};
+    cursor: pointer;
+  }
 `;
 
 export const S_DeleteSvg = styled(DeleteSvg)`
-  width: 100%;
-  height: 100%;
+  margin-right: 10px;
+  border: 1px solid ${brighter};
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
   fill: ${brightest};
+  &:hover {
+    background-color: ${brightest};
+    fill: ${darker};
+    cursor: pointer;
+  }
 `;
 
 export const S_UpdateSvg = styled(UpdateSvg)`
+  margin-right: 10px;
   width: 100%;
   height: 100%;
   fill: ${brightest};
 `;
 
 export const S_GenerateSvg = styled(GenerateSvg)`
+  margin-right: 10px;
   width: 100%;
   height: 100%;
   fill: ${brightest};

@@ -19,10 +19,10 @@ import MyJobs from "../userCRUD/MyJobs";
 import Admin from "../adminCRUD/Admin";
 
 export default function Sidebar({ setIsAuthorized }) {
-  const [isMyJobsVisible, setIsMyJobsVisible] = useState(false);
-  const [isAdminVisible, setAdminVisible] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
+  const [isActive, setIsActive] = useState(null);
+  const [isAccountVisible, setIsAccountVisible] = useState(false);
+  const [isJobsVisible, setIsJobsVisible] = useState(false);
+  const [isAdminVisible, setIsAdminVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [roles, setRoles] = useState([""]);
 
@@ -50,11 +50,47 @@ export default function Sidebar({ setIsAuthorized }) {
           <S_HeadhunterLogoBox>
             <S_HeadhunterLogo src="./static/headhunter-logo.png"></S_HeadhunterLogo>
           </S_HeadhunterLogoBox>
-          <S_AccountSvg src="/google-icons/account.svg" alt="account" />
-          {roles.includes("admin") && isAdmin ? (
-            <S_AdminSvg onClick={() => setIsAdmin((is) => !is)} />
-          ) : (
-            <S_ListSvg onClick={() => setIsAdmin((is) => !is)} />
+          <S_AccountSvg
+            src="/google-icons/account.svg"
+            alt="account"
+            $active={isActive === "1" ? "true" : "false"}
+            onClick={() => {
+              setIsActive("1");
+              setIsAccountVisible(true);
+              setIsAdminVisible(false);
+              setIsJobsVisible(false);
+            }}
+          />
+          {roles.includes("admin") && (
+            <>
+              <S_AdminSvg
+                $active={isActive === "2" ? "true" : "false"}
+                onClick={() => {
+                  setIsActive("2");
+                  setIsAccountVisible(false);
+                  setIsAdminVisible(true);
+                  setIsJobsVisible(false);
+                }}
+              />
+              <S_ListSvg
+                $active={isActive === "3" ? "true" : "false"}
+                onClick={() => {
+                  setIsActive("3");
+                  setIsAccountVisible(false);
+                  setIsAdminVisible(false);
+                  setIsJobsVisible(true);
+                }}
+              />
+            </>
+          )}
+          {roles.includes("user") && !roles.includes("admin") && (
+            <S_ListSvg
+              onClick={() => {
+                setIsAccountVisible(false);
+                setIsAdminVisible(false);
+                setIsJobsVisible(true);
+              }}
+            />
           )}
           <S_LogoutSvg
             src="/google-icons/logout.svg"
@@ -62,9 +98,9 @@ export default function Sidebar({ setIsAuthorized }) {
             onClick={() => handleLogout()}
           />
         </S_SidebarBox>
-
-        {isAdmin ? <Admin /> : <MyJobs />}
-        {roles.includes("user") && !roles.includes("admin") && <MyJobs />}
+        {/* {isAccountVisible && <Account />} */}
+        {isAdminVisible && <Admin />}
+        {isJobsVisible && <MyJobs />}
       </S_WindowSplit>
     </>
   );

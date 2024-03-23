@@ -34,41 +34,21 @@ export const S_JobList_Box = styled.div`
 // `;
 
 export const S_JobList = styled.div`
+  margin-bottom: 10px;
   font-size: ${medium};
   &:hover {
     cursor: pointer;
-    background: ${brighter};
+    background: ${brightest};
+    color: ${darker};
   }
-  padding: 10px;
-  background-color: ${(props) =>
-    props.$active === "true" ? `${brighter}` : `${neutral}`};
-  /* &:hover {
-    background: radial-gradient(at 50% 50%, ${darker}, ${darker});
-  } */
-  &:hover {
-    background: ${dark};
-    color: ${brightest};
-  }
+  padding: 5px;
   border-radius: ${border_radius};
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
   color: ${(props) =>
     props.$active === "true" ? `${darkest}` : `${brightest}`};
   width: ${(props) =>
     props.$active === "true" ? `${expanded_joblist}` : `${compact_joblist}`};
-`;
-
-export const S_Button_AddJob = styled.button`
-  font-size: ${medium};
-  font-weight: bold;
-  background-color: ${bright};
-  color: ${darkest};
-  &:hover {
-    background-color: ${brightest};
-    color: ${darkest};
-  }
-  margin-top: 10px;
-  height: 40px;
-  border-radius: ${border_radius};
-  width: ${table_width};
 `;
 
 // All Preview
