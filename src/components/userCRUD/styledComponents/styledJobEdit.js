@@ -49,6 +49,7 @@ export const S_TextArea = styled.textarea`
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
   min-width: 400px;
+  min-height: 350px;
 `;
 
 export const S_Tooltip_FunctionalityButton = styled.div`
