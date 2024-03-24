@@ -91,6 +91,7 @@ export const S_UpdateSvg = styled(UpdateSvg)`
     fill: ${darker};
     cursor: pointer;
   }
+  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
 
 export const S_GenerateSvg = styled(GenerateSvg)`
@@ -104,6 +105,7 @@ export const S_GenerateSvg = styled(GenerateSvg)`
     fill: ${darker};
     cursor: pointer;
   }
+  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
 
 export const S_PinSvg = styled(PinSvg)`

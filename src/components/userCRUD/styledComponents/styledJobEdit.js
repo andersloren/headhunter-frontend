@@ -3,6 +3,8 @@ import { styled, keyframes } from "styled-components";
 import { ReactComponent as HtmlSvg } from "../../utils/icons/html.svg";
 import { ReactComponent as PdfSvg } from "../../utils/icons/pdf.svg";
 import { ReactComponent as DocxSvg } from "../../utils/icons/docx.svg";
+import { ReactComponent as HourglassTopSvg } from "../../utils/icons/hourglass-top.svg";
+import { ReactComponent as HourglassBottomSvg } from "../../utils/icons/hourglass-bottom.svg";
 
 import {
   brightest,
@@ -123,7 +125,7 @@ export const S_Animation_Text = styled.div`
   position: relative;
   text-align: center;
   font-size: ${big};
-  color: ${bright};
+  color: ${brightest};
 `;
 
 const rotate = keyframes`
@@ -145,9 +147,30 @@ const rotate = keyframes`
 `;
 
 export const S_Animation_Rotate = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 30px;
-  position: relative;
-  text-align: center;
+  right: 50%;
   font-size: 50px;
+`;
+
+export const S_HourglassBottom = styled(HourglassBottomSvg)`
   animation: ${rotate} 5s linear infinite;
+  height: 70px;
+  width: 70px;
+  fill: ${brightest};
+`;
+
+export const S_HourglassTop = styled(HourglassTopSvg)`
+  border: 1px solid ${brighter};
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  fill: ${brightest};
+  &:hover {
+    background-color: ${brightest};
+    fill: ${darker};
+    cursor: pointer;
+  }
 `;

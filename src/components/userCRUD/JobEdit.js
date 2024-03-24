@@ -25,6 +25,7 @@ import {
   S_Decision_HtmlSvg,
   S_Decision_PdfSvg,
   S_Decision_DocxSvg,
+  S_HourglassBottom,
 } from "./styledComponents/styledJobEdit.js";
 
 /**
@@ -218,6 +219,7 @@ export default function JobEdit({
           <S_UpdateSvg
             src="/google-icons/update.svg"
             alt="save job"
+            $blur={isGenerating === true ? "true" : "false"}
             onClick={() => {
               handleUpdate();
             }}
@@ -230,8 +232,9 @@ export default function JobEdit({
             alt="generate ad"
             $blur={isGenerating === true ? "true" : "false"}
             onClick={() => {
-              handleUpdate();
-              handleGenerate(jobId);
+              setIsGenerating(true);
+              // handleUpdate();
+              // handleGenerate(jobId);
             }}
           />
           {
@@ -242,8 +245,18 @@ export default function JobEdit({
         {
           // Generate loader animation
         }
-
         {isGenerating && (
+          <>
+            <S_Animation_Rotate
+              $blur={isGenerating === true ? "true" : "false"}
+            >
+              <S_HourglassBottom />
+            </S_Animation_Rotate>
+            <S_Animation_Text>Generating ad...</S_Animation_Text>
+          </>
+        )}
+
+        {/* {isGenerating && (
           <>
             <S_Animation_Rotate
               $blur={isGenerating === true ? "true" : "false"}
@@ -252,7 +265,7 @@ export default function JobEdit({
             </S_Animation_Rotate>
             <S_Animation_Text>Generating ad...</S_Animation_Text>
           </>
-        )}
+        )} */}
 
         {
           // Instructions (for developing purposese)
