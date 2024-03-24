@@ -177,11 +177,11 @@ export default function MyJobs() {
             {
               // Add New Job button
             }
-            <S_AddSvg src="/google-icons/add.svg" alt="add" />
+            <S_AddSvg onClick={handleAddJob} src="/google-icons/add.svg" alt="add" />
             {
               // Delete Job button
             }
-            <S_DeleteSvg src="/google-icons/delete.svg" alt="delete" />
+            <S_DeleteSvg onClick={() => handleDeleteJob(jobId)} src="/google-icons/delete.svg" alt="delete" />
           </S_FunctionalityButton_Box>
         </S_JobList_Box>
         {
