@@ -1,5 +1,9 @@
 import { styled, keyframes } from "styled-components";
 
+import { ReactComponent as HtmlSvg } from "../../utils/icons/html.svg";
+import { ReactComponent as PdfSvg } from "../../utils/icons/pdf.svg";
+import { ReactComponent as DocxSvg } from "../../utils/icons/docx.svg";
+
 import {
   brightest,
   brighter,
@@ -25,24 +29,69 @@ export const S_Instruction_Input = styled.input`
   font-size: ${medium};
 `;
 
-export const S_Instruction_DecisionButton = styled.button`
-  margin-right: 30px;
-  width: 70px;
-  background-color: ${neutral};
-  background: ${(props) =>
-    props.$active === "true" ? `${brighter}` : `${neutral}`};
-  padding: 12px;
-  color: ${bright};
-  border-color: ${brighter};
-  border: 2px solid;
-  border-radius: ${border_radius};
+/**
+ * Decision button constants
+ */
+
+const decision_border = `1px solid ${brighter}`;
+const decision_border_radius = "10px";
+const decision_width = "75px";
+const decision_height = "50px";
+const decision_fill = `${brightest}`;
+const decision_hover_background_color = `${brightest}`;
+const decision_hover_fill = `${darker}`;
+const decision_hover_cursor = "pointer";
+
+export const S_Decision_HtmlSvg = styled(HtmlSvg)`
+  border: ${decision_border};
+  border-radius: ${decision_border_radius};
+  width: ${decision_width};
+  height: ${decision_height};
+  fill: ${decision_fill};
   &:hover {
-    background: ${dark};
-    cursor: pointer;
+    background-color: ${decision_hover_background_color};
+    fill: ${decision_hover_fill};
+    cursor: ${decision_hover_cursor};
   }
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
+  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
+`;
+
+export const S_Decision_PdfSvg = styled(PdfSvg)`
+  border: ${decision_border};
+  border-radius: ${decision_border_radius};
+  width: ${decision_width};
+  height: ${decision_height};
+  fill: ${decision_fill};
+  &:hover {
+    background-color: ${decision_hover_background_color};
+    fill: ${decision_hover_fill};
+    cursor: ${decision_hover_cursor};
+  }
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
+  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
+`;
+
+export const S_Decision_DocxSvg = styled(DocxSvg)`
+  border: ${decision_border};
+  border-radius: ${decision_border_radius};
+  width: ${decision_width};
+  height: ${decision_height};
+  fill: ${decision_fill};
+  &:hover {
+    background-color: ${decision_hover_background_color};
+    fill: ${decision_hover_fill};
+    cursor: ${decision_hover_cursor};
+  }
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
+  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
 `;
 
 export const S_TextArea = styled.textarea`
+  margin-bottom: 10px;
   background-color: ${brightest};
   color: ${darkest};
   font-size: ${medium};

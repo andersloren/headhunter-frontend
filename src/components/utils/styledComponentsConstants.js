@@ -1,6 +1,6 @@
 import { lighten, darken } from "./colors/colorPalette";
 
-const baseColor = "hsl(280, 30%, 70%)"; // Example: a shade of blue
+const baseColor = "hsl(280, 40%, 60%)"; // Example: a shade of blue
 
 // Generate shades
 export const brightest = lighten(baseColor, 0.75); // 75% lighter

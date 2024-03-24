@@ -13,9 +13,6 @@ import {
   S_PreviewBox,
   S_FunctionalityButton_Box,
   S_FunctionalityButton,
-  S_HtmlSvg,
-  S_PdfSvg,
-  S_DocxSvg,
   S_UpdateSvg,
   S_GenerateSvg,
 } from "./styledComponents/styledUserGlobal.js";
@@ -25,7 +22,9 @@ import {
   S_Animation_Text,
   S_Animation_Rotate,
   S_Instruction_Input,
-  S_Instruction_DecisionButton,
+  S_Decision_HtmlSvg,
+  S_Decision_PdfSvg,
+  S_Decision_DocxSvg,
 } from "./styledComponents/styledJobEdit.js";
 
 /**
@@ -168,37 +167,28 @@ export default function JobEdit({
         }
 
         <S_Header>Format</S_Header>
-        <S_Instruction_DecisionButton
-          onClick={() => setActiveFormat("1")}
-          $active={activeFormat === "1" ? "true" : "false"}
-        >
-          <S_HtmlSvg
+        <S_FunctionalityButton_Box>
+          <S_Decision_HtmlSvg
             $active={activeFormat === "1" ? "true" : "false"}
             src="/google-icons/html.svg"
             alt="html"
+            onClick={() => setActiveFormat("1")}
           />
-        </S_Instruction_DecisionButton>
-        <S_Instruction_DecisionButton
-          onClick={() => setActiveFormat("2")}
-          $active={activeFormat === "2" ? "true" : "false"}
-        >
-          <S_PdfSvg
+
+          <S_Decision_PdfSvg
             $active={activeFormat === "2" ? "true" : "false"}
             src="/google-icons/pdf.svg"
             alt="pdf"
+            onClick={() => setActiveFormat("2")}
           />
-        </S_Instruction_DecisionButton>
-        <S_Instruction_DecisionButton
-          onClick={() => setActiveFormat("3")}
-          $active={activeFormat === "3" ? "true" : "false"}
-        >
-          <S_DocxSvg
+
+          <S_Decision_DocxSvg
             $active={activeFormat === "3" ? "true" : "false"}
             src="/google-icons/docx.svg"
             alt="docx"
+            onClick={() => setActiveFormat("3")}
           />
-        </S_Instruction_DecisionButton>
-
+        </S_FunctionalityButton_Box>
         {
           // Description text area
         }
@@ -220,55 +210,33 @@ export default function JobEdit({
           // Functionality buttons
         }
 
+        {
+          // Save Job button
+        }
         <S_FunctionalityButton_Box>
-          {
-            // Save Job button
-          }
-          <S_FunctionalityButton
+          {" "}
+          <S_UpdateSvg
+            src="/google-icons/update.svg"
+            alt="save job"
             onClick={() => {
               handleUpdate();
             }}
-            onMouseOver={() =>
-              isGenerating ? handleActiveButton("") : handleActiveButton("1")
-            }
-            onMouseLeave={() => handleActiveButton("")}
-            $blur={isGenerating === true ? "true" : "false"}
-          >
-            <S_UpdateSvg src="/google-icons/update.svg" alt="save job" />
-          </S_FunctionalityButton>
+          />
           {
             // Generate Ad button
           }
-          <S_FunctionalityButton
+          <S_GenerateSvg
+            src="/google-icons/generate.svg"
+            alt="generate ad"
+            $blur={isGenerating === true ? "true" : "false"}
             onClick={() => {
               handleUpdate();
               handleGenerate(jobId);
             }}
-            onMouseOver={() =>
-              isGenerating ? handleActiveButton("") : handleActiveButton("2")
-            }
-            onMouseLeave={() => handleActiveButton("")}
-            $blur={isGenerating === true ? "true" : "false"}
-          >
-            <S_GenerateSvg src="/google-icons/generate.svg" alt="generate ad" />
-          </S_FunctionalityButton>
+          />
           {
             // Delete Job button
           }
-
-          {
-            // Tooltip
-          }
-
-          {activeButton && (
-            <S_Tooltip_FunctionalityButton $activeButton={activeButton}>
-              {activeButton !== "3"
-                ? activeButton !== "2"
-                  ? "Save description"
-                  : "Save description and Generate a new ad"
-                : "Delete job"}
-            </S_Tooltip_FunctionalityButton>
-          )}
         </S_FunctionalityButton_Box>
 
         {
