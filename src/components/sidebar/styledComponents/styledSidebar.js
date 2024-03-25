@@ -3,6 +3,8 @@ import { ReactComponent as LogoutSvg } from "../../utils/icons/logout.svg";
 import { ReactComponent as AdminSvg } from "../../utils/icons/admin.svg";
 import { ReactComponent as AccountSvg } from "../../utils/icons/account.svg";
 import { ReactComponent as ListSvg } from "../../utils/icons/list.svg";
+import { ReactComponent as NextSvg } from "../../utils/icons/next.svg";
+import { ReactComponent as BeforeSvg } from "../../utils/icons/before.svg";
 
 import {
   brightest,
@@ -12,9 +14,6 @@ import {
   dark,
   darker,
   darkest,
-  big,
-  medium,
-  small,
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
@@ -29,6 +28,8 @@ export const S_SidebarBox = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${bright};
+  transition: width 0.3s ease-in-out;
+  position: relative;
 `;
 
 export const S_HeadhunterLogoBox = styled.div`
@@ -39,26 +40,13 @@ export const S_HeadhunterLogo = styled.img`
   width: 60px;
 `;
 
-export const S_OptionBox = styled.div`
-  margin: 10px;
+export const S_NavigationIcons = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-`;
-
-export const S_Option = styled.div`
-  margin-bottom: 10px;
-  background-color: ${bright};
-  font-size: ${medium};
-  color: ${brightest};
-  &:hover {
-    background-color: ${brightest};
-    color: ${dark};
-    cursor: pointer;
-  }
-  border-radius: ${border_radius};
-  margin: 10px;
-  padding: 10px;
+  align-items: center;
 `;
 
 export const S_AccountSvg = styled(AccountSvg)`
@@ -67,7 +55,7 @@ export const S_AccountSvg = styled(AccountSvg)`
   fill: ${brightest};
   &:hover {
     background: ${brightest};
-    fill: ${dark};
+    fill: ${darker};
     cursor: pointer;
   }
   border-radius: ${border_radius};
@@ -84,7 +72,7 @@ export const S_AdminSvg = styled(AdminSvg)`
   fill: ${brightest};
   &:hover {
     background: ${brightest};
-    fill: ${dark};
+    fill: ${darker};
     cursor: pointer;
   }
   border-radius: ${border_radius};
@@ -101,7 +89,7 @@ export const S_ListSvg = styled(ListSvg)`
   fill: ${brightest};
   &:hover {
     background: ${brightest};
-    fill: ${dark};
+    fill: ${darker};
     cursor: pointer;
   }
   border-radius: ${border_radius};
@@ -118,10 +106,35 @@ export const S_LogoutSvg = styled(LogoutSvg)`
   fill: ${brightest};
   &:hover {
     background: ${brightest};
-    fill: ${dark};
+    fill: ${darker};
     cursor: pointer;
   }
   border-radius: ${border_radius};
   padding: 10px;
   margin: 10px;
+`;
+export const S_NextSvg = styled(NextSvg)`
+  width: 30px;
+  height: 30px;
+  fill: ${brightest}; 
+  &:hover {
+    background: ${brightest};
+    fill: ${dark};
+    cursor: pointer;
+  }
+  border-radius: 50%;  // Add border-radius to create a circle
+  padding: 5px;  // Adjust padding to center the icon within the circle
+`;
+
+export const S_BeforeSvg = styled(BeforeSvg)`
+  width: 30px;
+  height: 30px;
+  fill: ${brightest}; 
+  &:hover {
+    background: ${brightest};
+    fill: ${dark};
+    cursor: pointer;
+  }
+  border-radius: 50%;  // Add border-radius to create a circle
+  padding: 5px;  // Adjust padding to center the icon within the circle
 `;
