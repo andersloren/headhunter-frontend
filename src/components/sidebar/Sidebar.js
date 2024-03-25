@@ -10,8 +10,9 @@ import {
   S_AdminSvg,
   S_AccountSvg,
   S_ListSvg,
-  S_BeforeSvg,
-  S_NextSvg,
+  S_CollapsedSvg,
+  S_ExpandedSvg,
+  S_ExpandedIconBox,
 } from "./styledComponents/styledSidebar";
 
 import MyJobs from "../userCRUD/MyJobs";
@@ -26,10 +27,6 @@ export default function Sidebar({ setIsAuthorized }) {
   const [roles, setRoles] = useState([""]);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsExpanded(prevExpanded => !prevExpanded);
-  };
-
   function handleLogout() {
     localStorage.removeItem("headhunter-token");
     setIsAuthorized(false);
@@ -42,39 +39,40 @@ export default function Sidebar({ setIsAuthorized }) {
 
   return (
     <S_WindowSplit>
-      <S_SidebarBox style={{ width: isExpanded ? '250px' : '50px' }}>
+      <S_SidebarBox $isExpanded={isExpanded === true ? "true" : "false"}>
         <S_HeadhunterLogoBox>
-          <S_HeadhunterLogo src="./static/headhunter-logo.png"></S_HeadhunterLogo>
+          <S_HeadhunterLogo
+            src="./static/headhunter-logo.png"
+            $isExpanded={isExpanded === true ? "true" : "false"}
+          ></S_HeadhunterLogo>
         </S_HeadhunterLogoBox>
-        {isExpanded ? (
-          <S_BeforeSvg onClick={toggleSidebar} />
-        ) : (
-          <S_NextSvg onClick={toggleSidebar} />
-        )}
-        <S_AccountSvg
-          $active={isActive === "1" ? "true" : "false"}
-          onClick={() => {
-            setIsActive("1");
-            setIsAccountVisible(true);
-            setIsAdminVisible(false);
-            setIsJobsVisible(false);
-          }}
-        />
+        <S_ExpandedIconBox>
+          <S_AccountSvg
+            $active={isActive === "3" ? "true" : "false"}
+            onClick={() => {
+              setIsActive("3");
+              setIsAccountVisible(true);
+              setIsAdminVisible(false);
+              setIsJobsVisible(false);
+            }}
+          />
+          {isExpanded ? "Account" : ""}
+        </S_ExpandedIconBox>
         {roles.includes("admin") && (
           <>
             <S_AdminSvg
-              $active={isActive === "2" ? "true" : "false"}
+              $active={isActive === "4" ? "true" : "false"}
               onClick={() => {
-                setIsActive("2");
+                setIsActive("4");
                 setIsAccountVisible(false);
                 setIsAdminVisible(true);
                 setIsJobsVisible(false);
               }}
             />
             <S_ListSvg
-              $active={isActive === "3" ? "true" : "false"}
+              $active={isActive === "5" ? "true" : "false"}
               onClick={() => {
-                setIsActive("3");
+                setIsActive("5");
                 setIsAccountVisible(false);
                 setIsAdminVisible(false);
                 setIsJobsVisible(true);
@@ -93,6 +91,23 @@ export default function Sidebar({ setIsAuthorized }) {
         )}
         <S_LogoutSvg onClick={handleLogout} />
       </S_SidebarBox>
+      {isExpanded ? (
+        <S_ExpandedSvg
+          $active={isActive === "2" ? "true" : "false"}
+          onClick={() => {
+            setIsActive("2");
+            setIsExpanded((exp) => !exp);
+          }}
+        />
+      ) : (
+        <S_CollapsedSvg
+          $active={isActive === "1" ? "true" : "false"}
+          onClick={() => {
+            setIsActive("1");
+            setIsExpanded((exp) => !exp);
+          }}
+        />
+      )}
       {/* {isAccountVisible && <Account />} */}
       {isAdminVisible && <Admin />}
       {isJobsVisible && <MyJobs />}

@@ -3,8 +3,8 @@ import { ReactComponent as LogoutSvg } from "../../utils/icons/logout.svg";
 import { ReactComponent as AdminSvg } from "../../utils/icons/admin.svg";
 import { ReactComponent as AccountSvg } from "../../utils/icons/account.svg";
 import { ReactComponent as ListSvg } from "../../utils/icons/list.svg";
-import { ReactComponent as NextSvg } from "../../utils/icons/next.svg";
-import { ReactComponent as BeforeSvg } from "../../utils/icons/before.svg";
+import { ReactComponent as ExpandedSvg } from "../../utils/icons/expanded.svg";
+import { ReactComponent as CollapsedSvg } from "../../utils/icons/collapsed.svg";
 
 import {
   brightest,
@@ -17,6 +17,8 @@ import {
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
+const sidebar_expanded = "250px";
+const sidebar_collapsed = "50px";
 
 export const S_WindowSplit = styled.div`
   display: flex;
@@ -26,27 +28,62 @@ export const S_SidebarBox = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: ${(props) => (props.$isExpanded === "true" ? "" : "center")};
+  width: ${(props) =>
+    props.$isExpanded === "true"
+      ? `${sidebar_expanded}`
+      : `${sidebar_collapsed}`};
   background-color: ${bright};
-  transition: width 0.3s ease-in-out;
-  position: relative;
+  transition: width 0.5s ease-in-out;
+  /* position: relative; */
 `;
 
 export const S_HeadhunterLogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
   margin: 20px;
 `;
 
 export const S_HeadhunterLogo = styled.img`
-  width: 60px;
+  width: ${(props) => (props.$isExpanded === "true" ? "60px" : "32px")};
+  transition: width 0.5s ease-in-out;
 `;
 
-export const S_NavigationIcons = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+export const S_ExpandedIconBox = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  margin-left: ${(props) => (props.$isExpanded === "true" ? `20px` : "")};
+`;
+
+export const S_CollapsedSvg = styled(CollapsedSvg)`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  right: 15px;
+  background: ${neutral};
+  fill: ${brightest};
+  &:hover {
+    fill: ${darkest};
+    cursor: pointer;
+  }
+  border-radius: 50%; // Add border-radius to create a circle
+`;
+
+export const S_ExpandedSvg = styled(ExpandedSvg)`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  right: 15px;
+  fill: ${brightest};
+  background: ${neutral};
+  &:hover {
+    /* background: ${bright}; */
+    fill: ${darkest};
+    cursor: pointer;
+  }
+  border-radius: 50%; // Add border-radius to create a circle
 `;
 
 export const S_AccountSvg = styled(AccountSvg)`
@@ -112,29 +149,4 @@ export const S_LogoutSvg = styled(LogoutSvg)`
   border-radius: ${border_radius};
   padding: 10px;
   margin: 10px;
-`;
-export const S_NextSvg = styled(NextSvg)`
-  width: 30px;
-  height: 30px;
-  fill: ${brightest}; 
-  &:hover {
-    background: ${brightest};
-    fill: ${dark};
-    cursor: pointer;
-  }
-  border-radius: 50%;  // Add border-radius to create a circle
-  padding: 5px;  // Adjust padding to center the icon within the circle
-`;
-
-export const S_BeforeSvg = styled(BeforeSvg)`
-  width: 30px;
-  height: 30px;
-  fill: ${brightest}; 
-  &:hover {
-    background: ${brightest};
-    fill: ${dark};
-    cursor: pointer;
-  }
-  border-radius: 50%;  // Add border-radius to create a circle
-  padding: 5px;  // Adjust padding to center the icon within the circle
 `;
