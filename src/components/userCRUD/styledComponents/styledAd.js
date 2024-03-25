@@ -37,8 +37,9 @@ export const S_Buttons_Edit = styled.button`
 `;
 
 export const S_Iframe = styled.iframe`
-min-width: 300px;
-min-height: 600px;
+  margin-bottom: 10px;
+  min-width: 300px;
+  min-height: 600px;
   border-radius: ${border_preview_border_radius};
   border: ${border_preview_border};
   background-color: white;
