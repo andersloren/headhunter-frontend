@@ -10,6 +10,7 @@ import {
   S_FunctionalityButton_Box,
   S_Header,
   S_JobEdit_And_Ad_Box,
+  S_DeleteSvg,
   S_PreviewBox,
 } from "./styledComponents/styledUserGlobal";
 import {
@@ -129,15 +130,14 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
           <S_Iframe src={url} title={"Ad Content"}></S_Iframe>
         </S_PreviewBox>
         <S_FunctionalityButton_Box>
-          <S_FunctionalityButton
-            onClick={() => {
-              handleDeleteAd(adId);
-            }}
-          >
-            ❌
-          </S_FunctionalityButton>
+          {/* <S_FunctionalityButton> */}
+          {
+            // Delete Ad button
+          }
+          <S_DeleteSvg onClick={() => handleDeleteAd(adId)} src="/google-icons/delete.svg" alt="delete" />
+          {/* </S_FunctionalityButton> */}
         </S_FunctionalityButton_Box>
       </S_JobEdit_And_Ad_Box>
-    </S_Main>
+    </S_Main >
   );
 }
