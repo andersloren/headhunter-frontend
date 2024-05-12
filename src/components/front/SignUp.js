@@ -30,7 +30,11 @@ import { S_Button } from "./styledComponents/styledFront.js";
  * @param {function} setSignUpVisible - When the submit button below the registration form is clicked, setSignUpVisible toggles the value of sinUpVisible and this component becomes invisible.
  */
 
-export default function SignUp({ setLoginVisible, setSignUpVisible }) {
+export default function SignUp({
+  setLoginVisible,
+  setSignUpVisible,
+  setHasSignedUp,
+}) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -73,6 +77,7 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
         }
       );
       console.log("New User Sign Up Success", response.data.data);
+      setHasSignedUp((is) => !is);
     } catch (error) {
       console.error("Error signing up", error);
     }
@@ -100,6 +105,8 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
   console.log("SignUp email:", email);
   console.log("SignUp isEmailOk:", isEmailOk);
   console.log("SignUp emailStatus:", emailStatus);
+  console.log("Signup Username: ", username);
+  console.log("SignUp isPasswordOk ", isPasswordOk);
 
   useEffect(() => {
     if (isEmailOk) {
@@ -199,7 +206,7 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
           {/**
            * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
            */}
-          {isPasswordOk && <S_Check>✔</S_Check>}
+          {/* {isPasswordOk && <S_Check>✔</S_Check>} */}
           {/**
            * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
            */}
@@ -217,20 +224,6 @@ export default function SignUp({ setLoginVisible, setSignUpVisible }) {
             </S_ButtonBox_Submit>
           )}
         </form>
-        {/* <S_SignUpFeedbackBox>
-          {emailStatus < 1 ? (
-            emailStatus < 0 ? (
-              <S_EmailIsNotAvailable>
-                Email is already registered
-              </S_EmailIsNotAvailable>
-            ) : (
-              ""
-            )
-          ) : (
-            <S_Check>✔</S_Check>
-          )}
-          {username !== "" && <S_Check>✔</S_Check>}
-        </S_SignUpFeedbackBox> */}
       </S_FormBox>
     </>
   );
