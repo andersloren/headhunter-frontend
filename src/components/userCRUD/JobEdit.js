@@ -63,10 +63,6 @@ export default function JobEdit({
   const [instruction, setInstruction] = useState(
     "Du ska skapa en jobbannons på svenska i HTML-format med en professionell CSS styling. För att omarbeta en arbetsbeskrivning till en jobbannons, börja med att läsa igenom arbetsbeskrivningen noggrant för att förstå de huvudsakliga arbetsuppgifterna, nödvändiga kompetenser och kvalifikationer. Sedan, översätt denna information till en mer engagerande och tilltalande form som lockar potentiella kandidater. Det är viktigt att framhäva företagets kultur och de unika fördelarna med att arbeta där. Börja annonsen med en kort introduktion till företaget, följt av en översikt av jobbrollen. Använd en positiv och inkluderande ton, och undvik jargong. Gör klart vilka huvudsakliga ansvarsområden rollen innefattar och vilka färdigheter och erfarenheter som är önskvärda. Inkludera även information om eventuella förmåner eller möjligheter till personlig och professionell utveckling. Avsluta med hur man ansöker till tjänsten, inklusive viktiga datum och kontaktinformation. Kom ihåg att vara tydlig och koncis för att hålla potentiella kandidaters uppmärksamhet. En välformulerad jobbannons ska inte bara informera utan också inspirera och locka rätt talanger till att söka."
   );
-  const [documentType, setDocumentType] = useState("html");
-
-  // States related to instruction
-  const [activeFormat, setActiveFormat] = useState("1");
 
   /**
    * If jobId changes, that new job is being fetched from the backend.
@@ -76,35 +72,7 @@ export default function JobEdit({
 
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
-    setActiveFormat("1");
   }, [jobId]);
-
-  /**
-   * If activeFormat is being changes, the corresponding file format present in the documenTypeArr-array will be chosen.
-   *
-   * The -1 is due to the button decision that sets documenType starts at 1, but the documentTypeArr-array starts indexation at 0.
-   *
-   * Example: If the user choses the second decision button (PDF), the number 2 is stored in activeFormat. Subtract 1 from 2, and we get 1. Position 1 in documentTypArr is "pdf", which is exactly what the user wanted.
-   */
-
-  useEffect(() => {
-    const documentTypeArr = ["html", "pdf", "docx"];
-    setDocumentType(documentTypeArr[activeFormat - 1]);
-  }, [activeFormat, setDocumentType]);
-
-  /**
-   * When documentType changes, the instruction also has to change so that the user can get the file format it wants.
-   */
-
-  useEffect(() => {
-    setInstruction(
-      "Skapa en jobbannons i " +
-        documentType +
-        "-format med professionell och relevant CSS. " +
-        defaultInstructions
-    );
-    setDescription(defaultDescription);
-  }, [documentType]);
 
   /**
    * When clicking the button for generating an ad, a window confirm alert will show to prevent unwanted credit usage and time consuming events.
@@ -119,7 +87,7 @@ export default function JobEdit({
       )
     ) {
       setIsGenerating(true);
-      generateJobAd(documentType, jobId, handleAdCRUDSuccess, setIsGenerating);
+      generateJobAd(jobId, handleAdCRUDSuccess, setIsGenerating);
     } else {
       console.log("User cancelled generation");
     }
@@ -167,29 +135,15 @@ export default function JobEdit({
 
         {
           // Format decision buttons
+          // As of right now, the only format option is HTML. The button is kept for the sake of clearity.
         }
 
         <S_Header>Format</S_Header>
         <S_FunctionalityButton_Box>
           <S_Decision_HtmlSvg
-            $active={activeFormat === "1" ? "true" : "false"}
+            $active={true} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
             src="/google-icons/html.svg"
             alt="html"
-            onClick={() => setActiveFormat("1")}
-          />
-
-          <S_Decision_PdfSvg
-            $active={activeFormat === "2" ? "true" : "false"}
-            src="/google-icons/pdf.svg"
-            alt="pdf"
-            onClick={() => setActiveFormat("2")}
-          />
-
-          <S_Decision_DocxSvg
-            $active={activeFormat === "3" ? "true" : "false"}
-            src="/google-icons/docx.svg"
-            alt="docx"
-            onClick={() => setActiveFormat("3")}
           />
         </S_FunctionalityButton_Box>
         {
