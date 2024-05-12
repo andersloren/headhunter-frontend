@@ -15,6 +15,8 @@ import {
 import MyJobs from "../userCRUD/MyJobs";
 import Admin from "../adminCRUD/Admin";
 
+// TODO: Add comments to this component
+
 export default function Sidebar({ setIsAuthorized }) {
   const [isActive, setIsActive] = useState(null);
   const [isAccountVisible, setIsAccountVisible] = useState(false);
@@ -34,6 +36,8 @@ export default function Sidebar({ setIsAuthorized }) {
     setRoles(extractRolesFromToken());
   }, []);
 
+  console.log("Sidebar.js: isActive:", isActive);
+
   return (
     <S_WindowSplit>
       <S_SidebarBox $isExpanded={isExpanded === true ? "true" : "false"}>
@@ -41,9 +45,9 @@ export default function Sidebar({ setIsAuthorized }) {
           <S_HeadhunterSvg />
         </S_HeadhunterLogoBox>
         <S_AccountSvg
-          $active={isActive === "3" ? "true" : "false"}
+          $active={isActive === "1" ? "true" : "false"}
           onClick={() => {
-            setIsActive("3");
+            setIsActive("1");
             setIsAccountVisible(true);
             setIsAdminVisible(false);
             setIsJobsVisible(false);
@@ -52,18 +56,18 @@ export default function Sidebar({ setIsAuthorized }) {
         {roles.includes("admin") && (
           <>
             <S_AdminSvg
-              $active={isActive === "4" ? "true" : "false"}
+              $active={isActive === "2" ? "true" : "false"}
               onClick={() => {
-                setIsActive("4");
+                setIsActive("2");
                 setIsAccountVisible(false);
                 setIsAdminVisible(true);
                 setIsJobsVisible(false);
               }}
             />
             <S_ListSvg
-              $active={isActive === "5" ? "true" : "false"}
+              $active={isActive === "3" ? "true" : "false"}
               onClick={() => {
-                setIsActive("5");
+                setIsActive("3");
                 setIsAccountVisible(false);
                 setIsAdminVisible(false);
                 setIsJobsVisible(true);
@@ -73,7 +77,9 @@ export default function Sidebar({ setIsAuthorized }) {
         )}
         {roles.includes("user") && !roles.includes("admin") && (
           <S_ListSvg
+            $active={isActive === "4" ? "true" : "false"}
             onClick={() => {
+              setIsActive("4");
               setIsAccountVisible(false);
               setIsAdminVisible(false);
               setIsJobsVisible(true);
