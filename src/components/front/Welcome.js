@@ -1,5 +1,5 @@
 // Libraris, functions, etc.
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Styled components
 import {
@@ -27,6 +27,11 @@ import Login from "./Login.js";
 export default function Welcome({ setIsAuthorized }) {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
+  const [hasSignedUp, setHasSignedUp] = useState(false);
+
+  useEffect(() => {
+    if (hasSignedUp === true) handleLogin();
+  }, [hasSignedUp]);
 
   /**
    * If the user clicks the button for signing up, signUpVisible becomes true and forms for signing up becomes visible.
@@ -95,6 +100,7 @@ export default function Welcome({ setIsAuthorized }) {
         <SignUp
           setLoginVisible={setLoginVisible}
           setSignUpVisible={setSignUpVisible}
+          setHasSignedUp={setHasSignedUp}
         />
       )}
       {/**

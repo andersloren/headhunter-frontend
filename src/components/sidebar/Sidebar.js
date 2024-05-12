@@ -9,8 +9,6 @@ import {
   S_AdminSvg,
   S_AccountSvg,
   S_ListSvg,
-  S_CollapsedSvg,
-  S_ExpandedSvg,
   S_HeadhunterSvg,
 } from "./styledComponents/styledSidebar";
 
