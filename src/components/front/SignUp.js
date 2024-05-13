@@ -206,7 +206,6 @@ export default function SignUp({
           {/**
            * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
            */}
-          {/* {isPasswordOk && <S_Check>✔</S_Check>} */}
           {/**
            * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
            */}
