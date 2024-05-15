@@ -1,3 +1,5 @@
+// TODO: Add comments for each import type
+
 import { useEffect, useState } from "react";
 import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
 import { extractRolesFromToken } from "../security/token/extractRolesFromToken";
@@ -14,6 +16,7 @@ import {
 
 import MyJobs from "../userCRUD/MyJobs";
 import Admin from "../adminCRUD/Admin";
+import Account from "../userInfo/Account";
 
 // TODO: Add comments to this component
 
@@ -22,7 +25,6 @@ export default function Sidebar({ setIsAuthorized }) {
   const [isAccountVisible, setIsAccountVisible] = useState(false);
   const [isJobsVisible, setIsJobsVisible] = useState(false);
   const [isAdminVisible, setIsAdminVisible] = useState(false);
-  const [username, setUsername] = useState("");
   const [roles, setRoles] = useState([""]);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -32,7 +34,6 @@ export default function Sidebar({ setIsAuthorized }) {
   }
 
   useEffect(() => {
-    setUsername(extractUsernameFromToken());
     setRoles(extractRolesFromToken());
   }, []);
 
@@ -90,6 +91,7 @@ export default function Sidebar({ setIsAuthorized }) {
       </S_SidebarBox>
       {isAdminVisible && <Admin />}
       {isJobsVisible && <MyJobs />}
+      {isAccountVisible && <Account />}
     </S_WindowSplit>
   );
 }

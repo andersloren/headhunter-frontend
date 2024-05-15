@@ -36,7 +36,6 @@ export const S_SidebarBox = styled.div`
       : `${sidebar_collapsed}`};
   background-color: ${bright};
   transition: width 0.5s ease-in-out;
-  /* position: relative; */
 `;
 
 export const S_HeadhunterLogoBox = styled.div`
@@ -46,12 +45,6 @@ export const S_HeadhunterLogoBox = styled.div`
   height: 80px;
   margin: 20px;
 `;
-
-// export const S_ExpandedIconBox = styled.div`
-//   display: flex;
-//   align-items: center;
-//   margin-left: ${(props) => (props.$isExpanded === "true" ? `20px` : "")};
-// `;
 
 export const S_CollapsedSvg = styled(CollapsedSvg)`
   width: 30px;

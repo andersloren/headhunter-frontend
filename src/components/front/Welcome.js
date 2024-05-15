@@ -21,6 +21,7 @@ import Login from "./Login.js";
  * States:
  * - 'signUpVisible': If true, child component shows below where user can sign up.
  * - 'loginVisible': If true, child component shows below where user can login.
+ * - 'hasSignedUp': If true, the signup components turns invisible and the login components shows instead.
  * @param {boolean} setIsAuthorized - If the user sends in matching email and password, isAuthorized is set to true.
  */
 

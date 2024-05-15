@@ -211,18 +211,6 @@ export default function JobEdit({
             <S_Animation_Text>Generating ad...</S_Animation_Text>
           </>
         )}
-
-        {/* {isGenerating && (
-          <>
-            <S_Animation_Rotate
-              $blur={isGenerating === true ? "true" : "false"}
-            >
-              🤖
-            </S_Animation_Rotate>
-            <S_Animation_Text>Generating ad...</S_Animation_Text>
-          </>
-        )} */}
-
         {
           // Instructions (for developing purposeses)
         }
